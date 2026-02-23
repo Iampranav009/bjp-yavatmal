@@ -1,0 +1,538 @@
+ ΓÜá You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+  Γû▓ Next.js 14.2.35
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/15) ...
+Error: <Html> should not be imported outside of pages/_document.
+Read more: https://nextjs.org/docs/messages/no-document-import-in-page
+    at Q (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\pages.runtime.prod.js:16:5430)
+    at I (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\590.js:6:1263)
+    at renderWithHooks (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5732:15)
+    at renderElement (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6087:14)
+    at finishClassComponent (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5688:3)
+    at renderClassComponent (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5696:3)
+    at renderElement (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5954:7)
+
+Error occurred prerendering page "/500". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: <Html> should not be imported outside of pages/_document.
+Read more: https://nextjs.org/docs/messages/no-document-import-in-page
+    at Q (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\pages.runtime.prod.js:16:5430)
+    at I (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\590.js:6:1263)
+    at renderWithHooks (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5732:15)
+    at renderElement (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6087:14)
+    at finishClassComponent (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5688:3)
+    at renderClassComponent (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5696:3)
+    at renderElement (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5954:7)
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908) {
+  digest: '2097164367'
+}
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+
+Error occurred prerendering page "/_not-found". Read more: https://nextjs.org/docs/messages/prerender-error
+
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908) {
+  digest: '2097164367'
+}
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+
+Error occurred prerendering page "/achievements". Read more: https://nextjs.org/docs/messages/prerender-error
+
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+   Generating static pages (3/15) 
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908) {
+  digest: '2097164367'
+}
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+
+Error occurred prerendering page "/admin". Read more: https://nextjs.org/docs/messages/prerender-error
+
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908) {
+  digest: '2097164367'
+}
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+
+Error occurred prerendering page "/contact". Read more: https://nextjs.org/docs/messages/prerender-error
+
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908) {
+  digest: '2097164367'
+}
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+
+Error occurred prerendering page "/join/donate". Read more: https://nextjs.org/docs/messages/prerender-error
+
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908) {
+  digest: '2097164367'
+}
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+
+Error occurred prerendering page "/join/member". Read more: https://nextjs.org/docs/messages/prerender-error
+
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+   Generating static pages (7/15) 
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908) {
+  digest: '2097164367'
+}
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+
+Error occurred prerendering page "/join". Read more: https://nextjs.org/docs/messages/prerender-error
+
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908) {
+  digest: '2097164367'
+}
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+
+Error occurred prerendering page "/join/volunteer". Read more: https://nextjs.org/docs/messages/prerender-error
+
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908) {
+  digest: '2097164367'
+}
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908) {
+  digest: '2097164367'
+}
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908) {
+  digest: '2097164367'
+}
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+
+Error occurred prerendering page "/media". Read more: https://nextjs.org/docs/messages/prerender-error
+
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+
+Error occurred prerendering page "/login". Read more: https://nextjs.org/docs/messages/prerender-error
+
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+   Generating static pages (11/15) 
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+
+Error occurred prerendering page "/". Read more: https://nextjs.org/docs/messages/prerender-error
+
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908) {
+  digest: '2097164367'
+}
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+
+Error occurred prerendering page "/about". Read more: https://nextjs.org/docs/messages/prerender-error
+
+TypeError: Cannot read properties of null (reading 'useContext')
+    at t.useContext (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:109421)
+    at d (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:26223)
+    at p (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\857.js:1:18155)
+    at au (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:10446)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:15122
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+    at a_ (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:49776)
+    at ab (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:11808)
+    at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16871
+    at aw (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:35:16908)
+Error: <Html> should not be imported outside of pages/_document.
+Read more: https://nextjs.org/docs/messages/no-document-import-in-page
+    at Q (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\pages.runtime.prod.js:16:5430)
+    at I (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\590.js:6:1263)
+    at renderWithHooks (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5732:15)
+    at renderElement (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6087:14)
+    at finishClassComponent (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5688:3)
+    at renderClassComponent (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5696:3)
+    at renderElement (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5954:7)
+
+Error occurred prerendering page "/404". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: <Html> should not be imported outside of pages/_document.
+Read more: https://nextjs.org/docs/messages/no-document-import-in-page
+    at Q (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\next-server\pages.runtime.prod.js:16:5430)
+    at I (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\server\chunks\590.js:6:1263)
+    at renderWithHooks (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5658:16)
+    at renderIndeterminateComponent (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5732:15)
+    at renderElement (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5957:7)
+    at renderNodeDestructiveImpl (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6115:11)
+    at renderNodeDestructive (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:6087:14)
+    at finishClassComponent (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5688:3)
+    at renderClassComponent (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5696:3)
+    at renderElement (E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\node_modules\.pnpm\react-dom@18.3.1_react@18.3.1\node_modules\react-dom\cjs\react-dom-server.browser.development.js:5954:7)
+ Γ£ô Generating static pages (15/15)
+
+> Export encountered errors on following paths:
+	/_error: /404
+	/_error: /500
+	/_not-found/page: /_not-found
+	/about/page: /about
+	/achievements/page: /achievements
+	/admin/page: /admin
+	/contact/page: /contact
+	/join/donate/page: /join/donate
+	/join/member/page: /join/member
+	/join/page: /join
+	/join/volunteer/page: /join/volunteer
+	/login/page: /login
+	/media/page: /media
+	/page: /
