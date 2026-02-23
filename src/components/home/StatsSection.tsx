@@ -3,10 +3,10 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useCountUp } from "../../hooks/useCountUp";
+import { useLanguage } from "../../lib/LanguageContext";
 
-const StatItem = ({ label, value, suffix = "", prefix = "" }: { label: string, value: number, suffix?: string, prefix?: string }) => {
+const StatItem = ({ label, value, suffix = "", prefix = "" }: { label: string; value: number; suffix?: string; prefix?: string }) => {
     const { count, ref } = useCountUp(value, 0, 2500);
-
     return (
         <div className="flex flex-col">
             <span ref={ref} className="text-5xl md:text-6xl font-['Bebas_Neue'] bg-clip-text text-transparent bg-gradient-to-r from-saffron to-orange-600 drop-shadow-sm">
@@ -20,6 +20,9 @@ const StatItem = ({ label, value, suffix = "", prefix = "" }: { label: string, v
 };
 
 export default function StatsSection() {
+    const { t } = useLanguage();
+    const s = t("stats");
+
     return (
         <section className="bg-slate-50 min-h-screen full-page-section flex items-center relative overflow-hidden py-24">
             {/* Background Glows */}
@@ -34,46 +37,35 @@ export default function StatsSection() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.3 }}
-                    variants={{
-                        hidden: {},
-                        visible: {
-                            transition: { staggerChildren: 0.15 }
-                        }
-                    }}
+                    variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.15 } } }}
                     className="flex flex-col relative z-10"
                 >
                     <motion.h2
-                        variants={{
-                            hidden: { opacity: 0, y: 30 },
-                            visible: { opacity: 1, y: 0 }
-                        }}
+                        variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
                         className="text-5xl md:text-6xl xl:text-7xl font-['Bebas_Neue'] uppercase leading-[0.9] text-slate-800 mb-6"
                     >
-                        Our Impact Across <br /> <span className="text-saffron">Yavatmal District</span>
+                        {s.headingLine1} <br /> <span className="text-saffron">{s.headingHighlight}</span>
                     </motion.h2>
 
                     <motion.p
-                        variants={{
-                            hidden: { opacity: 0, y: 30 },
-                            visible: { opacity: 1, y: 0 }
-                        }}
+                        variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
                         className="text-slate-600 font-['DM_Sans'] text-lg mb-12 max-w-lg leading-relaxed"
                     >
-                        For decades, the Bharatiya Janata Party has been the driving force behind Yavatmal&apos;s transformation, focusing on agriculture, youth welfare, and robust infrastructure.
+                        {s.description}
                     </motion.p>
 
                     <div className="grid grid-cols-2 gap-x-8 gap-y-12">
                         <motion.div variants={{ hidden: { opacity: 0, scale: 0.9 }, visible: { opacity: 1, scale: 1 } }}>
-                            <StatItem value={16} suffix="+" label="Years of Service" />
+                            <StatItem value={16} suffix="+" label={s.yearsOfService} />
                         </motion.div>
                         <motion.div variants={{ hidden: { opacity: 0, scale: 0.9 }, visible: { opacity: 1, scale: 1 } }}>
-                            <StatItem value={5} suffix="L+" label="Beneficiaries" />
+                            <StatItem value={5} suffix="L+" label={s.beneficiaries} />
                         </motion.div>
                         <motion.div variants={{ hidden: { opacity: 0, scale: 0.9 }, visible: { opacity: 1, scale: 1 } }}>
-                            <StatItem value={800} prefix="₹" suffix="Cr" label="Development Funds" />
+                            <StatItem value={800} prefix="₹" suffix="Cr" label={s.developmentFunds} />
                         </motion.div>
                         <motion.div variants={{ hidden: { opacity: 0, scale: 0.9 }, visible: { opacity: 1, scale: 1 } }}>
-                            <StatItem value={300} suffix="+" label="Projects Completed" />
+                            <StatItem value={300} suffix="+" label={s.projectsCompleted} />
                         </motion.div>
                     </div>
                 </motion.div>

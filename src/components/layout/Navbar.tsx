@@ -1,41 +1,66 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, Link as LinkIcon, User } from "lucide-react";
+import { Menu, X, ChevronDown, Link as LinkIcon, User, Globe } from "lucide-react";
 import Image from "next/image";
+import { useLanguage } from "../../lib/LanguageContext";
+import { Language } from "../../lib/translations";
+import ShareModal from "./ShareModal";
 
-const navLinks = [
-    {
-        name: "MEDIA RESOURCES",
-        dropdown: [
-            { name: "Photo Gallery", href: "/media" },
-            { name: "Video Gallery", href: "/media#videos" },
-        ]
-    },
-    { name: "BJP LIVE", href: "/bjp-live" },
+const LANGUAGE_OPTIONS: { code: Language; label: string }[] = [
+    { code: "mr", label: "मराठी" },
+    { code: "hi", label: "हिंदी" },
+    { code: "en", label: "English" },
 ];
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+    const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+    const [shareModalOpen, setShareModalOpen] = useState(false);
+    const langRef = useRef<HTMLDivElement>(null);
     const pathname = usePathname();
+    const { lang, setLang, t } = useLanguage();
+    const nav = t("navbar");
+
+    const navLinks = [
+        {
+            name: nav.mediaResources,
+            dropdown: [
+                { name: nav.photoGallery, href: "/media" },
+                { name: nav.videoGallery, href: "/media#videos" },
+            ],
+        },
+        { name: nav.bjpLive, href: "/bjp-live" },
+    ];
 
     useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
-        };
+        const handleScroll = () => setScrolled(window.scrollY > 20);
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    // Close lang dropdown when clicking outside
+    useEffect(() => {
+        const handler = (e: MouseEvent) => {
+            if (langRef.current && !langRef.current.contains(e.target as Node)) {
+                setLangDropdownOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handler);
+        return () => document.removeEventListener("mousedown", handler);
+    }, []);
+
     // Hide Navbar on admin and login pages
-    if (pathname?.startsWith('/admin') || pathname === '/login') {
+    if (pathname?.startsWith("/admin") || pathname === "/login") {
         return null;
     }
+
+    const currentLangLabel = LANGUAGE_OPTIONS.find((o) => o.code === lang)?.label ?? "भाषा";
 
     return (
         <>
@@ -59,30 +84,76 @@ export default function Navbar() {
                                 />
                             </div>
                             <div className="flex flex-col justify-center mt-0.5 gap-0 md:gap-1">
-                                <span className="font-['Tiro_Devanagari_Hindi'] text-[18px] sm:text-2xl md:text-3xl text-saffron leading-none font-bold">भारतीय जनता पार्टी</span>
-                                <span className="font-['Tiro_Devanagari_Hindi'] text-xs sm:text-lg md:text-xl text-saffron leading-none">यवतमाळ जिल्हा</span>
+                                <span className="font-['Tiro_Devanagari_Hindi'] text-[18px] sm:text-2xl md:text-3xl text-saffron leading-none font-bold">
+                                    {nav.logoLine1}
+                                </span>
+                                <span className="font-['Tiro_Devanagari_Hindi'] text-xs sm:text-lg md:text-xl text-saffron leading-none">
+                                    {nav.logoLine2}
+                                </span>
                             </div>
                         </Link>
 
                         {/* Right Section */}
                         <div className="flex flex-col items-end gap-3 flex-grow">
                             {/* Top Links Bar (Desktop only) */}
-                            <div className={`hidden lg:flex items-center gap-5 text-[13px] font-medium tracking-wide ${scrolled ? 'text-slate-800' : 'text-white'}`}>
-                                <button className="flex items-center gap-1.5 hover:text-saffron transition-colors">
-                                    <LinkIcon size={14} /> Share URL
+                            <div
+                                className={`hidden lg:flex items-center gap-5 text-[13px] font-medium tracking-wide ${scrolled ? "text-slate-800" : "text-white"
+                                    }`}
+                            >
+                                <button onClick={() => setShareModalOpen(true)} className="flex items-center gap-1.5 hover:text-saffron transition-colors cursor-pointer">
+                                    <LinkIcon size={14} /> {nav.shareUrl}
                                 </button>
                                 <span className="w-px h-3 bg-white/30"></span>
                                 <Link href="/login" className="flex items-center gap-1.5 hover:text-saffron transition-colors">
-                                    <User size={14} /> Login
+                                    <User size={14} /> {nav.login}
                                 </Link>
                                 <span className="w-px h-3 bg-white/30"></span>
-                                <Link href="#" className="hover:text-saffron transition-colors">State Websites</Link>
+                                <Link href="/contact" className="hover:text-saffron transition-colors">
+                                    {nav.contactUs}
+                                </Link>
                                 <span className="w-px h-3 bg-white/30"></span>
-                                <Link href="/contact" className="hover:text-saffron transition-colors">Contact Us</Link>
-                                <span className="w-px h-3 bg-white/30"></span>
-                                <button className="flex items-center gap-1 hover:text-saffron transition-colors">
-                                    English <ChevronDown size={14} />
-                                </button>
+
+                                {/* Language Toggle Dropdown (Desktop) */}
+                                <div ref={langRef} className="relative">
+                                    <button
+                                        onClick={() => setLangDropdownOpen((o) => !o)}
+                                        className="flex items-center gap-1 hover:text-saffron transition-colors"
+                                    >
+                                        <Globe size={14} />
+                                        {currentLangLabel}
+                                        <ChevronDown
+                                            size={13}
+                                            className={`transition-transform duration-200 ${langDropdownOpen ? "rotate-180" : ""}`}
+                                        />
+                                    </button>
+                                    <AnimatePresence>
+                                        {langDropdownOpen && (
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 8 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: 8 }}
+                                                transition={{ duration: 0.18 }}
+                                                className="absolute top-full right-0 mt-2 w-36 bg-white/95 backdrop-blur-xl border border-slate-200 rounded-lg overflow-hidden flex flex-col py-1 shadow-2xl z-[200]"
+                                            >
+                                                {LANGUAGE_OPTIONS.map((opt) => (
+                                                    <button
+                                                        key={opt.code}
+                                                        onClick={() => {
+                                                            setLang(opt.code);
+                                                            setLangDropdownOpen(false);
+                                                        }}
+                                                        className={`text-left px-4 py-2 text-sm transition-all hover:bg-slate-100 border-l-2 ${lang === opt.code
+                                                            ? "border-saffron text-saffron font-semibold"
+                                                            : "border-transparent text-slate-700"
+                                                            }`}
+                                                    >
+                                                        {opt.label}
+                                                    </button>
+                                                ))}
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
                             </div>
 
                             {/* Main Links Bar */}
@@ -95,13 +166,24 @@ export default function Navbar() {
                                         onMouseLeave={() => setActiveDropdown(null)}
                                     >
                                         {link.href ? (
-                                            <Link href={link.href} className={`hover:text-saffron transition-colors font-bold text-sm lg:text-[15px] tracking-wide px-1 py-2 ${scrolled ? 'text-slate-900' : 'text-white'}`}>
+                                            <Link
+                                                href={link.href}
+                                                className={`hover:text-saffron transition-colors font-bold text-sm lg:text-[15px] tracking-wide px-1 py-2 ${scrolled ? "text-slate-900" : "text-white"
+                                                    }`}
+                                            >
                                                 {link.name}
                                             </Link>
                                         ) : (
-                                            <button className={`flex items-center gap-1 hover:text-saffron transition-colors font-bold text-sm lg:text-[15px] tracking-wide px-1 py-2 cursor-pointer ${scrolled ? 'text-slate-900' : 'text-white'}`}>
+                                            <button
+                                                className={`flex items-center gap-1 hover:text-saffron transition-colors font-bold text-sm lg:text-[15px] tracking-wide px-1 py-2 cursor-pointer ${scrolled ? "text-slate-900" : "text-white"
+                                                    }`}
+                                            >
                                                 {link.name}
-                                                <ChevronDown size={16} className={`transition-transform duration-300 ${activeDropdown === link.name ? 'rotate-180 text-saffron' : ''}`} />
+                                                <ChevronDown
+                                                    size={16}
+                                                    className={`transition-transform duration-300 ${activeDropdown === link.name ? "rotate-180 text-saffron" : ""
+                                                        }`}
+                                                />
                                             </button>
                                         )}
 
@@ -133,33 +215,40 @@ export default function Navbar() {
                                 ))}
 
                                 <div className="flex items-center gap-3 pl-2">
-                                    <Link href="/join">
+                                    <a href="https://membership.bjp.org/en/home/login" target="_blank" rel="noopener noreferrer">
                                         <motion.button
                                             whileHover={{ scale: 1.02 }}
                                             whileTap={{ scale: 0.98 }}
                                             className="bg-[#FCA311] hover:bg-[#F29C11] text-white px-5 py-2.5 rounded text-sm font-bold tracking-wide transition-all shadow-md"
                                         >
-                                            JOIN BJP
+                                            {nav.joinBjp}
                                         </motion.button>
-                                    </Link>
+                                    </a>
                                 </div>
 
                                 {/* Menu button (Desktop) */}
-                                <button className={`flex flex-col items-center justify-center gap-0.5 ml-2 hover:text-saffron transition-colors ${scrolled ? 'text-slate-900' : 'text-white'}`} onClick={() => setMobileMenuOpen(true)}>
-                                    <span className="text-[10px] font-bold uppercase tracking-widest leading-none">Menu</span>
+                                <button
+                                    className={`flex flex-col items-center justify-center gap-0.5 ml-2 hover:text-saffron transition-colors ${scrolled ? "text-slate-900" : "text-white"
+                                        }`}
+                                    onClick={() => setMobileMenuOpen(true)}
+                                >
+                                    <span className="text-[10px] font-bold uppercase tracking-widest leading-none">
+                                        {nav.menu}
+                                    </span>
                                     <Menu size={24} />
                                 </button>
                             </div>
 
                             {/* Mobile Toggle inside Right Section */}
                             <div className="flex lg:hidden items-center gap-2 sm:gap-4">
-                                <Link href="/join">
+                                <a href="https://membership.bjp.org/en/home/login" target="_blank" rel="noopener noreferrer">
                                     <button className="bg-[#FCA311] hover:bg-[#F29C11] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded text-[10px] sm:text-xs font-bold tracking-wide shadow transition-colors">
-                                        JOIN
+                                        {nav.join}
                                     </button>
-                                </Link>
+                                </a>
                                 <button
-                                    className={`z-50 p-1 sm:p-2 flex flex-col items-center hover:text-saffron transition-colors ${scrolled ? 'text-slate-900' : 'text-white'}`}
+                                    className={`z-50 p-1 sm:p-2 flex flex-col items-center hover:text-saffron transition-colors ${scrolled ? "text-slate-900" : "text-white"
+                                        }`}
                                     onClick={() => setMobileMenuOpen(true)}
                                 >
                                     <Menu className="w-6 h-6 sm:w-[26px] sm:h-[26px]" />
@@ -221,27 +310,54 @@ export default function Navbar() {
                             ))}
 
                             <div className="flex flex-col gap-4 pt-4 border-b border-slate-200 pb-6">
-                                <Link href="#" className="text-slate-700 hover:text-saffron flex items-center gap-3">
-                                    <LinkIcon size={18} /> Share URL
+                                <button onClick={() => { setShareModalOpen(true); setMobileMenuOpen(false); }} className="text-slate-700 hover:text-saffron flex items-center gap-3 text-left w-full cursor-pointer">
+                                    <LinkIcon size={18} /> {nav.shareUrl}
+                                </button>
+                                <Link
+                                    href="/login"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className="text-slate-700 hover:text-saffron flex items-center gap-3"
+                                >
+                                    <User size={18} /> {nav.login}
                                 </Link>
-                                <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="text-slate-700 hover:text-saffron flex items-center gap-3">
-                                    <User size={18} /> Login
+                                <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-slate-700 hover:text-saffron">
+                                    {nav.contactUs}
                                 </Link>
-                                <Link href="#" className="text-slate-700 hover:text-saffron">State Websites</Link>
-                                <Link href="/contact" className="text-slate-700 hover:text-saffron">Contact Us</Link>
+                            </div>
+
+                            {/* Language Selector – Mobile */}
+                            <div className="flex flex-col gap-3 border-b border-slate-200 pb-6">
+                                <p className="flex items-center gap-2 text-xs uppercase tracking-widest text-slate-400 font-bold">
+                                    <Globe size={14} /> {nav.language}
+                                </p>
+                                <div className="flex gap-3">
+                                    {LANGUAGE_OPTIONS.map((opt) => (
+                                        <button
+                                            key={opt.code}
+                                            onClick={() => setLang(opt.code)}
+                                            className={`flex-1 py-2 rounded text-sm font-semibold border transition-all ${lang === opt.code
+                                                ? "bg-saffron text-white border-saffron"
+                                                : "border-slate-300 text-slate-700 hover:border-saffron"
+                                                }`}
+                                        >
+                                            {opt.label}
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
 
                             <div className="pt-2 pb-12 flex flex-col gap-4">
-                                <Link href="/join" onClick={() => setMobileMenuOpen(false)}>
+                                <a href="https://membership.bjp.org/en/home/login" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)}>
                                     <button className="w-full bg-[#FCA311] text-white py-4 rounded font-bold text-xl font-['Bebas_Neue'] tracking-widest shadow-lg active:scale-95 transition-transform">
-                                        JOIN BJP
+                                        {nav.joinBjp}
                                     </button>
-                                </Link>
+                                </a>
                             </div>
                         </div>
                     </motion.div>
                 )}
             </AnimatePresence>
+            <ShareModal isOpen={shareModalOpen} onClose={() => setShareModalOpen(false)} />
         </>
     );
 }

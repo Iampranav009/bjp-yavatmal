@@ -4,14 +4,20 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Facebook, Twitter, Instagram, Youtube, MapPin, Phone, Mail } from "lucide-react";
+import { useLanguage } from "../../lib/LanguageContext";
 
 export default function Footer() {
     const pathname = usePathname();
+    const { t } = useLanguage();
+    const f = t("footer");
 
     // Hide Footer on admin and login pages
-    if (pathname?.startsWith('/admin') || pathname === '/login') {
+    if (pathname?.startsWith("/admin") || pathname === "/login") {
         return null;
     }
+
+    const year = new Date().getFullYear();
+    const copyright = f.copyright.replace("{year}", String(year));
 
     return (
         <footer className="bg-[#F8FAFC] pt-16 pb-8 border-t border-slate-300 relative z-10">
@@ -25,12 +31,16 @@ export default function Footer() {
                                 <Image src="/images/logos/bjp-logo.png" alt="BJP Logo" fill className="object-contain" />
                             </div>
                             <div className="flex flex-col justify-center gap-1">
-                                <span className="font-['Tiro_Devanagari_Hindi'] text-2xl md:text-3xl text-slate-900 leading-none font-bold">भारतीय जनता पार्टी</span>
-                                <span className="font-['Tiro_Devanagari_Hindi'] text-lg md:text-xl text-saffron leading-none">यवतमाळ जिल्हा</span>
+                                <span className="font-['Tiro_Devanagari_Hindi'] text-2xl md:text-3xl text-slate-900 leading-none font-bold">
+                                    {f.logoLine1}
+                                </span>
+                                <span className="font-['Tiro_Devanagari_Hindi'] text-lg md:text-xl text-saffron leading-none">
+                                    {f.logoLine2}
+                                </span>
                             </div>
                         </Link>
                         <p className="text-slate-600 text-sm leading-relaxed mb-6 max-w-sm">
-                            Dedicated to the holistic development and progress of Yavatmal district under the visionary leadership of Hon. Prime Minister Narendra Modi.
+                            {f.description}
                         </p>
                         <div className="flex items-center gap-4">
                             <Link href="#" className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-700 hover:bg-saffron hover:text-white transition-all">
@@ -52,10 +62,10 @@ export default function Footer() {
                     <div>
                         <h3 className="text-xl font-['Bebas_Neue'] text-slate-900 tracking-wider mb-6 flex items-center gap-2">
                             <span className="w-2 h-2 rounded-full bg-saffron"></span>
-                            Quick Links
+                            {f.quickLinks}
                         </h3>
                         <ul className="flex flex-col gap-3">
-                            {['Home', 'About BJP', 'Our Work', 'Achievements', 'Our Leaders', 'Join The Journey'].map((item) => (
+                            {f.quickLinkItems.map((item) => (
                                 <li key={item}>
                                     <Link href="#" className="text-slate-600 hover:text-saffron text-sm transition-colors flex items-center gap-2">
                                         <span className="text-saffron/50 text-xs">▹</span> {item}
@@ -69,10 +79,10 @@ export default function Footer() {
                     <div>
                         <h3 className="text-xl font-['Bebas_Neue'] text-slate-900 tracking-wider mb-6 flex items-center gap-2">
                             <span className="w-2 h-2 rounded-full bg-saffron"></span>
-                            Media
+                            {f.media}
                         </h3>
                         <ul className="flex flex-col gap-3">
-                            {['Photo Gallery', 'Video Gallery', 'Election Manifesto', 'Downloads'].map((item) => (
+                            {f.mediaItems.map((item) => (
                                 <li key={item}>
                                     <Link href="#" className="text-slate-600 hover:text-saffron text-sm transition-colors flex items-center gap-2">
                                         <span className="text-saffron/50 text-xs">▹</span> {item}
@@ -86,15 +96,13 @@ export default function Footer() {
                     <div>
                         <h3 className="text-xl font-['Bebas_Neue'] text-slate-900 tracking-wider mb-6 flex items-center gap-2">
                             <span className="w-2 h-2 rounded-full bg-saffron"></span>
-                            Contact Us
+                            {f.contactUs}
                         </h3>
                         <ul className="flex flex-col gap-4">
                             <li className="flex items-start gap-3">
                                 <MapPin size={18} className="text-saffron shrink-0 mt-1" />
-                                <span className="text-slate-600 text-sm leading-relaxed">
-                                    BJP District Office,<br />
-                                    Main Road, Yavatmal,<br />
-                                    Maharashtra 445001
+                                <span className="text-slate-600 text-sm leading-relaxed whitespace-pre-line">
+                                    {f.address}
                                 </span>
                             </li>
                             <li className="flex items-center gap-3">
@@ -107,23 +115,32 @@ export default function Footer() {
                             </li>
                         </ul>
                         <Link href="/contact" className="inline-block mt-6 text-sm text-saffron underline underline-offset-4 hover:text-slate-900 transition-colors">
-                            Grievance Cell →
+                            {f.grievanceCell}
                         </Link>
                     </div>
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="pt-8 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
-                    <p className="text-slate-500 text-sm">
-                        © {new Date().getFullYear()} BJP Yavatmal. All rights reserved.
-                    </p>
-                    <p className="text-slate-900/50 text-base font-['Tiro_Devanagari_Hindi'] tracking-wide">
-                        भारतीय जनता पार्टी – यवतमाळ जिल्हा
-                    </p>
-                    <div className="flex items-center gap-4 text-slate-500 text-sm">
-                        <Link href="#" className="hover:text-slate-900 transition-colors">Privacy Policy</Link>
-                        <span>|</span>
-                        <Link href="#" className="hover:text-slate-900 transition-colors">Terms of Use</Link>
+                <div className="pt-8 border-t border-slate-200 flex flex-col items-center gap-6">
+                    <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4">
+                        <p className="text-slate-500 text-sm">{copyright}</p>
+                        <p className="text-slate-900/50 text-base font-['Tiro_Devanagari_Hindi'] tracking-wide">
+                            {f.footerTagline}
+                        </p>
+                        <div className="flex items-center gap-4 text-slate-500 text-sm">
+                            <Link href="#" className="hover:text-slate-900 transition-colors">{f.privacyPolicy}</Link>
+                            <span>|</span>
+                            <Link href="#" className="hover:text-slate-900 transition-colors">{f.termsOfUse}</Link>
+                        </div>
+                    </div>
+
+                    {/* Developer Credit */}
+                    <div className="w-full pt-4 border-t border-slate-200/50 flex justify-center">
+                        <p className="text-slate-500 text-xs sm:text-sm flex items-center gap-1.5 font-medium bg-white px-4 py-2 rounded-full shadow-sm border border-slate-100">
+                            Made with <span className="text-red-500 animate-pulse">❤️</span> by
+                            <span className="text-slate-800 font-bold tracking-wide ml-0.5">Pranav Shinde</span> &
+                            <span className="text-slate-800 font-bold tracking-wide">Prvesh Upasani</span>
+                        </p>
                     </div>
                 </div>
             </div>

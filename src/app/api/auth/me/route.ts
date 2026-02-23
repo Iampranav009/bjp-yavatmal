@@ -10,6 +10,17 @@ export async function GET() {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
 
+        if (admin.userId === 999) {
+            return NextResponse.json({
+                data: {
+                    id: 999,
+                    name: "Demo Admin",
+                    email: "demo@bjpyavatmal.in",
+                    role: "admin",
+                },
+            });
+        }
+
         const [rows] = await pool.execute<RowDataPacket[]>(
             'SELECT id, name, email, role, created_at FROM admin_users WHERE id = ?',
             [admin.userId]

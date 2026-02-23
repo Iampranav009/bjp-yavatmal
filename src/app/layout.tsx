@@ -31,6 +31,7 @@ export const metadata: Metadata = {
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import SocialBar from "../components/shared/SocialBar";
+import { LanguageProvider } from "../lib/LanguageContext";
 
 export default function RootLayout({
   children,
@@ -40,28 +41,30 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${bebasNeue.variable} ${dmSans.variable} ${tiroHindi.variable}`}>
       <body className="font-sans antialiased text-slate-900 bg-[#F4F6F8]">
-        {/* Tricolor top strip */}
-        <div className="fixed top-0 z-[60] h-1 w-full flex">
-          <div className="flex-1 bg-saffron h-full"></div>
-          <div className="flex-1 bg-white h-full"></div>
-          <div className="flex-1 bg-india-green h-full"></div>
-        </div>
+        <LanguageProvider>
+          {/* Tricolor top strip */}
+          <div className="fixed top-0 z-[60] h-1 w-full flex">
+            <div className="flex-1 bg-saffron h-full"></div>
+            <div className="flex-1 bg-white h-full"></div>
+            <div className="flex-1 bg-india-green h-full"></div>
+          </div>
 
-        <Navbar />
-        <SocialBar />
+          <Navbar />
+          <SocialBar />
 
-        <main className="min-h-screen animate-fadeIn">
-          {children}
-        </main>
+          <main className="min-h-screen animate-fadeIn">
+            {children}
+          </main>
 
-        <Footer />
+          <Footer />
 
-        {/* Tricolor bottom strip */}
-        <div className="h-1 w-full flex relative z-20">
-          <div className="flex-1 bg-saffron h-full"></div>
-          <div className="flex-1 bg-white h-full"></div>
-          <div className="flex-1 bg-india-green h-full"></div>
-        </div>
+          {/* Tricolor bottom strip */}
+          <div className="h-1 w-full flex relative z-20">
+            <div className="flex-1 bg-saffron h-full"></div>
+            <div className="flex-1 bg-white h-full"></div>
+            <div className="flex-1 bg-india-green h-full"></div>
+          </div>
+        </LanguageProvider>
       </body>
     </html>
   );

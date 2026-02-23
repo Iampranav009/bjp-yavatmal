@@ -5,88 +5,41 @@ import Image from "next/image";
 import { gsap } from "gsap";
 import { motion, AnimatePresence } from "framer-motion";
 import SocialBar from "../shared/SocialBar";
-
-const slides = [
-    {
-        id: 1,
-        image: "/images/hero/img-1.png",
-        slogan: "एक भारत श्रेष्ठ भारत",
-        subtext: "Building a stronger, self-reliant Yavatmal district.",
-    },
-    {
-        id: 2,
-        image: "/images/hero/img-2.png",
-        slogan: "सबका साथ सबका विकास",
-        subtext: "Ensuring holistic development reaching every corner of the district.",
-    },
-    {
-        id: 3,
-        image: "/images/hero/img-3.png",
-        slogan: "आत्मनिर्भर यवतमाळ",
-        subtext: "Empowering youth, women, and farmers for a brighter future.",
-    },
-    {
-        id: 4,
-        image: "/images/hero/img-4.png",
-        slogan: "वंदे मातरम",
-        subtext: "Committed to the nation, dedicated to Yavatmal.",
-    },
-];
+import { useLanguage } from "../../lib/LanguageContext";
 
 export default function HeroSlider() {
     const [activeSlide, setActiveSlide] = useState(0);
     const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
     const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
     const autoPlayRef = useRef<NodeJS.Timeout>(null);
+    const { t } = useLanguage();
+    const hero = t("hero");
+    const slides = hero.slides.map((s, i) => ({
+        id: i + 1,
+        image: `/images/hero/img-${i + 1}.png`,
+        slogan: s.slogan,
+        subtext: s.subtext,
+    }));
 
     useEffect(() => {
-        // Initial GSAP setup
         gsap.set(slideRefs.current, { opacity: 0 });
         gsap.set(slideRefs.current[0], { opacity: 1 });
         gsap.set(imageRefs.current[0], { scale: 1 });
-
         startAutoPlay();
-
-        return () => {
-            if (autoPlayRef.current) clearInterval(autoPlayRef.current);
-        };
+        return () => { if (autoPlayRef.current) clearInterval(autoPlayRef.current); };
     }, []);
 
     const goToSlide = (index: number) => {
         if (index === activeSlide) return;
-
         if (autoPlayRef.current) clearInterval(autoPlayRef.current);
-
         const prevSlide = activeSlide;
         setActiveSlide(index);
-
-        // GSAP Transition
         const tl = gsap.timeline();
-
-        // Zoom out the old image slightly and fade it out
-        tl.to(slideRefs.current[prevSlide], {
-            opacity: 0,
-            duration: 1.2,
-            ease: "power2.inOut",
-            zIndex: 10
-        }, 0);
-
-        // Zoom in the new image slightly and fade it in
+        tl.to(slideRefs.current[prevSlide], { opacity: 0, duration: 1.2, ease: "power2.inOut", zIndex: 10 }, 0);
         gsap.set(imageRefs.current[index], { scale: 1.05 });
         gsap.set(slideRefs.current[index], { zIndex: 20 });
-
-        tl.to(slideRefs.current[index], {
-            opacity: 1,
-            duration: 1.2,
-            ease: "power2.inOut"
-        }, 0);
-
-        tl.to(imageRefs.current[index], {
-            scale: 1,
-            duration: 6,
-            ease: "power1.out"
-        }, 0);
-
+        tl.to(slideRefs.current[index], { opacity: 1, duration: 1.2, ease: "power2.inOut" }, 0);
+        tl.to(imageRefs.current[index], { scale: 1, duration: 6, ease: "power1.out" }, 0);
         startAutoPlay();
     };
 
@@ -96,25 +49,18 @@ export default function HeroSlider() {
         }, 5000);
     };
 
-    useEffect(() => {
-        // Watch for automatic state changes to trigger GSAP
-        if (activeSlide !== 0 || slideRefs.current[0]?.style.opacity === "1") {
-            // Avoid re-triggering on first load
-        }
-    }, [activeSlide]);
-
     return (
         <section className="relative w-full h-screen overflow-hidden flex-shrink-0 full-page-section">
             {/* Background Slides */}
             {slides.map((slide, index) => (
                 <div
                     key={slide.id}
-                    ref={(el) => { slideRefs.current[index] = el }}
+                    ref={(el) => { slideRefs.current[index] = el; }}
                     className="absolute inset-0 w-full h-full opacity-0 pointer-events-none"
                 >
                     <div className="absolute inset-0 w-full h-full overflow-hidden">
                         <Image
-                            ref={(el) => { imageRefs.current[index] = el }}
+                            ref={(el) => { imageRefs.current[index] = el; }}
                             src={slide.image}
                             alt={slide.slogan}
                             fill
@@ -142,7 +88,7 @@ export default function HeroSlider() {
                     >
                         <span className="w-2.5 h-2.5 rounded-full bg-saffron" />
                         <span className="text-white/80 uppercase tracking-widest text-sm font-['DM_Sans'] font-semibold">
-                            Yavatmal District · Maharashtra
+                            {hero.district}
                         </span>
                     </motion.div>
 
@@ -173,10 +119,10 @@ export default function HeroSlider() {
                         className="flex flex-wrap items-center gap-4 mt-8"
                     >
                         <button className="bg-saffron hover:bg-saffron-light text-white px-8 py-3.5 rounded-full font-bold transition-all shadow-xl shadow-saffron/20 hover:-translate-y-1">
-                            Join the Journey
+                            {hero.joinJourney}
                         </button>
                         <button className="bg-transparent border border-slate-300 text-white hover:bg-white/10 px-8 py-3.5 rounded-full font-bold transition-all hover:-translate-y-1">
-                            Our Work
+                            {hero.ourWork}
                         </button>
                     </motion.div>
                 </div>
@@ -187,8 +133,6 @@ export default function HeroSlider() {
                     <span className="text-xl text-white/40">/ 0{slides.length}</span>
                 </div>
             </div>
-
-
 
             {/* Slide Navigation Dots */}
             <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-40 md:right-12">
@@ -201,8 +145,8 @@ export default function HeroSlider() {
                         <motion.div
                             layout
                             className={`rounded-full transition-colors duration-300 ${activeSlide === index
-                                ? "w-2 h-8 bg-saffron"
-                                : "w-2 h-2 bg-white/30 group-hover:bg-white/60"
+                                    ? "w-2 h-8 bg-saffron"
+                                    : "w-2 h-2 bg-white/30 group-hover:bg-white/60"
                                 }`}
                         />
                     </button>

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Facebook, Instagram, Twitter, Youtube, MessageCircle, ChevronUp } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const socials = [
@@ -15,6 +16,7 @@ const socials = [
 
 export default function SocialBar() {
     const [isVisible, setIsVisible] = useState(false);
+    const pathname = usePathname();
 
     useEffect(() => {
         const toggleVisibility = () => {
@@ -35,6 +37,8 @@ export default function SocialBar() {
             behavior: "smooth"
         });
     };
+
+    if (pathname?.startsWith("/admin") || pathname === "/login") return null;
 
     return (
         <motion.div
