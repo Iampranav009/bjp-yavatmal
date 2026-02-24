@@ -234,6 +234,20 @@ const mr = {
         messagePlaceholder: "आम्ही तुम्हाला कशी मदत करू शकतो?",
         sendMessage: "संदेश पाठवा",
     },
+
+    // --- Positions (display labels — DB values always stay Marathi) ---
+    positions: {
+        label: "पद",
+        allPositions: "सर्व पदे",
+        coreTeam: "कोर टीम",
+        yuvaMorcha: "युवा मोर्चा",
+        mahilaMorcha: "महिला मोर्चा",
+        chemistFront: "केमिस्ट आघाडी",
+        studentFront: "विद्यार्थी आघाडी",
+        citySouth: "शहर दक्षिण",
+        cityNorth: "शहर उत्तर",
+        member: "सदस्य",
+    },
 };
 
 // -----------------------------------------------------------
@@ -419,6 +433,18 @@ const hi: Partial<typeof mr> = {
         messagePlaceholder: "हम आपकी कैसे सहायता कर सकते हैं?",
         sendMessage: "संदेश भेजें",
     },
+    positions: {
+        label: "पद",
+        allPositions: "सभी पद",
+        coreTeam: "कोर टीम",
+        yuvaMorcha: "युवा मोर्चा",
+        mahilaMorcha: "महिला मोर्चा",
+        chemistFront: "केमिस्ट फ्रंट",
+        studentFront: "छात्र फ्रंट",
+        citySouth: "शहर दक्षिण",
+        cityNorth: "शहर उत्तर",
+        member: "सदस्य",
+    },
 };
 
 // -----------------------------------------------------------
@@ -603,6 +629,18 @@ const en: Partial<typeof mr> = {
         messageLabel: "Message",
         messagePlaceholder: "How can we help you?",
         sendMessage: "Send Message",
+    },
+    positions: {
+        label: "Position",
+        allPositions: "All Positions",
+        coreTeam: "Core Team",
+        yuvaMorcha: "Youth Wing",
+        mahilaMorcha: "Women's Wing",
+        chemistFront: "Chemist Front",
+        studentFront: "Student Front",
+        citySouth: "City South",
+        cityNorth: "City North",
+        member: "Member",
     },
 };
 

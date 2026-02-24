@@ -19,9 +19,9 @@ export async function POST(request: Request) {
         }
 
         const buffer = Buffer.from(await file.arrayBuffer());
-        const members = parseExcelBuffer(buffer);
+        const { members, errors } = parseExcelBuffer(buffer);
 
-        if (!members.length) {
+        if (!members.length && !errors.length) {
             return NextResponse.json(
                 { error: 'No valid member data found in file' },
                 { status: 400 }
@@ -38,7 +38,7 @@ export async function POST(request: Request) {
            VALUES (?, ?, ?, ?, ?, ?)`,
                     [
                         member.name,
-                        member.position || null,
+                        member.position,
                         member.mobile || null,
                         member.birth_date,
                         member.birth_year || null,
@@ -52,8 +52,9 @@ export async function POST(request: Request) {
         }
 
         return NextResponse.json({
-            data: { added, skipped, total: members.length },
-            message: `${added} members added, ${skipped} skipped`,
+            data: { added, skipped, rejected: errors.length, total: members.length + errors.length },
+            errors: errors.length > 0 ? errors : undefined,
+            message: `${added} members added, ${skipped} skipped, ${errors.length} rejected (invalid position)`,
         });
     } catch (error) {
         console.error('Import error:', error);

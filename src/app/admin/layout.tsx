@@ -13,6 +13,7 @@ interface AdminData {
 export default function AdminLayout({ children }: { children: ReactNode }) {
     const [admin, setAdmin] = useState<AdminData | null>(null);
     const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+    const [isCollapsed, setIsCollapsed] = useState(false);
 
     useEffect(() => {
         fetch("/api/auth/me")
@@ -24,7 +25,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
     }, []);
 
     return (
-        <div className="min-h-screen bg-slate-50">
+        <div className="flex h-screen overflow-hidden bg-slate-50">
             <Toaster
                 position="top-right"
                 toastOptions={{
@@ -41,10 +42,12 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                 adminEmail={admin?.email}
                 mobileOpen={mobileSidebarOpen}
                 onMobileClose={() => setMobileSidebarOpen(false)}
+                isCollapsed={isCollapsed}
+                onToggleCollapse={() => setIsCollapsed(!isCollapsed)}
             />
 
-            {/* Main content area - scrollable, offset by sidebar width */}
-            <div className="lg:ml-[260px] min-h-screen overflow-y-auto pb-16 lg:pb-0">
+            {/* Main content area - scrollable */}
+            <div className="flex-1 h-screen overflow-y-auto pb-16 lg:pb-0 relative">
                 {children}
             </div>
         </div>

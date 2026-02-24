@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import pool from '@/lib/db';
 import { getAdminFromRequest } from '@/lib/auth';
+import { isValidPosition, DEFAULT_POSITION } from '@/lib/positions';
 import { RowDataPacket, ResultSetHeader } from 'mysql2';
 
 export async function GET(
@@ -44,11 +45,20 @@ export async function PUT(
         const body = await request.json();
         const { name, position, mobile, birth_date, birth_year, address, photo_url, notes } = body;
 
+        // Validate position
+        const finalPosition = position || DEFAULT_POSITION;
+        if (!isValidPosition(finalPosition)) {
+            return NextResponse.json(
+                { error: `Invalid position "${position}". Must be one of the predefined Marathi positions.` },
+                { status: 400 }
+            );
+        }
+
         const [result] = await pool.execute<ResultSetHeader>(
             `UPDATE members SET name = ?, position = ?, mobile = ?, birth_date = ?,
        birth_year = ?, address = ?, photo_url = ?, notes = ?
        WHERE id = ?`,
-            [name, position || null, mobile || null, birth_date, birth_year || null, address || null, photo_url || null, notes || null, id]
+            [name, finalPosition, mobile || null, birth_date, birth_year || null, address || null, photo_url || null, notes || null, id]
         );
 
         if (result.affectedRows === 0) {

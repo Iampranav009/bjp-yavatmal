@@ -41,19 +41,12 @@ export default function SettingsPage() {
                 {/* Admin Users Section */}
                 <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
                     className="bg-white border border-slate-200 rounded-xl overflow-hidden">
-                    <div className="p-5 border-b border-slate-200 flex items-center justify-between">
+                    <div className="p-5 flex items-center justify-between">
                         <h2 className="font-bebas text-slate-900 tracking-[0.1em] text-lg">ADMIN USERS</h2>
                         <button onClick={() => setShowAddUser(true)}
                             className="flex items-center gap-1.5 px-3 py-2 bg-saffron/10 border border-saffron/20 text-saffron text-xs font-semibold rounded-lg hover:bg-saffron/20 transition-colors">
                             <UserPlus size={14} /> Add User
                         </button>
-                    </div>
-                    <div className="p-5">
-                        <p className="text-slate-500 text-sm text-center py-6">
-                            Admin user management requires database connection.
-                            <br />
-                            Configure your <code className="text-saffron/60">.env.local</code> with Hostinger MySQL credentials.
-                        </p>
                     </div>
                 </motion.section>
 
@@ -124,20 +117,6 @@ export default function SettingsPage() {
                     </div>
                 </motion.section>
 
-                {/* Database Info */}
-                <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-                    className="bg-white border border-slate-200 rounded-xl overflow-hidden">
-                    <div className="p-5 border-b border-slate-200">
-                        <h2 className="font-bebas text-slate-900 tracking-[0.1em] text-lg">DATABASE</h2>
-                    </div>
-                    <div className="p-5">
-                        <div className="bg-white/[0.02] border border-slate-200 rounded-lg p-4 font-mono text-xs text-slate-500 space-y-1">
-                            <p>Host: <span className="text-slate-900/20">{process.env.DB_HOST ? '●●●●●●' : 'Not configured'}</span></p>
-                            <p>Database: <span className="text-slate-900/20">bjp_yavatmal</span></p>
-                            <p>Status: <span className="text-amber-400">Configure .env.local</span></p>
-                        </div>
-                    </div>
-                </motion.section>
 
                 <div className="h-4" />
             </main>

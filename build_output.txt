@@ -1,0 +1,22 @@
+Γû▓ Next.js 16.1.6 (Turbopack)
+- Environments: .env
+
+ΓÜá The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 30.9s
+  Running TypeScript ...
+Failed to compile.
+
+./src/app/api/tasks/[id]/export-pdf/route.ts:71:48
+Type error: Argument of type 'FunctionComponentElement<TaskPDFProps>' is not assignable to parameter of type 'ReactElement<DocumentProps, string | JSXElementConstructor<any>>'.
+  Types of property 'props' are incompatible.
+    Type 'TaskPDFProps' has no properties in common with type 'DocumentProps'.
+
+  69 |         });
+  70 |
+> 71 |         const pdfBuffer = await renderToBuffer(doc);
+     |                                                ^
+  72 |
+  73 |         // Update task record with PDF info
+  74 |         const pdfFileName = `Task_${task.reference_id}.pdf`;
+Next.js build worker exited with code: 1 and signal: null

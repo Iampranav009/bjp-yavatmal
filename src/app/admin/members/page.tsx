@@ -14,11 +14,13 @@ import {
     Phone,
     X,
     Loader2,
+    Filter,
 } from "lucide-react";
 import AdminNavbar from "@/components/admin/AdminNavbar";
 import toast from "react-hot-toast";
 import { format } from "date-fns";
 import { getDaysUntilBirthday } from "@/lib/birthday";
+import { POSITIONS, DEFAULT_POSITION } from "@/lib/positions";
 
 interface Member {
     id: number;
@@ -35,18 +37,18 @@ interface Member {
 export default function MembersPage() {
     const [members, setMembers] = useState<Member[]>([]);
     const [search, setSearch] = useState("");
+    const [positionFilter, setPositionFilter] = useState("");
     const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
     const [editMember, setEditMember] = useState<Member | null>(null);
     const [menuOpen, setMenuOpen] = useState<number | null>(null);
     const [deleteConfirm, setDeleteConfirm] = useState<number | null>(null);
     const [formLoading, setFormLoading] = useState(false);
-    const [importPreview, setImportPreview] = useState(false);
 
     // Form state
     const [formData, setFormData] = useState({
         name: "",
-        position: "",
+        position: DEFAULT_POSITION,
         mobile: "",
         birth_date: "",
         birth_year: "",
@@ -56,7 +58,10 @@ export default function MembersPage() {
 
     const fetchMembers = useCallback(async () => {
         try {
-            const res = await fetch(`/api/members?search=${search}`);
+            const params = new URLSearchParams();
+            if (search) params.set("search", search);
+            if (positionFilter) params.set("position", positionFilter);
+            const res = await fetch(`/api/members?${params.toString()}`);
             const data = await res.json();
             setMembers(data.data || []);
         } catch {
@@ -64,7 +69,7 @@ export default function MembersPage() {
         } finally {
             setLoading(false);
         }
-    }, [search]);
+    }, [search, positionFilter]);
 
     useEffect(() => {
         fetchMembers();
@@ -89,7 +94,10 @@ export default function MembersPage() {
                 }),
             });
 
-            if (!res.ok) throw new Error();
+            if (!res.ok) {
+                const errData = await res.json();
+                throw new Error(errData.error || "Failed to save");
+            }
 
             toast.success(
                 editMember ? "Member updated!" : "Member added!"
@@ -98,8 +106,8 @@ export default function MembersPage() {
             setEditMember(null);
             resetForm();
             fetchMembers();
-        } catch {
-            toast.error("Failed to save member");
+        } catch (err) {
+            toast.error(err instanceof Error ? err.message : "Failed to save member");
         } finally {
             setFormLoading(false);
         }
@@ -121,7 +129,7 @@ export default function MembersPage() {
         setEditMember(member);
         setFormData({
             name: member.name,
-            position: member.position || "",
+            position: member.position || DEFAULT_POSITION,
             mobile: member.mobile || "",
             birth_date: member.birth_date
                 ? format(new Date(member.birth_date), "yyyy-MM-dd")
@@ -163,6 +171,9 @@ export default function MembersPage() {
                 body: fd,
             });
             const data = await res.json();
+            if (data.errors && data.errors.length > 0) {
+                toast.error(`${data.errors.length} rows rejected (invalid position)`);
+            }
             toast.success(data.message || "Import complete");
             fetchMembers();
         } catch {
@@ -194,7 +205,7 @@ export default function MembersPage() {
     const resetForm = () => {
         setFormData({
             name: "",
-            position: "",
+            position: DEFAULT_POSITION,
             mobile: "",
             birth_date: "",
             birth_year: "",
@@ -216,18 +227,38 @@ export default function MembersPage() {
             <main className="p-5 lg:p-8 space-y-6">
                 {/* Top Bar */}
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-                    <div className="flex-1 relative w-full sm:max-w-sm">
-                        <Search
-                            size={16}
-                            className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500"
-                        />
-                        <input
-                            type="text"
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
-                            placeholder="Search members..."
-                            className="w-full bg-white border border-slate-200 rounded-lg pl-10 pr-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-saffron transition-colors placeholder:text-slate-900/20"
-                        />
+                    <div className="flex-1 flex items-center gap-2 w-full sm:max-w-xl">
+                        <div className="relative flex-1">
+                            <Search
+                                size={16}
+                                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500"
+                            />
+                            <input
+                                type="text"
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                                placeholder="Search members..."
+                                className="w-full bg-white border border-slate-200 rounded-lg pl-10 pr-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-saffron transition-colors placeholder:text-slate-900/20"
+                            />
+                        </div>
+                        <div className="relative">
+                            <Filter
+                                size={14}
+                                className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none"
+                            />
+                            <select
+                                value={positionFilter}
+                                onChange={(e) => setPositionFilter(e.target.value)}
+                                className="bg-white border border-slate-200 rounded-lg pl-8 pr-8 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-saffron transition-colors appearance-none cursor-pointer"
+                            >
+                                <option value="">सर्व पदे</option>
+                                {POSITIONS.map((p) => (
+                                    <option key={p.value} value={p.value}>
+                                        {p.label}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
                     </div>
 
                     <div className="flex items-center gap-2 flex-wrap">
@@ -329,7 +360,9 @@ export default function MembersPage() {
                                                     </div>
                                                 </td>
                                                 <td className="p-4 text-slate-600 text-sm hidden md:table-cell">
-                                                    {member.position}
+                                                    <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-saffron/10 text-saffron text-xs font-medium">
+                                                        {member.position}
+                                                    </span>
                                                 </td>
                                                 <td className="p-4 text-slate-600 text-sm hidden lg:table-cell">
                                                     {member.mobile}
@@ -461,17 +494,22 @@ export default function MembersPage() {
                                     </div>
                                     <div>
                                         <label className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold mb-1 block">
-                                            Position *
+                                            Position (पद) *
                                         </label>
-                                        <input
-                                            type="text"
+                                        <select
                                             value={formData.position}
                                             onChange={(e) =>
                                                 setFormData({ ...formData, position: e.target.value })
                                             }
-                                            className="w-full bg-white border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-saffron transition-colors"
+                                            className="w-full bg-white border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-saffron transition-colors appearance-none cursor-pointer"
                                             required
-                                        />
+                                        >
+                                            {POSITIONS.map((p) => (
+                                                <option key={p.value} value={p.value}>
+                                                    {p.label}
+                                                </option>
+                                            ))}
+                                        </select>
                                     </div>
                                     <div>
                                         <label className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold mb-1 block">

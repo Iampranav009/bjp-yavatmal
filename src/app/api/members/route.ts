@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import pool from '@/lib/db';
 import { getAdminFromRequest } from '@/lib/auth';
+import { isValidPosition, DEFAULT_POSITION } from '@/lib/positions';
 import { RowDataPacket, ResultSetHeader } from 'mysql2';
 
 export async function GET(request: Request) {
@@ -12,15 +13,26 @@ export async function GET(request: Request) {
 
         const { searchParams } = new URL(request.url);
         const search = searchParams.get('search') || '';
+        const position = searchParams.get('position') || '';
         const sort = searchParams.get('sort') || 'name';
 
         let query = 'SELECT * FROM members';
         const params: string[] = [];
+        const conditions: string[] = [];
 
         if (search) {
-            query += ' WHERE name LIKE ? OR position LIKE ? OR mobile LIKE ?';
+            conditions.push('(name LIKE ? OR mobile LIKE ?)');
             const searchTerm = `%${search}%`;
-            params.push(searchTerm, searchTerm, searchTerm);
+            params.push(searchTerm, searchTerm);
+        }
+
+        if (position) {
+            conditions.push('position = ?');
+            params.push(position);
+        }
+
+        if (conditions.length > 0) {
+            query += ' WHERE ' + conditions.join(' AND ');
         }
 
         const allowedSorts: Record<string, string> = {
@@ -56,10 +68,19 @@ export async function POST(request: Request) {
             );
         }
 
+        // Validate position — must be from the predefined Marathi list
+        const finalPosition = position || DEFAULT_POSITION;
+        if (!isValidPosition(finalPosition)) {
+            return NextResponse.json(
+                { error: `Invalid position "${position}". Must be one of the predefined Marathi positions.` },
+                { status: 400 }
+            );
+        }
+
         const [result] = await pool.execute<ResultSetHeader>(
             `INSERT INTO members (name, position, mobile, birth_date, birth_year, address, photo_url, notes)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-            [name, position || null, mobile || null, birth_date, birth_year || null, address || null, photo_url || null, notes || null]
+            [name, finalPosition, mobile || null, birth_date, birth_year || null, address || null, photo_url || null, notes || null]
         );
 
         return NextResponse.json({
