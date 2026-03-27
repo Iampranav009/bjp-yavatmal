@@ -1,0 +1,14 @@
+
+> bjp-yavatmal@0.1.0 dev
+> next dev
+
+ΓÜá Port 3000 is in use by process 18144, using available port 3001 instead.
+Γû▓ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3001
+- Network:       http://10.237.226.98:3001
+- Environments: .env
+
+Γ£ô Starting...
+Γ¿» Unable to acquire lock at E:\myfiles\bjp-at-yavatmal\bjp-yavatmal\.next\dev\lock, is another instance of next dev running?
+  Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+[?25h
