@@ -27,6 +27,11 @@ export async function POST(request: Request) {
         const file = formData.get('file') as File | null;
         const title = (formData.get('title') as string) || '';
         const category = (formData.get('category') as string) || 'general';
+        const postTitle = (formData.get('post_title') as string) || '';
+        const postDescription = (formData.get('post_description') as string) || '';
+        const postLink = (formData.get('post_link') as string) || '';
+        const displayTarget = (formData.get('display_target') as string) || 'media';
+        const isFeatured = formData.get('is_featured') === 'true';
 
         if (!file) {
             return NextResponse.json({ error: 'No file provided' }, { status: 400 });
@@ -63,11 +68,11 @@ export async function POST(request: Request) {
 
         const fileUrl = `/uploads/${uniqueName}`;
 
-        // Save to database
+        // Save to database with new fields
         const [result] = await pool.execute<ResultSetHeader>(
-            `INSERT INTO gallery_images (title, file_name, file_url, category)
-       VALUES (?, ?, ?, ?)`,
-            [title || uniqueName, uniqueName, fileUrl, category]
+            `INSERT INTO gallery_images (title, file_name, file_url, category, post_title, post_description, post_link, display_target, is_featured)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            [title || uniqueName, uniqueName, fileUrl, category, postTitle, postDescription, postLink, displayTarget, isFeatured ? 1 : 0]
         );
 
         return NextResponse.json({
@@ -77,6 +82,11 @@ export async function POST(request: Request) {
                 file_name: uniqueName,
                 file_url: fileUrl,
                 category,
+                post_title: postTitle,
+                post_description: postDescription,
+                post_link: postLink,
+                display_target: displayTarget,
+                is_featured: isFeatured,
             },
             message: 'Image uploaded successfully',
         }, { status: 201 });

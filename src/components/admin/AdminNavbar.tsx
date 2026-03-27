@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell, LogOut, Menu } from "lucide-react";
+import { Bell, LogOut, Menu, Heart } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 interface AdminNavbarProps {
@@ -8,6 +8,8 @@ interface AdminNavbarProps {
     notificationCount?: number;
     adminName?: string;
     onMenuClick?: () => void;
+    onWishTemplateClick?: () => void;
+    showWishTemplateButton?: boolean;
 }
 
 export default function AdminNavbar({
@@ -15,6 +17,8 @@ export default function AdminNavbar({
     notificationCount = 0,
     adminName = "AD",
     onMenuClick,
+    onWishTemplateClick,
+    showWishTemplateButton = false,
 }: AdminNavbarProps) {
     const router = useRouter();
 
@@ -46,6 +50,18 @@ export default function AdminNavbar({
             </div>
 
             <div className="flex items-center gap-3">
+                {/* Wish Template button */}
+                {showWishTemplateButton && onWishTemplateClick && (
+                    <button
+                        onClick={onWishTemplateClick}
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-pink-500/10 to-rose-500/10 border border-pink-200 text-pink-600 text-xs font-semibold hover:from-pink-500/20 hover:to-rose-500/20 hover:border-pink-300 transition-all"
+                        title="Edit Wish Templates"
+                    >
+                        <Heart size={13} className="fill-pink-500 text-pink-500" />
+                        <span className="hidden sm:inline">Wish Template</span>
+                    </button>
+                )}
+
                 {/* Notifications bell */}
                 <button
                     onClick={() => router.push("/admin/birthdays")}

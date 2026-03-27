@@ -158,6 +158,13 @@ const mr = {
         titleHighlight: "झलकी",
     },
 
+    // --- Media Page ---
+    mediaPage: {
+        title: "मीडिया गॅलरी",
+        titleHighlight: "गॅलरी",
+        description: "भाजपा यवतमाळ जिल्हा समितीच्या कार्यक्रम, सभा आणि विकासकामांचे फोटो आणि बातम्या.",
+    },
+
     // --- Join Section ---
     join: {
         heading: "यात्रेत सामील व्हा",
@@ -366,6 +373,11 @@ const hi: Partial<typeof mr> = {
         title: "हमारी यात्रा की झलकियाँ",
         titleHighlight: "झलकियाँ",
     },
+    mediaPage: {
+        title: "मीडिया गैलरी",
+        titleHighlight: "गैलरी",
+        description: "भाजपा यवतमाल जिला समिति के कार्यक्रमों, सभाओं और विकास कार्यों की तस्वीरें और समाचार।",
+    },
     join: {
         heading: "यात्रा में शामिल हों",
         subheading: "वह बदलाव बनें जो आप देखना चाहते हैं।",
@@ -562,6 +574,11 @@ const en: Partial<typeof mr> = {
         label: "Media & Memories",
         title: "Glimpses of Our Journey",
         titleHighlight: "Journey",
+    },
+    mediaPage: {
+        title: "Media Gallery",
+        titleHighlight: "Gallery",
+        description: "Photos and news from BJP Yavatmal District Committee events, rallies, and development work.",
     },
     join: {
         heading: "JOIN THE JOURNEY",

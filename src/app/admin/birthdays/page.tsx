@@ -5,7 +5,9 @@ import { motion } from "framer-motion";
 import { Cake, Calendar, PartyPopper } from "lucide-react";
 import AdminNavbar from "@/components/admin/AdminNavbar";
 import BirthdayNotificationCard from "@/components/admin/BirthdayNotificationCard";
+import WishTemplateModal from "@/components/admin/WishTemplateModal";
 import { MemberWithDaysLeft, type MemberBirthday, getMembersByMonth } from "@/lib/birthday";
+import { type WishLanguage, DEFAULT_TEMPLATES } from "@/lib/birthdayTemplates";
 import toast from "react-hot-toast";
 import { format } from "date-fns";
 
@@ -19,6 +21,12 @@ export default function BirthdaysPage() {
     const [upcoming, setUpcoming] = useState<MemberWithDaysLeft[]>([]);
     const [allMembers, setAllMembers] = useState<MemberBirthday[]>([]);
     const [loading, setLoading] = useState(true);
+    const [templateModalOpen, setTemplateModalOpen] = useState(false);
+    const [templates, setTemplates] = useState<Record<string, string>>({
+        en: DEFAULT_TEMPLATES.en,
+        hi: DEFAULT_TEMPLATES.hi,
+        mr: DEFAULT_TEMPLATES.mr,
+    });
 
     const fetchData = useCallback(async () => {
         try {
@@ -33,9 +41,25 @@ export default function BirthdaysPage() {
         finally { setLoading(false); }
     }, []);
 
-    useEffect(() => { fetchData(); }, [fetchData]);
+    const fetchTemplates = useCallback(async () => {
+        try {
+            const res = await fetch("/api/birthday-templates");
+            const data = await res.json();
+            if (data.data) {
+                const newTemplates: Record<string, string> = { ...DEFAULT_TEMPLATES };
+                for (const t of data.data) {
+                    newTemplates[t.language] = t.template_text;
+                }
+                setTemplates(newTemplates);
+            }
+        } catch {
+            // Use defaults silently
+        }
+    }, []);
 
-    const handleGenerateLetter = async (member: MemberWithDaysLeft) => {
+    useEffect(() => { fetchData(); fetchTemplates(); }, [fetchData, fetchTemplates]);
+
+    const handleGenerateLetter = async (member: MemberWithDaysLeft, _language?: WishLanguage) => {
         try {
             const { downloadBirthdayPDF } = await import("@/components/admin/BirthdayLetterPDF");
             await downloadBirthdayPDF(member.name, member.position, member.birth_date);
@@ -54,7 +78,12 @@ export default function BirthdaysPage() {
 
     return (
         <>
-            <AdminNavbar title="Birthdays" notificationCount={upcoming.length} />
+            <AdminNavbar
+                title="Birthdays"
+                notificationCount={upcoming.length}
+                showWishTemplateButton={true}
+                onWishTemplateClick={() => setTemplateModalOpen(true)}
+            />
             <main className="p-5 lg:p-8 space-y-6">
                 {/* Tabs */}
                 <div className="flex gap-1 bg-slate-100 border border-slate-200 rounded-xl p-1.5 w-fit">
@@ -84,7 +113,13 @@ export default function BirthdaysPage() {
                                 {upcomingOnly.length > 0 ? (
                                     <div className="grid gap-4 md:grid-cols-2">
                                         {upcomingOnly.map((m, i) => (
-                                            <BirthdayNotificationCard key={m.id} member={m} index={i} onGenerateLetter={handleGenerateLetter} />
+                                            <BirthdayNotificationCard
+                                                key={m.id}
+                                                member={m}
+                                                index={i}
+                                                onGenerateLetter={handleGenerateLetter}
+                                                templates={templates}
+                                            />
                                         ))}
                                     </div>
                                 ) : (
@@ -116,7 +151,13 @@ export default function BirthdaysPage() {
                                         </div>
                                         <div className="grid gap-4 md:grid-cols-2">
                                             {todayBirthdays.map((m, i) => (
-                                                <BirthdayNotificationCard key={m.id} member={m} index={i} onGenerateLetter={handleGenerateLetter} />
+                                                <BirthdayNotificationCard
+                                                    key={m.id}
+                                                    member={m}
+                                                    index={i}
+                                                    onGenerateLetter={handleGenerateLetter}
+                                                    templates={templates}
+                                                />
                                             ))}
                                         </div>
                                     </div>
@@ -165,6 +206,13 @@ export default function BirthdaysPage() {
                 )}
                 <div className="h-4" />
             </main>
+
+            {/* Wish Template Modal */}
+            <WishTemplateModal
+                isOpen={templateModalOpen}
+                onClose={() => setTemplateModalOpen(false)}
+                onSaved={() => fetchTemplates()}
+            />
         </>
     );
 }

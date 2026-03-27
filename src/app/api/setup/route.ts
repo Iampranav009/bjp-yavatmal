@@ -150,9 +150,31 @@ export async function GET() {
             // Column may already exist
         }
 
+        // Create birthday_templates table
+        await pool.execute(`
+            CREATE TABLE IF NOT EXISTS birthday_templates (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                language VARCHAR(5) NOT NULL UNIQUE,
+                template_text TEXT NOT NULL,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+            )
+        `);
+
+        // Extend gallery_images table with new columns
+        const galleryAlters = [
+            `ALTER TABLE gallery_images ADD COLUMN post_title VARCHAR(500) NULL`,
+            `ALTER TABLE gallery_images ADD COLUMN post_description TEXT NULL`,
+            `ALTER TABLE gallery_images ADD COLUMN post_link VARCHAR(500) NULL`,
+            `ALTER TABLE gallery_images ADD COLUMN display_target ENUM('media','video') DEFAULT 'media'`,
+            `ALTER TABLE gallery_images ADD COLUMN is_featured BOOLEAN DEFAULT FALSE`,
+        ];
+        for (const sql of galleryAlters) {
+            try { await pool.execute(sql); } catch { /* column may already exist */ }
+        }
+
         return NextResponse.json({
             message: 'All tables created successfully!',
-            tables: ['admin_users', 'members', 'gallery_images', 'meetings', 'meeting_target_positions', 'meeting_participants', 'notifications', 'tasks', 'task_target_positions', 'task_members'],
+            tables: ['admin_users', 'members', 'gallery_images', 'meetings', 'meeting_target_positions', 'meeting_participants', 'notifications', 'tasks', 'task_target_positions', 'task_members', 'birthday_templates'],
         });
     } catch (error) {
         console.error('Setup error:', error);
