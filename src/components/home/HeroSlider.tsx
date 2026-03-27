@@ -10,13 +10,14 @@ import { useLanguage } from "../../lib/LanguageContext";
 export default function HeroSlider() {
     const [activeSlide, setActiveSlide] = useState(0);
     const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
-    const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
+    const imageRefs = useRef<(HTMLImageElement | HTMLDivElement | null)[]>([]);
     const autoPlayRef = useRef<NodeJS.Timeout>(null);
     const { t } = useLanguage();
     const hero = t("hero");
     const slides = hero.slides.map((s, i) => ({
         id: i + 1,
-        image: `/images/hero/img-${i + 1}.png`,
+        image: `/images/hero/hero-1.jpg`,
+        mobileImage: `/images/hero/hero-1-mobile.jpg`,
         slogan: s.slogan,
         subtext: s.subtext,
     }));
@@ -59,40 +60,51 @@ export default function HeroSlider() {
                     className="absolute inset-0 w-full h-full opacity-0 pointer-events-none"
                 >
                     <div className="absolute inset-0 w-full h-full overflow-hidden">
-                        <Image
-                            ref={(el) => { imageRefs.current[index] = el; }}
-                            src={slide.image}
-                            alt={slide.slogan}
-                            fill
-                            className="object-cover object-top"
-                            quality={90}
-                            priority={index === 0}
-                            placeholder="empty"
-                        />
+                        <div ref={(el) => { imageRefs.current[index] = el; }} className="w-full h-full absolute inset-0">
+                            <Image
+                                src={slide.image}
+                                alt={slide.slogan}
+                                fill
+                                className="object-cover object-top hidden md:block"
+                                quality={90}
+                                priority={index === 0}
+                                placeholder="empty"
+                            />
+                            <Image
+                                src={slide.mobileImage}
+                                alt={slide.slogan}
+                                fill
+                                className="object-cover object-top block md:hidden"
+                                quality={90}
+                                priority={index === 0}
+                                placeholder="empty"
+                            />
+                        </div>
                     </div>
                 </div>
             ))}
 
             {/* Dark Overlay Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-navy-dark/90 via-navy-dark/40 to-transparent z-30 pointer-events-none" />
-            <div className="absolute bottom-0 w-full h-48 bg-gradient-to-t from-[#060E1A] to-transparent z-30 pointer-events-none" />
+            <div className="absolute inset-0 bg-black/20 z-30 pointer-events-none" />
+            <div className="absolute bottom-0 w-full h-48 bg-gradient-to-t from-black/50 to-transparent z-30 pointer-events-none" />
 
             {/* Content */}
-            <div className="relative z-40 h-full container mx-auto px-6 lg:px-12 flex flex-col justify-end pb-24 lg:pb-32">
-                <div className="max-w-3xl">
+            <div className="relative z-40 h-full container mx-auto px-6 lg:px-12 flex flex-col justify-center items-center text-center">
+                <div className="max-w-4xl flex flex-col items-center">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5 }}
-                        className="flex items-center gap-3 mb-6"
+                        className="flex justify-center items-center gap-3 mb-6"
                     >
-                        <span className="w-2.5 h-2.5 rounded-full bg-saffron" />
-                        <span className="text-white/80 uppercase tracking-widest text-sm font-['DM_Sans'] font-semibold">
+                        <span className="w-2 h-2 rounded-full bg-saffron" />
+                        <span className="text-white/90 uppercase tracking-widest text-sm font-['DM_Sans'] font-semibold drop-shadow-md">
                             {hero.district}
                         </span>
+                        <span className="w-2 h-2 rounded-full bg-saffron" />
                     </motion.div>
 
-                    <div className="h-32 md:h-40 xl:h-48 relative">
+                    <div className="w-full flex justify-center my-4 min-h-[160px] md:min-h-[200px]">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={activeSlide}
@@ -100,12 +112,12 @@ export default function HeroSlider() {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -20 }}
                                 transition={{ duration: 0.6, staggerChildren: 0.1 }}
-                                className="absolute inset-0 flex flex-col justify-center"
+                                className="flex flex-col justify-center items-center w-full px-2"
                             >
-                                <h1 className="text-5xl md:text-7xl lg:text-8xl font-['Bebas_Neue'] text-white leading-[0.9] tracking-wide mb-4 drop-shadow-lg">
+                                <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-['Tiro_Devanagari_Hindi'] font-bold text-white leading-tight mb-4 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)] max-w-4xl mx-auto">
                                     {slides[activeSlide].slogan}
                                 </h1>
-                                <p className="text-lg md:text-xl lg:text-2xl font-['Tiro_Devanagari_Hindi'] text-white/90 drop-shadow-md">
+                                <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-['Tiro_Devanagari_Hindi'] text-white/95 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] max-w-2xl mx-auto">
                                     {slides[activeSlide].subtext}
                                 </p>
                             </motion.div>
@@ -116,7 +128,7 @@ export default function HeroSlider() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1 }}
-                        className="flex flex-wrap items-center gap-4 mt-8"
+                        className="flex flex-wrap justify-center items-center gap-4 mt-8"
                     >
                         <button className="bg-saffron hover:bg-saffron-light text-white px-8 py-3.5 rounded-full font-bold transition-all shadow-xl shadow-saffron/20 hover:-translate-y-1">
                             {hero.joinJourney}

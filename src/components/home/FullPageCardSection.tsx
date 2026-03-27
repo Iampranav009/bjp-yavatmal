@@ -58,6 +58,7 @@ export default function FullPageCardSection({
                                 className="object-cover"
                                 quality={90}
                                 placeholder="empty"
+                                unoptimized={true}
                             />
                         </motion.div>
                         <motion.div
@@ -116,6 +117,7 @@ export default function FullPageCardSection({
                                 className="object-cover"
                                 quality={90}
                                 placeholder="empty"
+                                unoptimized={true}
                             />
                         </motion.div>
                     </>
@@ -132,6 +134,7 @@ export default function FullPageCardSection({
                         className="object-cover"
                         quality={90}
                         placeholder="empty"
+                        unoptimized={true}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-navy-dark via-navy-dark/80 to-navy-dark/20" />
                 </div>

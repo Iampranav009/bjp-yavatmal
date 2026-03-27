@@ -38,19 +38,13 @@ export default function AchievementsSlider() {
                             >
                                 <div className="w-full h-[200px] relative overflow-hidden">
                                     <Image
-                                        src={[
-                                            "/images/gallery/gallery-1.jpg",
-                                            "/images/gallery/gallery-2.jpg",
-                                            "/images/gallery/gallery-3.jpg",
-                                            "/images/hero/img-2.jpg",
-                                            "/images/hero/img-3.jpg",
-                                            "/images/hero/img-4.jpg",
-                                        ][idx % items.length]}
+                                        src="/images/sections/bjp-crowd.jpg"
                                         alt={item.title}
                                         fill
                                         className="object-cover transition-transform duration-700 group-hover:scale-110 group-hover:brightness-110"
                                         quality={90}
                                         placeholder="empty"
+                                        unoptimized={true}
                                     />
                                 </div>
                                 <div className="p-6">

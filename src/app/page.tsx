@@ -23,7 +23,7 @@ export default function Home() {
 
       <FullPageCardSection
         id="about"
-        bgImage="/images/gallery/gallery-2.jpg"
+        bgImage="/images/sections/bjp-crowd.jpg"
         label={hp.aboutLabel}
         title={hp.aboutTitle}
       >

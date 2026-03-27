@@ -6,12 +6,12 @@ import { motion } from "framer-motion";
 import { useLanguage } from "../../lib/LanguageContext";
 
 const galleryImages = [
-    { src: "/images/gallery/gallery-1.jpg" },
-    { src: "/images/gallery/gallery-2.jpg" },
-    { src: "/images/gallery/gallery-3.jpg" },
-    { src: "/images/gallery/gallery-4.jpg" },
-    { src: "/images/gallery/gallery-5.jpg" },
-    { src: "/images/gallery/gallery-6.jpg" },
+    { src: "/images/sections/bjp-crowd.jpg" },
+    { src: "/images/sections/bjp-crowd.jpg" },
+    { src: "/images/sections/bjp-crowd.jpg" },
+    { src: "/images/sections/bjp-crowd.jpg" },
+    { src: "/images/sections/bjp-crowd.jpg" },
+    { src: "/images/sections/bjp-crowd.jpg" },
 ];
 
 export default function GalleryGrid() {
@@ -46,7 +46,7 @@ export default function GalleryGrid() {
                         transition={{ duration: 0.5 }}
                         className="md:col-span-7 md:row-span-2 relative rounded-xl overflow-hidden group cursor-pointer bg-white"
                     >
-                        <Image src={galleryImages[0].src} alt={g.label} fill className="object-cover transition-all duration-700 ease-in-out group-hover:scale-105 group-hover:brightness-110 brightness-75" quality={90} placeholder="empty" />
+                        <Image src={galleryImages[0].src} alt={g.label} fill className="object-cover transition-all duration-700 ease-in-out group-hover:scale-105 group-hover:brightness-110 brightness-75" quality={90} placeholder="empty" unoptimized={true} />
                         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 bg-[#F4F6F8]/30">
                             <motion.div whileHover={{ scale: 1.1 }} className="w-14 h-14 rounded-full bg-saffron flex items-center justify-center text-white shadow-xl shadow-saffron/40">
                                 <Plus size={28} />
@@ -56,7 +56,7 @@ export default function GalleryGrid() {
 
                     {/* Medium images top right */}
                     <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.5, delay: 0.1 }} className="md:col-span-5 md:row-span-1 relative rounded-xl overflow-hidden group cursor-pointer bg-white">
-                        <Image src={galleryImages[1].src} alt={g.label} fill className="object-cover transition-all duration-700 ease-in-out group-hover:scale-105 group-hover:brightness-110 brightness-75" quality={90} placeholder="empty" />
+                        <Image src={galleryImages[1].src} alt={g.label} fill className="object-cover transition-all duration-700 ease-in-out group-hover:scale-105 group-hover:brightness-110 brightness-75" quality={90} placeholder="empty" unoptimized={true} />
                         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 bg-[#F4F6F8]/30">
                             <div className="w-12 h-12 rounded-full bg-saffron flex items-center justify-center text-white shadow-xl shadow-saffron/40"><Plus size={24} /></div>
                         </div>
@@ -64,7 +64,7 @@ export default function GalleryGrid() {
 
                     {/* Medium images mid right */}
                     <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.5, delay: 0.2 }} className="md:col-span-5 md:row-span-1 relative rounded-xl overflow-hidden group cursor-pointer bg-white">
-                        <Image src={galleryImages[2].src} alt={g.label} fill className="object-cover transition-all duration-700 ease-in-out group-hover:scale-105 group-hover:brightness-110 brightness-75" quality={90} placeholder="empty" />
+                        <Image src={galleryImages[2].src} alt={g.label} fill className="object-cover transition-all duration-700 ease-in-out group-hover:scale-105 group-hover:brightness-110 brightness-75" quality={90} placeholder="empty" unoptimized={true} />
                         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 bg-[#F4F6F8]/30">
                             <div className="w-12 h-12 rounded-full bg-saffron flex items-center justify-center text-white shadow-xl shadow-saffron/40"><Plus size={24} /></div>
                         </div>
@@ -80,7 +80,7 @@ export default function GalleryGrid() {
                             transition={{ duration: 0.5, delay: 0.1 * i }}
                             className="md:col-span-4 md:row-span-1 relative rounded-xl overflow-hidden group cursor-pointer bg-white hidden md:block"
                         >
-                            <Image src={galleryImages[idx].src} alt={g.label} fill className="object-cover transition-all duration-700 ease-in-out group-hover:scale-105 group-hover:brightness-110 brightness-75" quality={90} placeholder="empty" />
+                            <Image src={galleryImages[idx].src} alt={g.label} fill className="object-cover transition-all duration-700 ease-in-out group-hover:scale-105 group-hover:brightness-110 brightness-75" quality={90} placeholder="empty" unoptimized={true} />
                             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 bg-[#F4F6F8]/30">
                                 <div className="w-10 h-10 rounded-full bg-saffron flex items-center justify-center text-white shadow-xl shadow-saffron/40"><Plus size={20} /></div>
                             </div>

@@ -78,15 +78,15 @@ export default function StatsSection() {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     className="flex justify-center items-center w-full relative z-10"
                 >
-                    <div className="relative w-full max-w-[550px] aspect-square md:aspect-[4/3] lg:aspect-square rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white group">
+                    <div className="relative w-full max-w-[550px] aspect-square md:aspect-[4/3] lg:aspect-square group">
                         <Image
-                            src="/images/sections/yavatmal-map.jpg"
+                            src="/images/sections/yavatmal-map.png"
                             alt="Yavatmal District Map"
                             fill
-                            className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+                            className="object-contain transition-transform duration-700 ease-in-out group-hover:scale-105 drop-shadow-xl"
                             sizes="(max-width: 768px) 100vw, 50vw"
+                            unoptimized={true}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </div>
                 </motion.div>
 

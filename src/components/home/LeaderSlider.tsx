@@ -10,22 +10,26 @@ import { useLanguage } from "../../lib/LanguageContext";
 export default function LeaderSlider() {
     const [activeSlide, setActiveSlide] = useState(0);
     const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
-    const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
+    const desktopImageRefs = useRef<(HTMLImageElement | null)[]>([]);
+    const mobileImageRefs = useRef<(HTMLImageElement | null)[]>([]);
     const autoPlayRef = useRef<NodeJS.Timeout>(null);
     const { t } = useLanguage();
     const leaders = t("leaders");
-    const slides = leaders.slides.map((s, i) => ({
+    const mobileLeaderImages = ["/images/leaders/2.png", "/images/leaders/3.png", "/images/leaders/4.png", "/images/leaders/5.png"];
+    const slides = mobileLeaderImages.map((src, i) => ({
         id: i + 1,
-        image: `/images/leaders/img-${i + 5}.png`,
-        title: s.title,
-        name: s.name,
+        desktopImage: `/images/leaders/img-5.png`,
+        mobileImage: src,
+        title: leaders.slides[i]?.title || "",
+        name: leaders.slides[i]?.name || "",
         link: "#",
     }));
 
     useEffect(() => {
         gsap.set(slideRefs.current, { opacity: 0 });
         gsap.set(slideRefs.current[0], { opacity: 1 });
-        gsap.set(imageRefs.current[0], { scale: 1 });
+        gsap.set(desktopImageRefs.current[0], { scale: 1 });
+        gsap.set(mobileImageRefs.current[0], { scale: 1 });
         startAutoPlay();
         return () => { if (autoPlayRef.current) clearInterval(autoPlayRef.current); };
     }, []);
@@ -36,18 +40,20 @@ export default function LeaderSlider() {
         const prevSlide = activeSlide;
         setActiveSlide(index);
         const tl = gsap.timeline();
-        tl.to(slideRefs.current[prevSlide], { opacity: 0, duration: 1.2, ease: "power2.inOut", zIndex: 10 }, 0);
-        gsap.set(imageRefs.current[index], { scale: 1.05 });
+        tl.to(slideRefs.current[prevSlide], { opacity: 0, duration: 0.5, ease: "power2.inOut", zIndex: 10 }, 0);
+        gsap.set(desktopImageRefs.current[index], { scale: 1.05 });
+        gsap.set(mobileImageRefs.current[index], { scale: 1.05 });
         gsap.set(slideRefs.current[index], { zIndex: 20 });
-        tl.to(slideRefs.current[index], { opacity: 1, duration: 1.2, ease: "power2.inOut" }, 0);
-        tl.to(imageRefs.current[index], { scale: 1, duration: 6, ease: "power1.out" }, 0);
+        tl.to(slideRefs.current[index], { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 0);
+        tl.to(desktopImageRefs.current[index], { scale: 1, duration: 2.5, ease: "power1.out" }, 0);
+        tl.to(mobileImageRefs.current[index], { scale: 1, duration: 2.5, ease: "power1.out" }, 0);
         startAutoPlay();
     };
 
     const startAutoPlay = () => {
         autoPlayRef.current = setInterval(() => {
             setActiveSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-        }, 5000);
+        }, 1500);
     };
 
     return (
@@ -60,15 +66,29 @@ export default function LeaderSlider() {
                     className="absolute inset-0 w-full h-full opacity-0 pointer-events-none"
                 >
                     <div className="absolute inset-0 w-full h-full overflow-hidden">
+                        {/* Desktop Image */}
                         <Image
-                            ref={(el) => { imageRefs.current[index] = el; }}
-                            src={slide.image}
+                            ref={(el) => { desktopImageRefs.current[index] = el; }}
+                            src={slide.desktopImage}
                             alt={slide.name}
                             fill
-                            className="object-cover object-center"
+                            className="object-cover object-center hidden md:block"
                             quality={100}
                             priority={index === 0}
                             placeholder="empty"
+                            unoptimized={true}
+                        />
+                        {/* Mobile Image */}
+                        <Image
+                            ref={(el) => { mobileImageRefs.current[index] = el; }}
+                            src={slide.mobileImage}
+                            alt={slide.name}
+                            fill
+                            className="object-cover object-center block md:hidden"
+                            quality={100}
+                            priority={index === 0}
+                            placeholder="empty"
+                            unoptimized={true}
                         />
                     </div>
                 </div>
@@ -79,7 +99,8 @@ export default function LeaderSlider() {
             {/* Content */}
             <div className="relative z-40 h-full container mx-auto px-6 lg:px-12 flex items-center justify-end">
                 <div className="w-full md:w-1/2 flex justify-center md:justify-end xl:pr-20">
-                    <div className="relative w-full flex flex-col items-center md:items-start text-center md:text-left">
+                    {/* Content is completely hidden on both desktop and mobile per user request */}
+                    <div className="relative w-full flex-col items-center md:items-start text-center md:text-left hidden">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={activeSlide}

@@ -29,6 +29,7 @@ export default function OurJourneySection({
                 className="object-cover object-center"
                 quality={90}
                 priority={false}
+                unoptimized={true}
             />
 
             {/* Dark gradient overlay – stronger on left, fades to right */}
