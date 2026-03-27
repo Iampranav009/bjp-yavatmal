@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import pool from '@/lib/db';
 import { getAdminFromRequest } from '@/lib/auth';
-import { isValidPosition } from '@/lib/positions';
+import { isValidPosition, isValidWing } from '@/lib/positions';
 import { RowDataPacket, ResultSetHeader } from 'mysql2';
 import { format } from 'date-fns';
 
@@ -61,11 +61,11 @@ export async function POST(request: Request) {
             );
         }
 
-        // Validate all positions
+        // Validate all positions as wings (committees) or specific positions
         for (const pos of target_positions) {
-            if (!isValidPosition(pos)) {
+            if (!isValidWing(pos) && !isValidPosition(pos)) {
                 return NextResponse.json(
-                    { error: `Invalid committee name "${pos}". Must be a predefined Marathi committee.` },
+                    { error: `Invalid target "${pos}".` },
                     { status: 400 }
                 );
             }
@@ -97,11 +97,12 @@ export async function POST(request: Request) {
             );
         }
 
-        // Auto-assign members matching target positions
+        // Auto-assign members matching target positions (wings or positions)
         const posPlaceholders = target_positions.map(() => '?').join(',');
+        const queryParams = [...target_positions, ...target_positions];
         const [matchingMembers] = await pool.execute<RowDataPacket[]>(
-            `SELECT id FROM members WHERE position IN (${posPlaceholders})`,
-            target_positions
+            `SELECT id FROM members WHERE wing IN (${posPlaceholders}) OR position IN (${posPlaceholders})`,
+            queryParams
         );
 
         let assignedCount = 0;

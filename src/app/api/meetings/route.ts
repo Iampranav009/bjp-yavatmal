@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import pool from '@/lib/db';
 import { getAdminFromRequest } from '@/lib/auth';
-import { isValidPosition } from '@/lib/positions';
+import { isValidPosition, isValidWing } from '@/lib/positions';
 import { RowDataPacket, ResultSetHeader } from 'mysql2';
 
 export async function GET() {
@@ -68,9 +68,9 @@ export async function POST(request: Request) {
 
         // Validate all positions
         for (const pos of target_positions) {
-            if (!isValidPosition(pos)) {
+            if (!isValidPosition(pos) && !isValidWing(pos)) {
                 return NextResponse.json(
-                    { error: `Invalid position "${pos}"` },
+                    { error: `Invalid target "${pos}"` },
                     { status: 400 }
                 );
             }
@@ -94,9 +94,10 @@ export async function POST(request: Request) {
 
         // 3. Fetch all members matching the target positions
         const placeholders = target_positions.map(() => '?').join(',');
+        const queryParams = [...target_positions, ...target_positions];
         const [matchingMembers] = await pool.execute<RowDataPacket[]>(
-            `SELECT id, name, position, mobile FROM members WHERE position IN (${placeholders})`,
-            target_positions
+            `SELECT id, name, wing, position, mobile FROM members WHERE wing IN (${placeholders}) OR position IN (${placeholders})`,
+            queryParams
         );
 
         // 4. Insert meeting participants

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import pool from '@/lib/db';
 import { getAdminFromRequest } from '@/lib/auth';
-import { isValidPosition, DEFAULT_POSITION } from '@/lib/positions';
+import { isValidPosition, isValidWing, DEFAULT_POSITION, DEFAULT_WING } from '@/lib/positions';
 import { RowDataPacket, ResultSetHeader } from 'mysql2';
 
 export async function GET(request: Request) {
@@ -14,6 +14,7 @@ export async function GET(request: Request) {
         const { searchParams } = new URL(request.url);
         const search = searchParams.get('search') || '';
         const position = searchParams.get('position') || '';
+        const wing = searchParams.get('wing') || '';
         const sort = searchParams.get('sort') || 'name';
 
         let query = 'SELECT * FROM members';
@@ -31,6 +32,11 @@ export async function GET(request: Request) {
             params.push(position);
         }
 
+        if (wing) {
+            conditions.push('wing = ?');
+            params.push(wing);
+        }
+
         if (conditions.length > 0) {
             query += ' WHERE ' + conditions.join(' AND ');
         }
@@ -38,6 +44,7 @@ export async function GET(request: Request) {
         const allowedSorts: Record<string, string> = {
             name: 'name ASC',
             position: 'position ASC',
+            wing: 'wing ASC',
             birth_date: 'birth_date ASC',
             created_at: 'created_at DESC',
         };
@@ -59,7 +66,7 @@ export async function POST(request: Request) {
         }
 
         const body = await request.json();
-        const { name, position, mobile, birth_date, birth_year, address, photo_url, notes } = body;
+        const { name, wing, position, mobile, birth_date, birth_year, address, photo_url, notes } = body;
 
         if (!name || !birth_date) {
             return NextResponse.json(
@@ -68,19 +75,26 @@ export async function POST(request: Request) {
             );
         }
 
-        // Validate position — must be from the predefined Marathi list
+        const finalWing = wing || DEFAULT_WING;
+        if (!isValidWing(finalWing)) {
+            return NextResponse.json(
+                { error: `Invalid wing "${wing}".` },
+                { status: 400 }
+            );
+        }
+
         const finalPosition = position || DEFAULT_POSITION;
         if (!isValidPosition(finalPosition)) {
             return NextResponse.json(
-                { error: `Invalid position "${position}". Must be one of the predefined Marathi positions.` },
+                { error: `Invalid position "${position}".` },
                 { status: 400 }
             );
         }
 
         const [result] = await pool.execute<ResultSetHeader>(
-            `INSERT INTO members (name, position, mobile, birth_date, birth_year, address, photo_url, notes)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-            [name, finalPosition, mobile || null, birth_date, birth_year || null, address || null, photo_url || null, notes || null]
+            `INSERT INTO members (name, wing, position, mobile, birth_date, birth_year, address, photo_url, notes)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            [name, finalWing, finalPosition, mobile || null, birth_date, birth_year || null, address || null, photo_url || null, notes || null]
         );
 
         return NextResponse.json({

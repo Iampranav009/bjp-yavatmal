@@ -20,6 +20,7 @@ interface GalleryImage {
     post_link: string;
     display_target: "media" | "video";
     is_featured: boolean;
+    batch_id?: string;
     uploaded_at: string;
 }
 
@@ -136,6 +137,7 @@ export default function GalleryPage() {
         if (!selectedFileItems.length) return;
         setUploading(true);
         let success = 0;
+        const batchId = `batch_${Date.now()}`;
         for (const item of selectedFileItems) {
             const fd = new FormData();
             fd.append("file", item.file);
@@ -146,6 +148,7 @@ export default function GalleryPage() {
             fd.append("post_link", uploadPostLink);
             fd.append("display_target", uploadDisplayTarget);
             fd.append("is_featured", String(item.isFeatured));
+            fd.append("batch_id", batchId);
             try {
                 const res = await fetch("/api/gallery/upload", { method: "POST", body: fd });
                 if (res.ok) success++;
@@ -214,6 +217,36 @@ export default function GalleryPage() {
     const filtered = filterCat === "all" ? images : images.filter(i => i.category === filterCat);
     const featuredItem = selectedFileItems.find(i => i.isFeatured);
 
+    // Group images for rendering
+    const displayGroups = (() => {
+        const groups: { [key: string]: GalleryImage[] } = {};
+        const standalone: GalleryImage[] = [];
+        filtered.forEach(img => {
+            if (img.batch_id) {
+                if (!groups[img.batch_id]) groups[img.batch_id] = [];
+                groups[img.batch_id].push(img);
+            } else {
+                standalone.push(img);
+            }
+        });
+        const groupedArray = Object.values(groups).map((group) => {
+            // Sort so featured comes first, else by ID
+            return group.sort((a, b) => (b.is_featured ? 1 : 0) - (a.is_featured ? 1 : 0));
+        });
+        return [...groupedArray.map(g => ({ type: 'group' as const, items: g })), ...standalone.map(s => ({ type: 'single' as const, item: s }))];
+    })();
+
+    // Individual gallery image active indices for carousels
+    const [carouselIndices, setCarouselIndices] = useState<{ [key: string]: number }>({});
+    const nextCarouselImage = (batchId: string, max: number, e: React.MouseEvent) => {
+        e.stopPropagation();
+        setCarouselIndices(prev => ({ ...prev, [batchId]: Math.min((prev[batchId] || 0) + 1, max - 1) }));
+    };
+    const prevCarouselImage = (batchId: string, e: React.MouseEvent) => {
+        e.stopPropagation();
+        setCarouselIndices(prev => ({ ...prev, [batchId]: Math.max((prev[batchId] || 0) - 1, 0) }));
+    };
+
     // Slider navigation
     const sliderPrev = () => setSliderIndex(prev => Math.max(0, prev - 1));
     const sliderNext = () => setSliderIndex(prev => Math.min(selectedFileItems.length - 1, prev + 1));
@@ -245,64 +278,147 @@ export default function GalleryPage() {
                             <div key={i} className="aspect-square bg-white/[0.02] border border-slate-200 rounded-xl animate-pulse" />
                         ))}
                     </div>
-                ) : filtered.length > 0 ? (
+                ) : displayGroups.length > 0 ? (
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                        {filtered.map((img, i) => (
-                            <motion.div key={img.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: i * 0.04 }}
-                                className="group relative bg-white border border-slate-200 rounded-xl overflow-hidden hover:border-slate-300 transition-all">
-                                <div className="aspect-square relative">
-                                    <img src={img.file_url} alt={img.title} className="w-full h-full object-cover" />
-                                    {img.is_featured && (
-                                        <div className="absolute top-2 left-2 bg-amber-500 text-white px-2 py-0.5 rounded-full text-[9px] font-bold flex items-center gap-1 shadow-md">
-                                            <Star size={10} className="fill-white" /> Featured
-                                        </div>
-                                    )}
-                                    <div className="absolute top-2 right-2 bg-black/50 text-white px-2 py-0.5 rounded-full text-[9px] font-medium backdrop-blur-sm">
-                                        {img.display_target === "video" ? "Video" : "Media"}
-                                    </div>
-                                </div>
-                                <div className="p-3">
-                                    <p className="text-slate-900 text-xs font-medium truncate">{img.post_title || img.title}</p>
-                                    {img.post_description && (
-                                        <p className="text-slate-500 text-[10px] mt-0.5 truncate">{img.post_description}</p>
-                                    )}
-                                    <div className="flex items-center justify-between mt-1.5">
-                                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 uppercase">{img.category}</span>
-                                        <div className="relative">
-                                            <button onClick={() => setMenuOpen(menuOpen === img.id ? null : img.id)}
-                                                className="text-slate-500 hover:text-slate-900 transition-colors">
-                                                <MoreVertical size={14} />
-                                            </button>
-                                            {menuOpen === img.id && (
-                                                <>
-                                                    <div className="fixed inset-0 z-30" onClick={() => setMenuOpen(null)} />
-                                                    <div className="absolute right-0 bottom-6 w-44 bg-white border border-slate-200 rounded-xl shadow-2xl z-40 py-1">
-                                                        <button onClick={() => { setEditItem(img); setMenuOpen(null); }}
-                                                            className="w-full flex items-center gap-2 px-3 py-2 text-xs text-slate-700 hover:bg-slate-50"><Edit2 size={12} /> Edit Details</button>
-                                                        <button onClick={() => handleToggleFeatured(img)}
-                                                            className="w-full flex items-center gap-2 px-3 py-2 text-xs text-amber-600 hover:bg-amber-50">
-                                                            <Star size={12} className={img.is_featured ? "fill-amber-500" : ""} />
-                                                            {img.is_featured ? "Remove Featured" : "Mark Featured"}
-                                                        </button>
-                                                        {img.post_link && (
-                                                            <a href={img.post_link} target="_blank" rel="noopener noreferrer"
-                                                                className="w-full flex items-center gap-2 px-3 py-2 text-xs text-blue-600 hover:bg-blue-50">
-                                                                <ExternalLink size={12} /> Open Link
-                                                            </a>
-                                                        )}
-                                                        <button onClick={() => handleCopyUrl(img.file_url)}
-                                                            className="w-full flex items-center gap-2 px-3 py-2 text-xs text-slate-700 hover:bg-slate-50"><Copy size={12} /> Copy URL</button>
-                                                        <button onClick={() => handleDelete(img.id)}
-                                                            className="w-full flex items-center gap-2 px-3 py-2 text-xs text-red-400 hover:bg-red-50"><Trash2 size={12} /> Delete</button>
-                                                    </div>
-                                                </>
+                        {displayGroups.map((groupObj, i) => {
+                            if (groupObj.type === "group") {
+                                const group = groupObj.items;
+                                const batchId = group[0].batch_id!;
+                                const currentIndex = carouselIndices[batchId] || 0;
+                                const currentImg = group[currentIndex];
+                                
+                                return (
+                                    <motion.div key={batchId} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: i * 0.04 }}
+                                        className="group relative bg-white border border-slate-200 rounded-xl overflow-hidden hover:border-slate-300 transition-all">
+                                        <div className="aspect-square relative flex items-center justify-center bg-black">
+                                            <AnimatePresence mode="wait">
+                                                <motion.img key={currentImg.id} initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} src={currentImg.file_url} alt={currentImg.title} className="w-full h-full object-cover" />
+                                            </AnimatePresence>
+                                            
+                                            {/* Arrows */}
+                                            {currentIndex > 0 && (
+                                                <button onClick={(e) => prevCarouselImage(batchId, e)}
+                                                    className="absolute left-2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center backdrop-blur-sm z-10 transition-colors">
+                                                    <ChevronLeft size={14} />
+                                                </button>
                                             )}
+                                            {currentIndex < group.length - 1 && (
+                                                <button onClick={(e) => nextCarouselImage(batchId, group.length, e)}
+                                                    className="absolute right-2 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center backdrop-blur-sm z-10 transition-colors">
+                                                    <ChevronRight size={14} />
+                                                </button>
+                                            )}
+                                            
+                                            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1 z-10">
+                                                {group.map((_, idx) => (
+                                                    <div key={idx} className={`w-1.5 h-1.5 rounded-full shadow ${idx === currentIndex ? 'bg-white' : 'bg-white/40'}`} />
+                                                ))}
+                                            </div>
+
+                                            {currentImg.is_featured && (
+                                                <div className="absolute top-2 left-2 bg-amber-500 text-white px-2 py-0.5 rounded-full text-[9px] font-bold flex items-center gap-1 shadow-md z-10">
+                                                    <Star size={10} className="fill-white" /> Featured
+                                                </div>
+                                            )}
+                                            <div className="absolute top-2 right-2 bg-black/50 text-white px-2 py-0.5 rounded-full text-[9px] font-medium backdrop-blur-sm z-10">
+                                                {currentImg.display_target === "video" ? "Video" : "Media"}
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
+                                        <div className="p-3">
+                                            <p className="text-slate-900 text-xs font-medium truncate">{currentImg.post_title || currentImg.title}</p>
+                                            {currentImg.post_description && (
+                                                <p className="text-slate-500 text-[10px] mt-0.5 truncate">{currentImg.post_description}</p>
+                                            )}
+                                            <div className="flex items-center justify-between mt-1.5">
+                                                <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 uppercase">{currentImg.category}</span>
+                                                <div className="relative">
+                                                    <button onClick={() => setMenuOpen(menuOpen === currentImg.id ? null : currentImg.id)}
+                                                        className="text-slate-500 hover:text-slate-900 transition-colors">
+                                                        <MoreVertical size={14} />
+                                                    </button>
+                                                    {menuOpen === currentImg.id && (
+                                                        <>
+                                                            <div className="fixed inset-0 z-30" onClick={() => setMenuOpen(null)} />
+                                                            <div className="absolute right-0 bottom-6 w-44 bg-white border border-slate-200 rounded-xl shadow-2xl z-40 py-1">
+                                                                <button onClick={() => { setEditItem(currentImg); setMenuOpen(null); }}
+                                                                    className="w-full flex items-center gap-2 px-3 py-2 text-xs text-slate-700 hover:bg-slate-50"><Edit2 size={12} /> Edit Details</button>
+                                                                <button onClick={() => handleToggleFeatured(currentImg)}
+                                                                    className="w-full flex items-center gap-2 px-3 py-2 text-xs text-amber-600 hover:bg-amber-50">
+                                                                    <Star size={12} className={currentImg.is_featured ? "fill-amber-500" : ""} />
+                                                                    {currentImg.is_featured ? "Remove Featured" : "Mark Featured"}
+                                                                </button>
+                                                                <button onClick={() => handleDelete(currentImg.id)}
+                                                                    className="w-full flex items-center gap-2 px-3 py-2 text-xs text-red-400 hover:bg-red-50"><Trash2 size={12} /> Delete Image</button>
+                                                            </div>
+                                                        </>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                );
+                            } else {
+                                const img = groupObj.item;
+                                return (
+                                    <motion.div key={img.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: i * 0.04 }}
+                                        className="group relative bg-white border border-slate-200 rounded-xl overflow-hidden hover:border-slate-300 transition-all">
+                                        <div className="aspect-square relative">
+                                            <img src={img.file_url} alt={img.title} className="w-full h-full object-cover" />
+                                            {img.is_featured && (
+                                                <div className="absolute top-2 left-2 bg-amber-500 text-white px-2 py-0.5 rounded-full text-[9px] font-bold flex items-center gap-1 shadow-md">
+                                                    <Star size={10} className="fill-white" /> Featured
+                                                </div>
+                                            )}
+                                            <div className="absolute top-2 right-2 bg-black/50 text-white px-2 py-0.5 rounded-full text-[9px] font-medium backdrop-blur-sm">
+                                                {img.display_target === "video" ? "Video" : "Media"}
+                                            </div>
+                                        </div>
+                                        <div className="p-3">
+                                            <p className="text-slate-900 text-xs font-medium truncate">{img.post_title || img.title}</p>
+                                            {img.post_description && (
+                                                <p className="text-slate-500 text-[10px] mt-0.5 truncate">{img.post_description}</p>
+                                            )}
+                                            <div className="flex items-center justify-between mt-1.5">
+                                                <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 uppercase">{img.category}</span>
+                                                <div className="relative">
+                                                    <button onClick={() => setMenuOpen(menuOpen === img.id ? null : img.id)}
+                                                        className="text-slate-500 hover:text-slate-900 transition-colors">
+                                                        <MoreVertical size={14} />
+                                                    </button>
+                                                    {menuOpen === img.id && (
+                                                        <>
+                                                            <div className="fixed inset-0 z-30" onClick={() => setMenuOpen(null)} />
+                                                            <div className="absolute right-0 bottom-6 w-44 bg-white border border-slate-200 rounded-xl shadow-2xl z-40 py-1">
+                                                                <button onClick={() => { setEditItem(img); setMenuOpen(null); }}
+                                                                    className="w-full flex items-center gap-2 px-3 py-2 text-xs text-slate-700 hover:bg-slate-50"><Edit2 size={12} /> Edit Details</button>
+                                                                <button onClick={() => handleToggleFeatured(img)}
+                                                                    className="w-full flex items-center gap-2 px-3 py-2 text-xs text-amber-600 hover:bg-amber-50">
+                                                                    <Star size={12} className={img.is_featured ? "fill-amber-500" : ""} />
+                                                                    {img.is_featured ? "Remove Featured" : "Mark Featured"}
+                                                                </button>
+                                                                {img.post_link && (
+                                                                    <a href={img.post_link} target="_blank" rel="noopener noreferrer"
+                                                                        className="w-full flex items-center gap-2 px-3 py-2 text-xs text-blue-600 hover:bg-blue-50">
+                                                                        <ExternalLink size={12} /> Open Link
+                                                                    </a>
+                                                                )}
+                                                                <button onClick={() => handleCopyUrl(img.file_url)}
+                                                                    className="w-full flex items-center gap-2 px-3 py-2 text-xs text-slate-700 hover:bg-slate-50"><Copy size={12} /> Copy URL</button>
+                                                                <button onClick={() => handleDelete(img.id)}
+                                                                    className="w-full flex items-center gap-2 px-3 py-2 text-xs text-red-400 hover:bg-red-50"><Trash2 size={12} /> Delete</button>
+                                                            </div>
+                                                        </>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                );
+                            }
+                        })}
+
                     </div>
                 ) : (
                     <div className="bg-white/[0.02] border border-slate-200 rounded-xl p-12 text-center">

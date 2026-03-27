@@ -32,6 +32,7 @@ export async function POST(request: Request) {
         const postLink = (formData.get('post_link') as string) || '';
         const displayTarget = (formData.get('display_target') as string) || 'media';
         const isFeatured = formData.get('is_featured') === 'true';
+        const batchId = (formData.get('batch_id') as string) || null;
 
         if (!file) {
             return NextResponse.json({ error: 'No file provided' }, { status: 400 });
@@ -70,9 +71,9 @@ export async function POST(request: Request) {
 
         // Save to database with new fields
         const [result] = await pool.execute<ResultSetHeader>(
-            `INSERT INTO gallery_images (title, file_name, file_url, category, post_title, post_description, post_link, display_target, is_featured)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-            [title || uniqueName, uniqueName, fileUrl, category, postTitle, postDescription, postLink, displayTarget, isFeatured ? 1 : 0]
+            `INSERT INTO gallery_images (title, file_name, file_url, category, post_title, post_description, post_link, display_target, is_featured, batch_id)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            [title || uniqueName, uniqueName, fileUrl, category, postTitle, postDescription, postLink, displayTarget, isFeatured ? 1 : 0, batchId]
         );
 
         return NextResponse.json({
@@ -87,6 +88,7 @@ export async function POST(request: Request) {
                 post_link: postLink,
                 display_target: displayTarget,
                 is_featured: isFeatured,
+                batch_id: batchId,
             },
             message: 'Image uploaded successfully',
         }, { status: 201 });

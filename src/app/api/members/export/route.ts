@@ -20,6 +20,7 @@ export async function GET() {
             rows.map((r) => ({
                 id: r.id,
                 name: r.name,
+                wing: r.wing || '',
                 position: r.position || '',
                 mobile: r.mobile || '',
                 birth_date: r.birth_date ? format(new Date(r.birth_date), 'yyyy-MM-dd') : '',

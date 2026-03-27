@@ -14,6 +14,7 @@ export interface GalleryItem {
     post_link?: string;
     category?: string;
     uploaded_at?: string;
+    batch_id?: string;
 }
 
 interface GalleryPreviewModalProps {

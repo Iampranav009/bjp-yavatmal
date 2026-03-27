@@ -20,11 +20,12 @@ import AdminNavbar from "@/components/admin/AdminNavbar";
 import toast from "react-hot-toast";
 import { format } from "date-fns";
 import { getDaysUntilBirthday } from "@/lib/birthday";
-import { POSITIONS, DEFAULT_POSITION } from "@/lib/positions";
+import { POSITIONS, WINGS, DEFAULT_POSITION, DEFAULT_WING } from "@/lib/positions";
 
 interface Member {
     id: number;
     name: string;
+    wing: string;
     position: string;
     mobile: string;
     birth_date: string;
@@ -38,6 +39,7 @@ export default function MembersPage() {
     const [members, setMembers] = useState<Member[]>([]);
     const [search, setSearch] = useState("");
     const [positionFilter, setPositionFilter] = useState("");
+    const [wingFilter, setWingFilter] = useState("");
     const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
     const [editMember, setEditMember] = useState<Member | null>(null);
@@ -48,10 +50,10 @@ export default function MembersPage() {
     // Form state
     const [formData, setFormData] = useState({
         name: "",
+        wing: DEFAULT_WING,
         position: DEFAULT_POSITION,
         mobile: "",
         birth_date: "",
-        birth_year: "",
         address: "",
         notes: "",
     });
@@ -61,6 +63,7 @@ export default function MembersPage() {
             const params = new URLSearchParams();
             if (search) params.set("search", search);
             if (positionFilter) params.set("position", positionFilter);
+            if (wingFilter) params.set("wing", wingFilter);
             const res = await fetch(`/api/members?${params.toString()}`);
             const data = await res.json();
             setMembers(data.data || []);
@@ -69,7 +72,7 @@ export default function MembersPage() {
         } finally {
             setLoading(false);
         }
-    }, [search, positionFilter]);
+    }, [search, positionFilter, wingFilter]);
 
     useEffect(() => {
         fetchMembers();
@@ -88,10 +91,7 @@ export default function MembersPage() {
             const res = await fetch(url, {
                 method,
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    ...formData,
-                    birth_year: formData.birth_year ? Number(formData.birth_year) : null,
-                }),
+                body: JSON.stringify(formData),
             });
 
             if (!res.ok) {
@@ -129,12 +129,12 @@ export default function MembersPage() {
         setEditMember(member);
         setFormData({
             name: member.name,
+            wing: member.wing || DEFAULT_WING,
             position: member.position || DEFAULT_POSITION,
             mobile: member.mobile || "",
             birth_date: member.birth_date
                 ? format(new Date(member.birth_date), "yyyy-MM-dd")
                 : "",
-            birth_year: member.birth_year?.toString() || "",
             address: member.address || "",
             notes: member.notes || "",
         });
@@ -205,10 +205,10 @@ export default function MembersPage() {
     const resetForm = () => {
         setFormData({
             name: "",
+            wing: DEFAULT_WING,
             position: DEFAULT_POSITION,
             mobile: "",
             birth_date: "",
-            birth_year: "",
             address: "",
             notes: "",
         });
@@ -240,6 +240,24 @@ export default function MembersPage() {
                                 placeholder="Search members..."
                                 className="w-full bg-white border border-slate-200 rounded-lg pl-10 pr-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-saffron transition-colors placeholder:text-slate-900/20"
                             />
+                        </div>
+                        <div className="relative">
+                            <Filter
+                                size={14}
+                                className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none"
+                            />
+                            <select
+                                value={wingFilter}
+                                onChange={(e) => setWingFilter(e.target.value)}
+                                className="bg-white border border-slate-200 rounded-lg pl-8 pr-8 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-saffron transition-colors appearance-none cursor-pointer"
+                            >
+                                <option value="">सर्व विभाग</option>
+                                {WINGS.map((p) => (
+                                    <option key={p.value} value={p.value}>
+                                        {p.label}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
                         <div className="relative">
                             <Filter
@@ -299,6 +317,7 @@ export default function MembersPage() {
                                 <tr className="bg-white/[0.03] text-slate-500 text-[10px] uppercase tracking-[0.1em]">
                                     <th className="p-4 font-medium w-8">#</th>
                                     <th className="p-4 font-medium">Name</th>
+                                    <th className="p-4 font-medium hidden md:table-cell">Wing</th>
                                     <th className="p-4 font-medium hidden md:table-cell">Position</th>
                                     <th className="p-4 font-medium hidden lg:table-cell">Mobile</th>
                                     <th className="p-4 font-medium hidden sm:table-cell">Birthday</th>
@@ -317,7 +336,7 @@ export default function MembersPage() {
                                 ) : members.length === 0 ? (
                                     <tr>
                                         <td
-                                            colSpan={6}
+                                            colSpan={7}
                                             className="p-10 text-center text-slate-500 text-sm"
                                         >
                                             No members found
@@ -354,13 +373,18 @@ export default function MembersPage() {
                                                                 {member.name}
                                                             </p>
                                                             <p className="text-slate-500 text-xs md:hidden truncate">
-                                                                {member.position}
+                                                                {member.wing} - {member.position}
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td className="p-4 text-slate-600 text-sm hidden md:table-cell">
                                                     <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-saffron/10 text-saffron text-xs font-medium">
+                                                        {member.wing}
+                                                    </span>
+                                                </td>
+                                                <td className="p-4 text-slate-600 text-sm hidden md:table-cell">
+                                                    <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 text-xs font-medium">
                                                         {member.position}
                                                     </span>
                                                 </td>
@@ -494,6 +518,25 @@ export default function MembersPage() {
                                     </div>
                                     <div>
                                         <label className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold mb-1 block">
+                                            Wing (विभाग) *
+                                        </label>
+                                        <select
+                                            value={formData.wing}
+                                            onChange={(e) =>
+                                                setFormData({ ...formData, wing: e.target.value })
+                                            }
+                                            className="w-full bg-white border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-saffron transition-colors appearance-none cursor-pointer"
+                                            required
+                                        >
+                                            {WINGS.map((p) => (
+                                                <option key={p.value} value={p.value}>
+                                                    {p.label}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold mb-1 block">
                                             Position (पद) *
                                         </label>
                                         <select
@@ -540,22 +583,7 @@ export default function MembersPage() {
                                             required
                                         />
                                     </div>
-                                    <div>
-                                        <label className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold mb-1 block">
-                                            Birth Year (optional)
-                                        </label>
-                                        <input
-                                            type="number"
-                                            value={formData.birth_year}
-                                            onChange={(e) =>
-                                                setFormData({ ...formData, birth_year: e.target.value })
-                                            }
-                                            placeholder="1985"
-                                            min="1900"
-                                            max="2010"
-                                            className="w-full bg-white border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-saffron transition-colors"
-                                        />
-                                    </div>
+
                                     <div className="sm:col-span-2">
                                         <label className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold mb-1 block">
                                             Address

@@ -1,8 +1,9 @@
 import * as XLSX from 'xlsx';
-import { isValidPosition, DEFAULT_POSITION } from '@/lib/positions';
+import { isValidPosition, isValidWing, DEFAULT_POSITION, DEFAULT_WING } from '@/lib/positions';
 
 export interface MemberRow {
     name: string;
+    wing: string;
     position: string;
     mobile: string;
     birth_date: string;
@@ -33,6 +34,9 @@ export function parseExcelBuffer(buffer: Buffer): ParseResult {
         const name = String(
             row['Name'] || row['name'] || row['Full Name'] || row['FullName'] || ''
         ).trim();
+        const wing = String(
+            row['Wing'] || row['wing'] || row['विभाग'] || ''
+        ).trim();
         const position = String(
             row['Position'] || row['position'] || row['पद'] || row['Designation'] || row['designation'] || ''
         ).trim();
@@ -62,18 +66,27 @@ export function parseExcelBuffer(buffer: Buffer): ParseResult {
             return; // skip rows without required fields
         }
 
-        // Validate position — assign default if empty, reject if invalid
+        const finalWing = wing || DEFAULT_WING;
+        if (!isValidWing(finalWing)) {
+            errors.push({
+                row: index + 2,
+                reason: `Invalid wing "${wing}".`,
+            });
+            return;
+        }
+
         const finalPosition = position || DEFAULT_POSITION;
         if (!isValidPosition(finalPosition)) {
             errors.push({
                 row: index + 2, // +2 for 1-indexed + header row
-                reason: `Invalid position "${position}". Must be one of the predefined Marathi positions.`,
+                reason: `Invalid position "${position}".`,
             });
             return;
         }
 
         members.push({
             name,
+            wing: finalWing,
             position: finalPosition,
             mobile,
             birth_date: birthDate,
@@ -93,6 +106,7 @@ export function generateExcelBuffer(
     members: Array<{
         id: number;
         name: string;
+        wing: string;
         position: string;
         mobile: string;
         birth_date: string;
@@ -104,6 +118,7 @@ export function generateExcelBuffer(
     const data = members.map((m) => ({
         'ID': m.id,
         'Name': m.name,
+        'Wing (विभाग)': m.wing,
         'Position (पद)': m.position,
         'Mobile': m.mobile,
         'Birth Date': m.birth_date,
@@ -119,6 +134,7 @@ export function generateExcelBuffer(
     worksheet['!cols'] = [
         { wch: 6 },  // ID
         { wch: 25 }, // Name
+        { wch: 25 }, // Wing
         { wch: 25 }, // Position
         { wch: 15 }, // Mobile
         { wch: 12 }, // Birth Date

@@ -1,5 +1,5 @@
 import * as XLSX from 'xlsx';
-import { isValidPosition } from '@/lib/positions';
+import { isValidPosition, isValidWing } from '@/lib/positions';
 
 export interface TaskRow {
     title: string;
@@ -94,11 +94,11 @@ export function parseTaskImportBuffer(buffer: Buffer): TaskParseResult {
             return;
         }
 
-        // Validate committee name
-        if (!isValidPosition(committee)) {
+        // Validate committee name against both wing and position
+        if (!isValidPosition(committee) && !isValidWing(committee)) {
             errors.push({
                 row: rowNum,
-                reason: `Invalid committee "${committee}". Must be one of the predefined Marathi committee names.`,
+                reason: `Invalid committee "${committee}".`,
             });
             return;
         }
