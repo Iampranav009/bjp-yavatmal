@@ -167,6 +167,13 @@ export async function GET() {
             `ALTER TABLE gallery_images ADD COLUMN post_link VARCHAR(500) NULL`,
             `ALTER TABLE gallery_images ADD COLUMN display_target ENUM('media','video') DEFAULT 'media'`,
             `ALTER TABLE gallery_images ADD COLUMN is_featured BOOLEAN DEFAULT FALSE`,
+            `ALTER TABLE gallery_images ADD COLUMN batch_id VARCHAR(100) NULL`,
+            `ALTER TABLE gallery_images ADD COLUMN show_on_homepage BOOLEAN DEFAULT FALSE`,
+            `ALTER TABLE gallery_images ADD COLUMN homepage_text_title VARCHAR(255) NULL`,
+            `ALTER TABLE gallery_images ADD COLUMN homepage_text_description TEXT NULL`,
+            `ALTER TABLE gallery_images ADD COLUMN homepage_text_position VARCHAR(20) DEFAULT 'left'`,
+            `ALTER TABLE gallery_images ADD COLUMN homepage_text_color VARCHAR(20) DEFAULT 'white'`,
+            `ALTER TABLE gallery_images ADD COLUMN homepage_text_bold BOOLEAN DEFAULT FALSE`,
         ];
         for (const sql of galleryAlters) {
             try { await pool.execute(sql); } catch { /* column may already exist */ }
