@@ -15,7 +15,6 @@ interface FeaturedItem {
 export default function AchievementsSlider() {
     const { t } = useLanguage();
     const a = t("achievements");
-    const items = a.items;
     const [featured, setFeatured] = useState<FeaturedItem[]>([]);
 
     useEffect(() => {
@@ -25,15 +24,6 @@ export default function AchievementsSlider() {
             .catch(() => {});
     }, []);
 
-    // Combine static achievement items with featured gallery items
-    const staticCards = items.map((item, idx) => ({
-        key: `static-${idx}`,
-        title: item.title,
-        date: item.date,
-        desc: item.desc,
-        image: "/images/sections/bjp-crowd.jpg",
-    }));
-
     const featuredCards = featured.map((f) => ({
         key: `featured-${f.id}`,
         title: f.post_title || "Achievement",
@@ -42,7 +32,7 @@ export default function AchievementsSlider() {
         image: f.file_url,
     }));
 
-    const allCards = [...staticCards, ...featuredCards];
+    const allCards = featuredCards.slice(0, 7);
     const duplicated = [...allCards, ...allCards];
 
     return (

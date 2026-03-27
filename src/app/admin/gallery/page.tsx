@@ -502,7 +502,7 @@ export default function GalleryPage() {
                                         className="border-2 border-dashed border-slate-200 rounded-xl p-8 text-center cursor-pointer hover:border-saffron/40 transition-colors group">
                                         <Upload className="text-slate-300 group-hover:text-saffron/50 mx-auto mb-2 transition-colors" size={32} />
                                         <p className="text-slate-600 text-sm font-medium">Click to select images</p>
-                                        <p className="text-slate-400 text-xs mt-1">JPG, PNG, WebP — Max 5MB each</p>
+                                        <p className="text-slate-400 text-xs mt-1">JPG, PNG, WebP, HEIC — Max 5MB each</p>
                                     </div>
                                 ) : (
                                     <div className="space-y-3">
@@ -616,7 +616,7 @@ export default function GalleryPage() {
                                     </div>
                                 )}
 
-                                <input ref={fileRef} type="file" accept=".jpg,.jpeg,.png,.webp" multiple className="hidden"
+                                <input ref={fileRef} type="file" accept=".jpg,.jpeg,.png,.webp,.heic,.heif" multiple className="hidden"
                                     onChange={(e) => { handleFilesSelected(e.target.files); e.target.value = ""; }} />
 
                                 {/* Image Title */}

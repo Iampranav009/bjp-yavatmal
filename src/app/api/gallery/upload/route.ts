@@ -7,7 +7,7 @@ import path from 'path';
 
 const UPLOAD_DIR = path.join(process.cwd(), 'public', 'uploads');
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
-const ALLOWED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+const ALLOWED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/heic', 'image/heif'];
 
 function sanitizeFilename(filename: string): string {
     return filename
@@ -49,12 +49,12 @@ export async function POST(request: Request) {
 
         // Validate file type — check MIME type OR extension as fallback
         const ext = path.extname(file.name).toLowerCase();
-        const allowedExts = ['.jpg', '.jpeg', '.png', '.webp'];
+        const allowedExts = ['.jpg', '.jpeg', '.png', '.webp', '.heic', '.heif'];
         const typeOk = ALLOWED_TYPES.includes(file.type) || allowedExts.includes(ext);
         if (!typeOk) {
             console.error(`Upload 400: Invalid type — mime="${file.type}" ext="${ext}" name="${file.name}"`);
             return NextResponse.json(
-                { error: `Only JPG, PNG, and WebP files are allowed (got: ${file.type || ext})` },
+                { error: `Only JPG, PNG, WebP, and HEIC files are allowed (got: ${file.type || ext})` },
                 { status: 400 }
             );
         }
