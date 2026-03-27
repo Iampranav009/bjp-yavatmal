@@ -9,6 +9,7 @@ import LeaderSlider from "../components/home/LeaderSlider";
 import GalleryGrid from "../components/home/GalleryGrid";
 import JoinSection from "../components/home/JoinSection";
 import OurJourneySection from "../components/home/OurJourneySection";
+import ImagePreviewSection from "../components/home/ImagePreviewSection";
 import { useLanguage } from "../lib/LanguageContext";
 
 export default function Home() {
@@ -52,6 +53,10 @@ export default function Home() {
           {hp.learnMore} <span className="ml-2">→</span>
         </button>
       </FullPageCardSection>
+
+      <div className="mt-8">
+        <ImagePreviewSection />
+      </div>
 
       <OurJourneySection
         label={hp.journeyLabel}

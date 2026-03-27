@@ -52,14 +52,16 @@ export async function PUT(request: NextRequest) {
         }
 
         const body = await request.json();
-        const { id, post_title, post_description, post_link, display_target, is_featured, title, category } = body;
+        const { id, post_title, post_description, post_link, display_target, is_featured, title, category,
+            show_on_homepage, homepage_text_title, homepage_text_description,
+            homepage_text_position, homepage_text_color, homepage_text_bold } = body;
 
         if (!id) {
             return NextResponse.json({ error: 'Image ID required' }, { status: 400 });
         }
 
         const fields: string[] = [];
-        const values: (string | number | boolean)[] = [];
+        const values: (string | number | boolean | null)[] = [];
 
         if (title !== undefined) { fields.push('title = ?'); values.push(title); }
         if (category !== undefined) { fields.push('category = ?'); values.push(category); }
@@ -68,6 +70,12 @@ export async function PUT(request: NextRequest) {
         if (post_link !== undefined) { fields.push('post_link = ?'); values.push(post_link); }
         if (display_target !== undefined) { fields.push('display_target = ?'); values.push(display_target); }
         if (is_featured !== undefined) { fields.push('is_featured = ?'); values.push(is_featured ? 1 : 0); }
+        if (show_on_homepage !== undefined) { fields.push('show_on_homepage = ?'); values.push(show_on_homepage ? 1 : 0); }
+        if (homepage_text_title !== undefined) { fields.push('homepage_text_title = ?'); values.push(homepage_text_title); }
+        if (homepage_text_description !== undefined) { fields.push('homepage_text_description = ?'); values.push(homepage_text_description); }
+        if (homepage_text_position !== undefined) { fields.push('homepage_text_position = ?'); values.push(homepage_text_position); }
+        if (homepage_text_color !== undefined) { fields.push('homepage_text_color = ?'); values.push(homepage_text_color); }
+        if (homepage_text_bold !== undefined) { fields.push('homepage_text_bold = ?'); values.push(homepage_text_bold ? 1 : 0); }
 
         if (fields.length === 0) {
             return NextResponse.json({ error: 'No fields to update' }, { status: 400 });

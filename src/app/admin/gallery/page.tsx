@@ -18,10 +18,16 @@ interface GalleryImage {
     post_title: string;
     post_description: string;
     post_link: string;
-    display_target: "media" | "video";
+    display_target: "media" | "video" | "homepage";
     is_featured: boolean;
     batch_id?: string;
     uploaded_at: string;
+    show_on_homepage: boolean;
+    homepage_text_title: string;
+    homepage_text_description: string;
+    homepage_text_position: "left" | "center" | "right";
+    homepage_text_color: string;
+    homepage_text_bold: boolean;
 }
 
 // Represents a file selected for upload with its preview and featured status
@@ -48,11 +54,18 @@ export default function GalleryPage() {
     const [uploadPostTitle, setUploadPostTitle] = useState("");
     const [uploadPostDesc, setUploadPostDesc] = useState("");
     const [uploadPostLink, setUploadPostLink] = useState("");
-    const [uploadDisplayTarget, setUploadDisplayTarget] = useState<"media" | "video">("media");
+    const [uploadDisplayTarget, setUploadDisplayTarget] = useState<"media" | "video" | "homepage">("media");
     const [selectedFileItems, setSelectedFileItems] = useState<SelectedFileItem[]>([]);
     const [sliderIndex, setSliderIndex] = useState(0);
     const fileRef = useRef<HTMLInputElement>(null);
     const sliderRef = useRef<HTMLDivElement>(null);
+    // Homepage overlay fields
+    const [uploadShowOnHomepage, setUploadShowOnHomepage] = useState(true);
+    const [uploadHpTitle, setUploadHpTitle] = useState("");
+    const [uploadHpDesc, setUploadHpDesc] = useState("");
+    const [uploadHpPosition, setUploadHpPosition] = useState<"left"|"center"|"right">("left");
+    const [uploadHpColor, setUploadHpColor] = useState("white");
+    const [uploadHpBold, setUploadHpBold] = useState(false);
 
     // Edit modal state
     const [editItem, setEditItem] = useState<GalleryImage | null>(null);
@@ -87,6 +100,12 @@ export default function GalleryPage() {
         setUploadDisplayTarget("media");
         setSelectedFileItems([]);
         setSliderIndex(0);
+        setUploadShowOnHomepage(true);
+        setUploadHpTitle("");
+        setUploadHpDesc("");
+        setUploadHpPosition("left");
+        setUploadHpColor("white");
+        setUploadHpBold(false);
     };
 
     const handleFilesSelected = (files: FileList | null) => {
@@ -138,6 +157,7 @@ export default function GalleryPage() {
         setUploading(true);
         let success = 0;
         const batchId = `batch_${Date.now()}`;
+        const isHomepage = uploadDisplayTarget === "homepage";
         for (const item of selectedFileItems) {
             const fd = new FormData();
             fd.append("file", item.file);
@@ -146,15 +166,30 @@ export default function GalleryPage() {
             fd.append("post_title", uploadPostTitle);
             fd.append("post_description", uploadPostDesc);
             fd.append("post_link", uploadPostLink);
-            fd.append("display_target", uploadDisplayTarget);
+            fd.append("display_target", isHomepage ? "media" : uploadDisplayTarget);
             fd.append("is_featured", String(item.isFeatured));
             fd.append("batch_id", batchId);
+            fd.append("show_on_homepage", String(isHomepage ? uploadShowOnHomepage : false));
+            fd.append("homepage_text_title", uploadHpTitle);
+            fd.append("homepage_text_description", uploadHpDesc);
+            fd.append("homepage_text_position", uploadHpPosition);
+            fd.append("homepage_text_color", uploadHpColor);
+            fd.append("homepage_text_bold", String(uploadHpBold));
             try {
                 const res = await fetch("/api/gallery/upload", { method: "POST", body: fd });
-                if (res.ok) success++;
-            } catch { /* skip */ }
+                if (res.ok) {
+                    success++;
+                } else {
+                    const data = await res.json().catch(() => ({}));
+                    toast.error(`Upload failed for ${item.file.name}: ${data.error || 'Server error'}`);
+                }
+            } catch (err) {
+                toast.error(`Network error uploading ${item.file.name}`);
+            }
         }
-        toast.success(`${success} image(s) uploaded`);
+        if (success > 0) {
+            toast.success(`${success} image(s) uploaded`);
+        }
         setShowUpload(false);
         resetUploadForm();
         setUploading(false);
@@ -202,9 +237,15 @@ export default function GalleryPage() {
                     post_title: editItem.post_title,
                     post_description: editItem.post_description,
                     post_link: editItem.post_link,
-                    display_target: editItem.display_target,
+                    display_target: editItem.display_target === "homepage" ? "media" : editItem.display_target,
                     is_featured: editItem.is_featured,
                     category: editItem.category,
+                    show_on_homepage: editItem.show_on_homepage,
+                    homepage_text_title: editItem.homepage_text_title,
+                    homepage_text_description: editItem.homepage_text_description,
+                    homepage_text_position: editItem.homepage_text_position,
+                    homepage_text_color: editItem.homepage_text_color,
+                    homepage_text_bold: editItem.homepage_text_bold,
                 }),
             });
             toast.success("Item updated!");
@@ -622,13 +663,110 @@ export default function GalleryPage() {
                                     </div>
                                     <div>
                                         <label className="block text-xs font-semibold text-slate-700 mb-1">Display On</label>
-                                        <select value={uploadDisplayTarget} onChange={(e) => setUploadDisplayTarget(e.target.value as "media" | "video")}
+                                        <select value={uploadDisplayTarget} onChange={(e) => setUploadDisplayTarget(e.target.value as "media" | "video" | "homepage")}
                                             className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-saffron [color-scheme:light]">
                                             <option value="media">Media Page</option>
                                             <option value="video">Video Page</option>
+                                            <option value="homepage">Image Preview Section</option>
                                         </select>
                                     </div>
                                 </div>
+
+                                {/* ===== HOMEPAGE CONTROLS ===== */}
+                                {uploadDisplayTarget === "homepage" && (
+                                    <div className="border border-orange-200 bg-orange-50 rounded-xl p-4 space-y-4">
+                                        <p className="text-xs font-bold text-orange-700 uppercase tracking-wider">Homepage Image Preview Settings</p>
+
+                                        {/* Visibility toggle */}
+                                        <label className="flex items-center justify-between cursor-pointer">
+                                            <span className="text-xs font-semibold text-slate-700">{uploadShowOnHomepage ? "Visible on Landing Page" : "Hidden from Landing Page"}</span>
+                                            <div onClick={() => setUploadShowOnHomepage(p => !p)}
+                                                className={`w-11 h-6 rounded-full relative transition-colors ${uploadShowOnHomepage ? "bg-green-500" : "bg-slate-300"}`}>
+                                                <div className={`absolute top-1 w-4 h-4 rounded-full bg-white shadow transition-transform ${uploadShowOnHomepage ? "translate-x-6" : "translate-x-1"}`} />
+                                            </div>
+                                        </label>
+
+                                        {/* Overlay Title */}
+                                        <div>
+                                            <label className="block text-xs font-semibold text-slate-700 mb-1">Overlay Title <span className="text-slate-400 font-normal">(optional)</span></label>
+                                            <input type="text" value={uploadHpTitle} onChange={(e) => setUploadHpTitle(e.target.value)}
+                                                placeholder="e.g. Our Work in Action"
+                                                className="w-full bg-white border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-orange-400" />
+                                        </div>
+
+                                        {/* Overlay Description + Bold toggle */}
+                                        <div>
+                                            <div className="flex items-center justify-between mb-1">
+                                                <label className="text-xs font-semibold text-slate-700">Overlay Description <span className="text-slate-400 font-normal">(optional)</span></label>
+                                                <button type="button" onClick={() => setUploadHpBold(p => !p)}
+                                                    className={`px-2.5 py-1 rounded text-xs font-bold border transition-colors ${uploadHpBold ? "bg-slate-900 text-white border-slate-900" : "bg-white text-slate-500 border-slate-200 hover:border-slate-400"}`}>
+                                                    B
+                                                </button>
+                                            </div>
+                                            <textarea value={uploadHpDesc} onChange={(e) => setUploadHpDesc(e.target.value)}
+                                                placeholder="Short description shown over the image..."
+                                                rows={2}
+                                                className={`w-full bg-white border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-orange-400 resize-none ${uploadHpBold ? "font-bold" : ""}`} />
+                                        </div>
+
+                                        {/* Position */}
+                                        <div>
+                                            <label className="block text-xs font-semibold text-slate-700 mb-2">Text Position</label>
+                                            <div className="flex gap-2">
+                                                {(["left", "center", "right"] as const).map(pos => (
+                                                    <button key={pos} type="button" onClick={() => setUploadHpPosition(pos)}
+                                                        className={`flex-1 py-1.5 rounded-lg text-xs font-semibold border capitalize transition-colors ${
+                                                            uploadHpPosition === pos
+                                                                ? "bg-orange-500 text-white border-orange-500"
+                                                                : "bg-white text-slate-600 border-slate-200 hover:border-orange-300"
+                                                        }`}>{pos}</button>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        {/* Text Color */}
+                                        <div>
+                                            <label className="block text-xs font-semibold text-slate-700 mb-2">Text Color</label>
+                                            <div className="flex gap-2 flex-wrap">
+                                                {[
+                                                    { value: "white", bg: "bg-white", border: "border-slate-300", label: "White" },
+                                                    { value: "black", bg: "bg-black", border: "border-black", label: "Black" },
+                                                    { value: "blue", bg: "bg-blue-600", border: "border-blue-600", label: "Blue" },
+                                                    { value: "green", bg: "bg-green-600", border: "border-green-600", label: "Green" },
+                                                    { value: "orange", bg: "bg-orange-500", border: "border-orange-500", label: "Orange" },
+                                                ].map(c => (
+                                                    <button key={c.value} type="button" onClick={() => setUploadHpColor(c.value)}
+                                                        title={c.label}
+                                                        className={`w-8 h-8 rounded-full ${c.bg} border-2 transition-transform ${uploadHpColor === c.value ? `${c.border} scale-110 ring-2 ring-orange-400 ring-offset-1` : "border-slate-200 hover:scale-105"}`} />
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        {/* Live Preview */}
+                                        {(uploadHpTitle || uploadHpDesc) && selectedFileItems.length > 0 && (
+                                            <div className="relative rounded-lg overflow-hidden bg-slate-800 aspect-[16/7]">
+                                                <img src={selectedFileItems[sliderIndex]?.previewUrl} alt="" className="w-full h-full object-cover opacity-80" />
+                                                <div className={`absolute inset-0 flex flex-col justify-end p-4 ${
+                                                    uploadHpPosition === "center" ? "items-center text-center" :
+                                                    uploadHpPosition === "right" ? "items-end text-right" : "items-start text-left"
+                                                }`}>
+                                                    {uploadHpTitle && (
+                                                        <p className={`text-sm shadow-sm ${uploadHpBold ? "font-bold" : "font-semibold"}`}
+                                                            style={{ color: uploadHpColor === "white" ? "#fff" : uploadHpColor === "black" ? "#000" : uploadHpColor === "blue" ? "#2563eb" : uploadHpColor === "green" ? "#16a34a" : "#f97316" }}>
+                                                            {uploadHpTitle}
+                                                        </p>
+                                                    )}
+                                                    {uploadHpDesc && (
+                                                        <p className={`text-xs mt-0.5 ${uploadHpBold ? "font-bold" : ""}`}
+                                                            style={{ color: uploadHpColor === "white" ? "rgba(255,255,255,0.85)" : uploadHpColor === "black" ? "rgba(0,0,0,0.7)" : uploadHpColor === "blue" ? "#2563eb" : uploadHpColor === "green" ? "#16a34a" : "#f97316" }}>
+                                                            {uploadHpDesc}
+                                                        </p>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
 
                                 {/* Featured info box */}
                                 {featuredItem && (
@@ -712,14 +850,74 @@ export default function GalleryPage() {
                                     </div>
                                     <div>
                                         <label className="block text-xs font-semibold text-slate-700 mb-1">Display On</label>
-                                        <select value={editItem.display_target}
-                                            onChange={(e) => setEditItem({ ...editItem, display_target: e.target.value as "media" | "video" })}
+                                        <select value={editItem.show_on_homepage ? "homepage" : editItem.display_target}
+                                            onChange={(e) => {
+                                                const val = e.target.value;
+                                                setEditItem({ ...editItem, display_target: val === "homepage" ? "media" : val as "media" | "video", show_on_homepage: val === "homepage" });
+                                            }}
                                             className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-saffron [color-scheme:light]">
                                             <option value="media">Media Page</option>
                                             <option value="video">Video Page</option>
+                                            <option value="homepage">Image Preview Section</option>
                                         </select>
                                     </div>
                                 </div>
+
+                                {/* Homepage overlay controls in edit modal */}
+                                {editItem.show_on_homepage && (
+                                    <div className="border border-orange-200 bg-orange-50 rounded-xl p-4 space-y-4">
+                                        <p className="text-xs font-bold text-orange-700 uppercase tracking-wider">Homepage Image Preview Settings</p>
+                                        <label className="flex items-center justify-between cursor-pointer">
+                                            <span className="text-xs font-semibold text-slate-700">{editItem.show_on_homepage ? "Visible on Landing Page" : "Hidden from Landing Page"}</span>
+                                            <div onClick={() => setEditItem({ ...editItem, show_on_homepage: !editItem.show_on_homepage })}
+                                                className={`w-11 h-6 rounded-full relative transition-colors ${editItem.show_on_homepage ? "bg-green-500" : "bg-slate-300"}`}>
+                                                <div className={`absolute top-1 w-4 h-4 rounded-full bg-white shadow transition-transform ${editItem.show_on_homepage ? "translate-x-6" : "translate-x-1"}`} />
+                                            </div>
+                                        </label>
+                                        <div>
+                                            <label className="block text-xs font-semibold text-slate-700 mb-1">Overlay Title</label>
+                                            <input type="text" value={editItem.homepage_text_title || ""}
+                                                onChange={(e) => setEditItem({ ...editItem, homepage_text_title: e.target.value })}
+                                                className="w-full bg-white border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-orange-400" />
+                                        </div>
+                                        <div>
+                                            <div className="flex items-center justify-between mb-1">
+                                                <label className="text-xs font-semibold text-slate-700">Overlay Description</label>
+                                                <button type="button" onClick={() => setEditItem({ ...editItem, homepage_text_bold: !editItem.homepage_text_bold })}
+                                                    className={`px-2.5 py-1 rounded text-xs font-bold border transition-colors ${editItem.homepage_text_bold ? "bg-slate-900 text-white border-slate-900" : "bg-white text-slate-500 border-slate-200 hover:border-slate-400"}`}>B</button>
+                                            </div>
+                                            <textarea value={editItem.homepage_text_description || ""}
+                                                onChange={(e) => setEditItem({ ...editItem, homepage_text_description: e.target.value })}
+                                                rows={2}
+                                                className={`w-full bg-white border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-orange-400 resize-none ${editItem.homepage_text_bold ? "font-bold" : ""}`} />
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs font-semibold text-slate-700 mb-2">Text Position</label>
+                                            <div className="flex gap-2">
+                                                {(["left", "center", "right"] as const).map(pos => (
+                                                    <button key={pos} type="button" onClick={() => setEditItem({ ...editItem, homepage_text_position: pos })}
+                                                        className={`flex-1 py-1.5 rounded-lg text-xs font-semibold border capitalize transition-colors ${editItem.homepage_text_position === pos ? "bg-orange-500 text-white border-orange-500" : "bg-white text-slate-600 border-slate-200 hover:border-orange-300"}`}>{pos}</button>
+                                                ))}
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs font-semibold text-slate-700 mb-2">Text Color</label>
+                                            <div className="flex gap-2 flex-wrap">
+                                                {[
+                                                    { value: "white", bg: "bg-white", border: "border-slate-300" },
+                                                    { value: "black", bg: "bg-black", border: "border-black" },
+                                                    { value: "blue", bg: "bg-blue-600", border: "border-blue-600" },
+                                                    { value: "green", bg: "bg-green-600", border: "border-green-600" },
+                                                    { value: "orange", bg: "bg-orange-500", border: "border-orange-500" },
+                                                ].map(c => (
+                                                    <button key={c.value} type="button" onClick={() => setEditItem({ ...editItem, homepage_text_color: c.value })}
+                                                        className={`w-8 h-8 rounded-full ${c.bg} border-2 transition-transform ${editItem.homepage_text_color === c.value ? `${c.border} scale-110 ring-2 ring-orange-400 ring-offset-1` : "border-slate-200 hover:scale-105"}`} />
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+
                                 <label className="flex items-center gap-3 bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 cursor-pointer hover:bg-amber-100 transition-colors">
                                     <div className={`w-10 h-5 rounded-full transition-colors relative ${editItem.is_featured ? 'bg-amber-500' : 'bg-slate-300'}`}
                                         onClick={() => setEditItem({ ...editItem, is_featured: !editItem.is_featured })}>
