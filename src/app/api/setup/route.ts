@@ -179,9 +179,78 @@ export async function GET() {
             try { await pool.execute(sql); } catch { /* column may already exist */ }
         }
 
+        // Create blog_posts table
+        await pool.execute(`
+            CREATE TABLE IF NOT EXISTS blog_posts (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                image_url VARCHAR(500),
+                image_position ENUM('left','right','center') DEFAULT 'center',
+                image_overlay_text VARCHAR(500),
+                title_mr VARCHAR(500) NOT NULL,
+                title_hi VARCHAR(500),
+                title_en VARCHAR(500),
+                description_mr TEXT,
+                description_hi TEXT,
+                description_en TEXT,
+                content_mr LONGTEXT,
+                content_hi LONGTEXT,
+                content_en LONGTEXT,
+                social_facebook VARCHAR(500),
+                social_twitter VARCHAR(500),
+                social_instagram VARCHAR(500),
+                social_whatsapp VARCHAR(500),
+                show_social_buttons BOOLEAN DEFAULT FALSE,
+                is_published BOOLEAN DEFAULT TRUE,
+                is_hidden BOOLEAN DEFAULT FALSE,
+                created_by INT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                FOREIGN KEY (created_by) REFERENCES admin_users(id)
+            )
+        `);
+
+        // Alter existing blog_posts table
+        const blogAlters = [
+            `ALTER TABLE blog_posts ADD COLUMN slug VARCHAR(500) UNIQUE NULL`,
+            `ALTER TABLE blog_posts ADD COLUMN post_type ENUM('article', 'interview') DEFAULT 'article'`,
+            `ALTER TABLE blog_posts ADD COLUMN category VARCHAR(100) NULL`,
+            `ALTER TABLE blog_posts ADD COLUMN author_name_mr VARCHAR(255) NULL`,
+            `ALTER TABLE blog_posts ADD COLUMN author_name_hi VARCHAR(255) NULL`,
+            `ALTER TABLE blog_posts ADD COLUMN author_name_en VARCHAR(255) NULL`,
+        ];
+        for (const sql of blogAlters) {
+            try { await pool.execute(sql); } catch { /* column may already exist */ }
+        }
+
+        // Create article_sidebar table
+        await pool.execute(`
+            CREATE TABLE IF NOT EXISTS article_sidebar (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                item_type ENUM('image_banner', 'text_block', 'youtube_embed', 'subscribe_widget') NOT NULL,
+                title VARCHAR(255),
+                image_url VARCHAR(500),
+                video_url VARCHAR(500),
+                content TEXT,
+                target_link VARCHAR(500),
+                display_order INT DEFAULT 0,
+                is_active BOOLEAN DEFAULT TRUE,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+            )
+        `);
+
+        // Create subscribers table
+        await pool.execute(`
+            CREATE TABLE IF NOT EXISTS subscribers (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                email VARCHAR(255) NOT NULL UNIQUE,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        `);
+
         return NextResponse.json({
             message: 'All tables created successfully!',
-            tables: ['admin_users', 'members', 'gallery_images', 'meetings', 'meeting_target_positions', 'meeting_participants', 'notifications', 'tasks', 'task_target_positions', 'task_members', 'birthday_templates'],
+            tables: ['admin_users', 'members', 'gallery_images', 'meetings', 'meeting_target_positions', 'meeting_participants', 'notifications', 'tasks', 'task_target_positions', 'task_members', 'birthday_templates', 'blog_posts', 'article_sidebar', 'subscribers'],
         });
     } catch (error) {
         console.error('Setup error:', error);

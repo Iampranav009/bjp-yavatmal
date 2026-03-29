@@ -9,11 +9,14 @@ import {
     ClipboardList,
     Cake,
     ImageIcon,
+    Newspaper,
     Settings,
     LogOut,
     X,
     ChevronLeft,
     ChevronRight,
+    Layout,
+    Mail,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -24,6 +27,9 @@ const navItems = [
     { label: "Tasks", href: "/admin/tasks", icon: ClipboardList },
     { label: "Birthdays", href: "/admin/birthdays", icon: Cake },
     { label: "Gallery", href: "/admin/gallery", icon: ImageIcon },
+    { label: "Articles", href: "/admin/blogs", icon: Newspaper },
+    { label: "Sidebar Config", href: "/admin/sidebar", icon: Layout },
+    { label: "Subscribers", href: "/admin/subscribers", icon: Mail },
     { label: "Settings", href: "/admin/settings", icon: Settings },
 ];
 

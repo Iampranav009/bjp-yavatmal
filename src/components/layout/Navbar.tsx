@@ -33,6 +33,7 @@ export default function Navbar() {
             dropdown: [
                 { name: nav.photoGallery, href: "/media" },
                 { name: nav.videoGallery, href: "/media#videos" },
+                { name: nav.blog, href: "/articles" },
             ],
         },
         { name: nav.bjpLive, href: "/bjp-live" },
@@ -61,6 +62,8 @@ export default function Navbar() {
     }
 
     const currentLangLabel = LANGUAGE_OPTIONS.find((o) => o.code === lang)?.label ?? "भाषा";
+
+    const isDark = scrolled || pathname?.startsWith("/articles");
 
     return (
         <>
@@ -97,7 +100,7 @@ export default function Navbar() {
                         <div className="flex flex-col items-end gap-3 flex-grow">
                             {/* Top Links Bar (Desktop only) */}
                             <div
-                                className={`hidden lg:flex items-center gap-5 text-[13px] font-medium tracking-wide ${scrolled ? "text-slate-800" : "text-white"
+                                className={`hidden lg:flex items-center gap-5 text-[13px] font-medium tracking-wide ${isDark ? "text-slate-800" : "text-white"
                                     }`}
                             >
                                 <button onClick={() => setShareModalOpen(true)} className="flex items-center gap-1.5 hover:text-saffron transition-colors cursor-pointer">
@@ -168,14 +171,14 @@ export default function Navbar() {
                                         {link.href ? (
                                             <Link
                                                 href={link.href}
-                                                className={`hover:text-saffron transition-colors font-bold text-sm lg:text-[15px] tracking-wide px-1 py-2 ${scrolled ? "text-slate-900" : "text-white"
+                                                className={`hover:text-saffron transition-colors font-bold text-sm lg:text-[15px] tracking-wide px-1 py-2 ${isDark ? "text-slate-900" : "text-white"
                                                     }`}
                                             >
                                                 {link.name}
                                             </Link>
                                         ) : (
                                             <button
-                                                className={`flex items-center gap-1 hover:text-saffron transition-colors font-bold text-sm lg:text-[15px] tracking-wide px-1 py-2 cursor-pointer ${scrolled ? "text-slate-900" : "text-white"
+                                                className={`flex items-center gap-1 hover:text-saffron transition-colors font-bold text-sm lg:text-[15px] tracking-wide px-1 py-2 cursor-pointer ${isDark ? "text-slate-900" : "text-white"
                                                     }`}
                                             >
                                                 {link.name}
@@ -228,7 +231,7 @@ export default function Navbar() {
 
                                 {/* Menu button (Desktop) */}
                                 <button
-                                    className={`flex flex-col items-center justify-center gap-0.5 ml-2 hover:text-saffron transition-colors ${scrolled ? "text-slate-900" : "text-white"
+                                    className={`flex flex-col items-center justify-center gap-0.5 ml-2 hover:text-saffron transition-colors ${isDark ? "text-slate-900" : "text-white"
                                         }`}
                                     onClick={() => setMobileMenuOpen(true)}
                                 >
@@ -247,7 +250,7 @@ export default function Navbar() {
                                     </button>
                                 </a>
                                 <button
-                                    className={`z-50 p-1 sm:p-2 flex flex-col items-center hover:text-saffron transition-colors ${scrolled ? "text-slate-900" : "text-white"
+                                    className={`z-50 p-1 sm:p-2 flex flex-col items-center hover:text-saffron transition-colors ${isDark ? "text-slate-900" : "text-white"
                                         }`}
                                     onClick={() => setMobileMenuOpen(true)}
                                 >

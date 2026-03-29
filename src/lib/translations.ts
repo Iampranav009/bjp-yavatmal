@@ -27,6 +27,7 @@ const mr = {
         joinBjp: "BJP मध्ये सामील व्हा",
         join: "सामील व्हा",
         menu: "मेनू",
+        blog: "ब्लॉग",
     },
 
     // --- Footer ---
@@ -255,6 +256,30 @@ const mr = {
         cityNorth: "शहर उत्तर",
         member: "सदस्य",
     },
+
+    // --- Articles Page ---
+    blogPage: {
+        label: "लेख आणि अपडेट्स",
+        title: "ताज्या लेख",
+        titleHighlight: "लेख",
+        description: "भाजपा यवतमाळ जिल्हा समितीकडून ताजे लेख, मुलाखती आणि अपडेट्स.",
+        readMore: "अधिक वाचा »",
+        noPosts: "सध्या कोणतेही लेख उपलब्ध नाहीत.",
+        noMore: "आणखी लेख नाहीत",
+        backToBlog: "लेखांच्या सूचीकडे परत",
+        share: "शेअर करा",
+        followUs: "आमच्याशी जोडले जा",
+        notFound: "हा लेख सापडला नाही.",
+        searchPlaceholder: "मुख्य शब्द किंवा शीर्षकाने शोधा...",
+        filterCategory: "सर्व श्रेणी",
+        filterType: "सर्व प्रकार",
+        filterDate: "कोणतीही वेळ",
+        subscribeBox: "लेखांची सदस्यता घ्या",
+        emailPlaceholder: "ईमेल आयडी किंवा फोन क्रमांक",
+        subscribeBtn: "जा",
+        typeArticle: "लेख",
+        typeInterview: "मुलाखत",
+    },
 };
 
 // -----------------------------------------------------------
@@ -276,6 +301,7 @@ const hi: Partial<typeof mr> = {
         joinBjp: "BJP में शामिल हों",
         join: "जुड़ें",
         menu: "मेनू",
+        blog: "ब्लॉग",
     },
     footer: {
         logoLine1: "भारतीय जनता पार्टी",
@@ -457,6 +483,28 @@ const hi: Partial<typeof mr> = {
         cityNorth: "शहर उत्तर",
         member: "सदस्य",
     },
+    blogPage: {
+        label: "लेख और अपडेट्स",
+        title: "ताज़े लेख",
+        titleHighlight: "लेख",
+        description: "भाजपा यवतमाल जिला समिति से ताज़ा लेख, साक्षात्कार और अपडेट.",
+        readMore: "और पढ़ें »",
+        noPosts: "अभी कोई लेख उपलब्ध नहीं.",
+        noMore: "और लेख नहीं हैं",
+        backToBlog: "लेखों की सूची पर वापस",
+        share: "शेयर करें",
+        followUs: "हमसे जुड़ें",
+        notFound: "यह लेख नहीं मिला.",
+        searchPlaceholder: "कीवर्ड या शीर्षक से खोजें...",
+        filterCategory: "सभी श्रेणियां",
+        filterType: "सभी प्रकार",
+        filterDate: "कोई भी समय",
+        subscribeBox: "लेखों की सदस्यता लें",
+        emailPlaceholder: "ईमेल आईडी या फोन नंबर",
+        subscribeBtn: "जाएं",
+        typeArticle: "लेख",
+        typeInterview: "साक्षात्कार",
+    },
 };
 
 // -----------------------------------------------------------
@@ -478,6 +526,7 @@ const en: Partial<typeof mr> = {
         joinBjp: "Join BJP",
         join: "Join",
         menu: "Menu",
+        blog: "Blog",
     },
     footer: {
         logoLine1: "Bharatiya Janata Party",
@@ -658,6 +707,28 @@ const en: Partial<typeof mr> = {
         citySouth: "City South",
         cityNorth: "City North",
         member: "Member",
+    },
+    blogPage: {
+        label: "Articles & Updates",
+        title: "Latest Articles",
+        titleHighlight: "Articles",
+        description: "Latest articles, interviews, and updates from BJP Yavatmal District Committee.",
+        readMore: "Read More »",
+        noPosts: "No articles available at the moment.",
+        noMore: "No More Articles",
+        backToBlog: "Back to Articles",
+        share: "Share",
+        followUs: "Follow Us",
+        notFound: "This article was not found.",
+        searchPlaceholder: "Search by keyword or title...",
+        filterCategory: "All Categories",
+        filterType: "All Types",
+        filterDate: "Any Time",
+        subscribeBox: "SUBSCRIBE TO THE ARTICLES",
+        emailPlaceholder: "Email ID or Phone No",
+        subscribeBtn: "Go",
+        typeArticle: "ARTICLE",
+        typeInterview: "INTERVIEW",
     },
 };
 
