@@ -3,6 +3,7 @@
 import HeroSlider from "../components/home/HeroSlider";
 import MarqueeStrip from "../components/shared/MarqueeStrip";
 import FullPageCardSection from "../components/home/FullPageCardSection";
+import InteractiveMapSection from "../components/home/InteractiveMapSection";
 import AchievementsSlider from "../components/home/AchievementsSlider";
 import StatsSection from "../components/home/StatsSection";
 import LeaderSlider from "../components/home/LeaderSlider";
@@ -22,7 +23,7 @@ export default function Home() {
 
       <MarqueeStrip />
 
-      <FullPageCardSection
+      <InteractiveMapSection
         id="about"
         bgImage="/images/sections/bjp-crowd.jpg"
         label={hp.aboutLabel}
@@ -32,27 +33,41 @@ export default function Home() {
           {hp.aboutDescription}
         </p>
 
-        <div className="flex gap-10 mb-10">
+        <div className="grid grid-cols-2 gap-x-10 gap-y-8 mb-10 w-full">
           <div className="flex items-center gap-4">
             <div className="w-1.5 h-12 bg-saffron rounded-full"></div>
             <div className="flex flex-col">
               <span className="text-2xl font-bold text-slate-900">16+</span>
-              <span className="text-slate-900/50 text-xs uppercase tracking-wider font-semibold">{hp.activeService}</span>
+              <span className="text-slate-900/50 text-xs uppercase tracking-wider font-semibold">{hp.activeService || "सेवेची वर्षे"}</span>
             </div>
           </div>
           <div className="flex items-center gap-4">
             <div className="w-1.5 h-12 bg-india-green rounded-full"></div>
             <div className="flex flex-col">
-              <span className="text-2xl font-bold text-slate-900">5 Lakh+</span>
-              <span className="text-slate-900/50 text-xs uppercase tracking-wider font-semibold">{hp.beneficiaries}</span>
+              <span className="text-2xl font-bold text-slate-900">5L+</span>
+              <span className="text-slate-900/50 text-xs uppercase tracking-wider font-semibold">{hp.beneficiaries || "लाभार्थी"}</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="w-1.5 h-12 bg-saffron rounded-full"></div>
+            <div className="flex flex-col">
+              <span className="text-2xl font-bold text-slate-900">₹800CR</span>
+              <span className="text-slate-900/50 text-xs uppercase tracking-wider font-semibold">{hp.developmentFund || "विकास निधी"}</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="w-1.5 h-12 bg-india-green rounded-full"></div>
+            <div className="flex flex-col">
+              <span className="text-2xl font-bold text-slate-900">300+</span>
+              <span className="text-slate-900/50 text-xs uppercase tracking-wider font-semibold">{hp.completedProjects || "पूर्ण झालेले प्रकल्प"}</span>
             </div>
           </div>
         </div>
 
-        <button className="bg-transparent border-2 border-saffron text-saffron hover:bg-saffron hover:text-white px-8 py-3 rounded-full font-bold transition-all w-fit">
+        <button className="bg-transparent border-2 border-saffron text-saffron hover:bg-saffron hover:text-white px-8 py-3 rounded-full font-bold transition-all w-fit mt-auto">
           {hp.learnMore} <span className="ml-2">→</span>
         </button>
-      </FullPageCardSection>
+      </InteractiveMapSection>
 
       <div className="mt-8">
         <ImagePreviewSection />

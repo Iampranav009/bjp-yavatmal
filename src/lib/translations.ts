@@ -193,6 +193,8 @@ const mr = {
         journeyDescription:
             "यवतमाळमध्ये लाखोंचा आवाज बनण्याच्या विनम्र सुरुवातीपासून, BJP चा प्रवास अटल वचनबद्धता, त्याग आणि या प्रदेशातील जनतेसाठी अथक सेवेचा आहे.",
         journeyReadMore: "अधिक वाचा",
+        developmentFund: "विकास निधी",
+        completedProjects: "पूर्ण झालेले प्रकल्प",
     },
 
     // --- About Page ---
@@ -428,6 +430,8 @@ const hi: Partial<typeof mr> = {
         journeyDescription:
             "यवतमाल में लाखों लोगों की आवाज बनने की विनम्र शुरुआत से लेकर आज तक, BJP की यात्रा अटूट प्रतिबद्धता, त्याग और इस क्षेत्र की जनता के प्रति अथक सेवा की है।",
         journeyReadMore: "और पढ़ें",
+        developmentFund: "विकास निधि",
+        completedProjects: "पूर्ण हुए प्रोजेक्ट",
     },
     aboutPage: {
         label: "पार्टी के बारे में",
@@ -653,6 +657,8 @@ const en: Partial<typeof mr> = {
         journeyDescription:
             "From humble beginnings to becoming the voice of millions in Yavatmal, the BJP's journey is one of unwavering commitment, sacrifice, and relentless service to the people of this region.",
         journeyReadMore: "Read More",
+        developmentFund: "Development Funds",
+        completedProjects: "Projects Completed",
     },
     aboutPage: {
         label: "ABOUT THE PARTY",
