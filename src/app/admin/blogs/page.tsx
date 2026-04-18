@@ -5,8 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
     Plus, X, Loader2, MoreVertical, Edit2, Trash2, Eye, EyeOff,
     Upload, ImageIcon, Bold, Italic, Type, Palette, Languages,
-    Facebook, Twitter, Instagram, MessageCircle, Link2, ChevronDown
+    MessageCircle, Link2, ChevronDown
 } from "lucide-react";
+import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 import AdminNavbar from "@/components/admin/AdminNavbar";
 import toast from "react-hot-toast";
 
@@ -699,17 +700,17 @@ export default function AdminBlogsPage() {
                                         <div className="p-4 space-y-3 border-t border-slate-200">
                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                                 <div className="flex items-center gap-2">
-                                                    <Facebook size={14} className="text-blue-600 shrink-0" />
+                                                    <FaFacebook size={14} className="text-blue-600 shrink-0" />
                                                     <input type="url" value={socialFb} onChange={(e) => setSocialFb(e.target.value)}
                                                         placeholder="Facebook URL" className="flex-1 bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-saffron" />
                                                 </div>
                                                 <div className="flex items-center gap-2">
-                                                    <Twitter size={14} className="text-sky-500 shrink-0" />
+                                                    <FaTwitter size={14} className="text-sky-500 shrink-0" />
                                                     <input type="url" value={socialTw} onChange={(e) => setSocialTw(e.target.value)}
                                                         placeholder="Twitter/X URL" className="flex-1 bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-saffron" />
                                                 </div>
                                                 <div className="flex items-center gap-2">
-                                                    <Instagram size={14} className="text-pink-600 shrink-0" />
+                                                    <FaInstagram size={14} className="text-pink-600 shrink-0" />
                                                     <input type="url" value={socialIg} onChange={(e) => setSocialIg(e.target.value)}
                                                         placeholder="Instagram URL" className="flex-1 bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-saffron" />
                                                 </div>

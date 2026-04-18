@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, ArrowRight, Facebook, Instagram, MessageCircle, Search, Filter, Bookmark, Loader2 } from "lucide-react";
+import { Calendar, ArrowRight, MessageCircle, Search, Filter, Bookmark, Loader2 } from "lucide-react";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { useLanguage } from "@/lib/LanguageContext";
 import Link from "next/link";
 import ArticleSidebar from "@/components/articles/ArticleSidebar";
@@ -291,13 +292,13 @@ export default function ArticlesPage() {
                                                                 {post.social_facebook && (
                                                                     <a href={post.social_facebook} target="_blank" rel="noopener noreferrer"
                                                                         className="w-7 h-7 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-blue-500 hover:text-white transition-colors">
-                                                                        <Facebook size={12} />
+                                                                        <FaFacebook size={12} />
                                                                     </a>
                                                                 )}
                                                                 {post.social_instagram && (
                                                                     <a href={post.social_instagram} target="_blank" rel="noopener noreferrer"
                                                                         className="w-7 h-7 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-pink-500 hover:text-white transition-colors">
-                                                                        <Instagram size={12} />
+                                                                        <FaInstagram size={12} />
                                                                     </a>
                                                                 )}
                                                                 {post.social_whatsapp && (

@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { ArrowLeft, Calendar, Facebook, Instagram, MessageCircle, Share2, Loader2, Link2, Bookmark } from "lucide-react";
+import { ArrowLeft, Calendar, MessageCircle, Share2, Loader2, Link2, Bookmark } from "lucide-react";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { useLanguage } from "@/lib/LanguageContext";
 import toast from "react-hot-toast";
 import ArticleSidebar from "@/components/articles/ArticleSidebar";
@@ -164,7 +165,7 @@ export default function ArticleDetailPage() {
                                 <Link2 size={14} />
                             </button>
                             <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 flex items-center justify-center transition-colors">
-                                <Facebook size={14} />
+                                <FaFacebook size={14} />
                             </a>
                             <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(title)}`} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-sky-50 text-sky-500 hover:bg-sky-100 flex items-center justify-center transition-colors">
                                 <span><svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.008 4.094H5.078z"></path></svg></span>
@@ -208,12 +209,12 @@ export default function ArticleDetailPage() {
                                         <div className="flex gap-3">
                                             {post.social_facebook && (
                                                 <a href={post.social_facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-50 text-blue-600 hover:bg-blue-50 font-medium text-sm transition-colors border border-slate-200">
-                                                    <Facebook size={16} /> Facebook
+                                                    <FaFacebook size={16} /> Facebook
                                                 </a>
                                             )}
                                             {post.social_instagram && (
                                                 <a href={post.social_instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-50 text-pink-600 hover:bg-pink-50 font-medium text-sm transition-colors border border-slate-200">
-                                                    <Instagram size={16} /> Instagram
+                                                    <FaInstagram size={16} /> Instagram
                                                 </a>
                                             )}
                                             {post.social_twitter && (
