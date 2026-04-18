@@ -131,7 +131,7 @@ export default function ArticlesPage() {
                             </span>
                             {b.label}
                         </p>
-                        <h1 className="text-3xl md:text-3xl lg:text-4xl font-['Bebas_Neue'] uppercase leading-tight text-slate-900">
+                        <h1 className="text-3xl md:text-3xl lg:text-4xl font-oswald uppercase leading-tight text-slate-900">
                             {b.title.replace(b.titleHighlight, "").trim()}{" "}
                             <span className="text-saffron">{b.titleHighlight}</span>
                         </h1>

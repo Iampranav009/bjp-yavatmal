@@ -3,7 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Facebook, Twitter, Instagram, Youtube, MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
+import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 import { useLanguage } from "../../lib/LanguageContext";
 
 export default function Footer() {
@@ -31,10 +32,10 @@ export default function Footer() {
                                 <Image src="/images/logos/bjp-logo.png" alt="BJP Logo" fill className="object-contain" />
                             </div>
                             <div className="flex flex-col justify-center gap-1">
-                                <span className="font-['Tiro_Devanagari_Hindi'] text-2xl md:text-3xl text-slate-900 leading-none font-bold">
+                                <span className="font-oswald text-2xl md:text-3xl text-slate-900 leading-none font-bold uppercase">
                                     {f.logoLine1}
                                 </span>
-                                <span className="font-['Tiro_Devanagari_Hindi'] text-lg md:text-xl text-saffron leading-none">
+                                <span className="font-oswald text-lg md:text-xl text-saffron leading-none uppercase">
                                     {f.logoLine2}
                                 </span>
                             </div>
@@ -44,23 +45,23 @@ export default function Footer() {
                         </p>
                         <div className="flex items-center gap-4">
                             <Link href="#" className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-700 hover:bg-saffron hover:text-white transition-all">
-                                <Facebook size={18} />
+                                <FaFacebook size={18} />
                             </Link>
                             <Link href="#" className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-700 hover:bg-saffron hover:text-white transition-all">
-                                <Twitter size={18} />
+                                <FaTwitter size={18} />
                             </Link>
                             <Link href="#" className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-700 hover:bg-saffron hover:text-white transition-all">
-                                <Instagram size={18} />
+                                <FaInstagram size={18} />
                             </Link>
                             <Link href="#" className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-700 hover:bg-saffron hover:text-white transition-all">
-                                <Youtube size={18} />
+                                <FaYoutube size={18} />
                             </Link>
                         </div>
                     </div>
 
                     {/* Column 2 - Quick Links */}
                     <div>
-                        <h3 className="text-xl font-['Bebas_Neue'] text-slate-900 tracking-wider mb-6 flex items-center gap-2">
+                        <h3 className="text-xl font-oswald text-slate-900 tracking-wider mb-6 flex items-center gap-2">
                             <span className="w-2 h-2 rounded-full bg-saffron"></span>
                             {f.quickLinks}
                         </h3>
@@ -77,7 +78,7 @@ export default function Footer() {
 
                     {/* Column 3 - Media & Resources */}
                     <div>
-                        <h3 className="text-xl font-['Bebas_Neue'] text-slate-900 tracking-wider mb-6 flex items-center gap-2">
+                        <h3 className="text-xl font-oswald text-slate-900 tracking-wider mb-6 flex items-center gap-2">
                             <span className="w-2 h-2 rounded-full bg-saffron"></span>
                             {f.media}
                         </h3>
@@ -94,7 +95,7 @@ export default function Footer() {
 
                     {/* Column 4 - Contact */}
                     <div>
-                        <h3 className="text-xl font-['Bebas_Neue'] text-slate-900 tracking-wider mb-6 flex items-center gap-2">
+                        <h3 className="text-xl font-oswald text-slate-900 tracking-wider mb-6 flex items-center gap-2">
                             <span className="w-2 h-2 rounded-full bg-saffron"></span>
                             {f.contactUs}
                         </h3>

@@ -42,7 +42,7 @@ export default function SettingsPage() {
                 <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
                     className="bg-white border border-slate-200 rounded-xl overflow-hidden">
                     <div className="p-5 flex items-center justify-between">
-                        <h2 className="font-bebas text-slate-900 tracking-[0.1em] text-lg">ADMIN USERS</h2>
+                        <h2 className="font-oswald text-slate-900 tracking-[0.1em] text-lg">ADMIN USERS</h2>
                         <button onClick={() => setShowAddUser(true)}
                             className="flex items-center gap-1.5 px-3 py-2 bg-saffron/10 border border-saffron/20 text-saffron text-xs font-semibold rounded-lg hover:bg-saffron/20 transition-colors">
                             <UserPlus size={14} /> Add User
@@ -54,7 +54,7 @@ export default function SettingsPage() {
                 <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
                     className="bg-white border border-slate-200 rounded-xl overflow-hidden">
                     <div className="p-5 border-b border-slate-200">
-                        <h2 className="font-bebas text-slate-900 tracking-[0.1em] text-lg">ORGANIZATION INFO</h2>
+                        <h2 className="font-oswald text-slate-900 tracking-[0.1em] text-lg">ORGANIZATION INFO</h2>
                     </div>
                     <div className="p-5 space-y-4">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -91,7 +91,7 @@ export default function SettingsPage() {
                 <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
                     className="bg-white border border-slate-200 rounded-xl overflow-hidden">
                     <div className="p-5 border-b border-slate-200">
-                        <h2 className="font-bebas text-slate-900 tracking-[0.1em] text-lg">BACKUP & EXPORT</h2>
+                        <h2 className="font-oswald text-slate-900 tracking-[0.1em] text-lg">BACKUP & EXPORT</h2>
                     </div>
                     <div className="p-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <button onClick={handleExportMembers}
@@ -131,7 +131,7 @@ export default function SettingsPage() {
                             className="w-full max-w-md bg-white border border-slate-200 rounded-2xl shadow-2xl"
                             onClick={(e) => e.stopPropagation()}>
                             <div className="flex items-center justify-between p-5 border-b border-slate-200">
-                                <h2 className="font-bebas text-slate-900 tracking-[0.1em]">ADD ADMIN USER</h2>
+                                <h2 className="font-oswald text-slate-900 tracking-[0.1em]">ADD ADMIN USER</h2>
                                 <button onClick={() => setShowAddUser(false)} className="text-slate-500 hover:text-slate-900"><X size={18} /></button>
                             </div>
                             <form className="p-5 space-y-4" onSubmit={(e) => { e.preventDefault(); toast.success("Requires DB connection"); setShowAddUser(false); }}>

@@ -22,7 +22,7 @@ export default function DonatePage() {
 
                 <AnimatedText
                     text="Support Our Vision"
-                    className="text-5xl md:text-7xl font-['Bebas_Neue'] text-gold uppercase tracking-widest mb-6"
+                    className="text-5xl md:text-7xl font-oswald text-gold uppercase tracking-widest mb-6"
                 />
 
                 <motion.p
@@ -40,7 +40,7 @@ export default function DonatePage() {
                     transition={{ delay: 0.5 }}
                     className="bg-white/5 border border-slate-200 rounded-xl p-8 backdrop-blur-md max-w-md mx-auto relative overflow-hidden group"
                 >
-                    <h3 className="text-xl font-['Bebas_Neue'] text-slate-900 tracking-widest mb-6">Select Amount</h3>
+                    <h3 className="text-xl font-oswald text-slate-900 tracking-widest mb-6">Select Amount</h3>
 
                     <div className="grid grid-cols-3 gap-3 mb-6">
                         {['₹500', '₹1000', '₹5000'].map(amt => (

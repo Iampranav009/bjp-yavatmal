@@ -1,16 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Facebook, Instagram, Twitter, Youtube, MessageCircle, ChevronUp } from "lucide-react";
+import { MessageCircle, ChevronUp } from "lucide-react";
+import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const socials = [
-    { icon: Facebook, href: "#", color: "hover:bg-[#1877F2]" },
-    { icon: Twitter, href: "#", color: "hover:bg-black" }, // X
-    { icon: Instagram, href: "#", color: "hover:bg-[#E4405F]" },
-    { icon: Youtube, href: "#", color: "hover:bg-[#FF0000]" },
+    { icon: FaFacebook, href: "#", color: "hover:bg-[#1877F2]" },
+    { icon: FaTwitter, href: "#", color: "hover:bg-black" }, // X
+    { icon: FaInstagram, href: "#", color: "hover:bg-[#E4405F]" },
+    { icon: FaYoutube, href: "#", color: "hover:bg-[#FF0000]" },
     { icon: MessageCircle, href: "#", color: "hover:bg-[#25D366]" }, // WhatsApp
 ];
 

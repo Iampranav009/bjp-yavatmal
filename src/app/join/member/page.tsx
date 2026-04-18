@@ -21,7 +21,7 @@ export default function MemberPage() {
 
                 <AnimatedText
                     text="Become a Member"
-                    className="text-5xl md:text-7xl font-['Bebas_Neue'] uppercase text-slate-900 tracking-widest mb-6"
+                    className="text-5xl md:text-7xl font-oswald uppercase text-slate-900 tracking-widest mb-6"
                 />
 
                 <motion.p
@@ -40,13 +40,13 @@ export default function MemberPage() {
                     className="bg-white/5 border border-slate-200 rounded-xl p-8 backdrop-blur-md inline-block text-left relative overflow-hidden group hover:border-india-green/50 transition-colors"
                 >
                     <div className="absolute top-0 right-0 w-32 h-32 bg-india-green/10 blur-[50px] rounded-full" />
-                    <h3 className="text-xl font-['Bebas_Neue'] text-slate-900 tracking-widest mb-2">Primary Membership Drive 2024</h3>
+                    <h3 className="text-xl font-oswald text-slate-900 tracking-widest mb-2">Primary Membership Drive 2024</h3>
                     <p className="text-slate-900/50 text-sm mb-6 max-w-sm">
                         Give a missed call to our toll-free number to register instantly via WhatsApp.
                     </p>
                     <div className="bg-[#040A14] border border-slate-200 rounded-lg px-6 py-4 flex items-center justify-center gap-4">
                         <span className="text-2xl">📞</span>
-                        <span className="text-3xl font-bold font-['Bebas_Neue'] tracking-widest text-india-green">1800 2090 920</span>
+                        <span className="text-3xl font-bold font-oswald tracking-widest text-india-green">1800 2090 920</span>
                     </div>
                 </motion.div>
             </div>

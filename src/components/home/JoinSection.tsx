@@ -35,7 +35,7 @@ export default function JoinSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="text-5xl md:text-7xl lg:text-8xl font-['Bebas_Neue'] text-[#4a2e1b] uppercase leading-[0.9] tracking-normal mb-2"
+                        className="text-5xl md:text-7xl lg:text-8xl font-oswald text-[#4a2e1b] uppercase leading-[0.9] tracking-normal mb-2"
                     >
                         {j.heading}
                     </motion.h2>

@@ -140,7 +140,7 @@ export default function HeroSlider() {
                 </div>
 
                 {/* Slide Counter */}
-                <div className="absolute bottom-10 left-6 lg:left-12 flex items-baseline gap-2 font-['Bebas_Neue'] tracking-wider z-40">
+                <div className="absolute bottom-10 left-6 lg:left-12 flex items-baseline gap-2 font-oswald tracking-wider z-40">
                     <span className="text-4xl text-saffron">0{activeSlide + 1}</span>
                     <span className="text-xl text-white/40">/ 0{slides.length}</span>
                 </div>

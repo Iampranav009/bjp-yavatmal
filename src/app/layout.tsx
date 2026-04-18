@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import { ReactNode } from "react";
-import { Bebas_Neue, DM_Sans, Tiro_Devanagari_Hindi } from "next/font/google";
+import { Oswald, DM_Sans, Tiro_Devanagari_Hindi } from "next/font/google";
 import "./globals.css";
 
-const bebasNeue = Bebas_Neue({
-  weight: "400",
+const oswald = Oswald({
   subsets: ["latin"],
-  variable: "--font-bebas-neue",
+  variable: "--font-oswald",
   display: "swap"
 });
 
@@ -39,7 +38,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${bebasNeue.variable} ${dmSans.variable} ${tiroHindi.variable}`}>
+    <html lang="en" className={`${oswald.variable} ${dmSans.variable} ${tiroHindi.variable}`}>
       <body className="font-sans antialiased text-slate-900 bg-[#F4F6F8]">
         <LanguageProvider>
           {/* Tricolor top strip */}

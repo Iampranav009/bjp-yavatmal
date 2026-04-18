@@ -356,7 +356,7 @@ export default function AdminBlogsPage() {
                 {/* Top Bar */}
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                     <div>
-                        <h2 className="text-lg font-bebas text-slate-900 tracking-[0.1em]">MANAGE BLOG POSTS</h2>
+                        <h2 className="text-lg font-oswald text-slate-900 tracking-[0.1em]">MANAGE BLOG POSTS</h2>
                         <p className="text-xs text-slate-500 mt-0.5">{posts.length} post(s) total</p>
                     </div>
                     <button onClick={openNew}
@@ -469,7 +469,7 @@ export default function AdminBlogsPage() {
                             {/* Header */}
                             <div className="flex items-center justify-between p-5 border-b border-slate-200 flex-shrink-0">
                                 <div>
-                                    <h2 className="font-bebas text-slate-900 tracking-[0.1em] text-lg">
+                                    <h2 className="font-oswald text-slate-900 tracking-[0.1em] text-lg">
                                         {editingPost ? "EDIT BLOG POST" : "CREATE BLOG POST"}
                                     </h2>
                                     <p className="text-[11px] text-slate-500 mt-0.5">Fill in all details and publish</p>

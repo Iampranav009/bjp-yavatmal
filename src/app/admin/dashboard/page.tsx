@@ -111,7 +111,7 @@ export default function DashboardPage() {
 
                             <div className="flex items-center gap-2 mb-5">
                                 <PartyPopper className="text-amber-400" size={22} />
-                                <h2 className="text-xl font-bebas text-amber-400 tracking-[0.12em]">
+                                <h2 className="text-xl font-oswald text-amber-400 tracking-[0.12em]">
                                     TODAY&apos;S BIRTHDAYS
                                 </h2>
                                 <span className="bg-amber-500/20 text-amber-400 text-xs font-bold px-2 py-0.5 rounded-full">
@@ -141,7 +141,7 @@ export default function DashboardPage() {
                 >
                     <div className="flex items-center gap-2 mb-5">
                         <Bell className="text-saffron" size={20} />
-                        <h2 className="text-xl font-bebas text-slate-900 tracking-[0.12em]">
+                        <h2 className="text-xl font-oswald text-slate-900 tracking-[0.12em]">
                             UPCOMING BIRTHDAYS
                         </h2>
                         {upcomingBirthdays.length > 0 && (

@@ -64,7 +64,7 @@ export default function AdminSubscribersPage() {
             <main className="p-5 lg:p-8 space-y-6">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                     <div>
-                        <h2 className="text-lg font-bebas text-slate-900 tracking-[0.1em]">SUBSCRIBER LIST</h2>
+                        <h2 className="text-lg font-oswald text-slate-900 tracking-[0.1em]">SUBSCRIBER LIST</h2>
                         <p className="text-xs text-slate-500 mt-0.5">{subscribers.length} total subscribers</p>
                     </div>
                     {subscribers.length > 0 && (

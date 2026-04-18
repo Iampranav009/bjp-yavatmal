@@ -87,10 +87,10 @@ export default function Navbar() {
                                 />
                             </div>
                             <div className="flex flex-col justify-center mt-0.5 gap-0 md:gap-1">
-                                <span className="font-['Tiro_Devanagari_Hindi'] text-[18px] sm:text-2xl md:text-3xl text-saffron leading-none font-bold">
+                                <span className="font-oswald text-[18px] sm:text-2xl md:text-3xl text-saffron leading-none font-bold uppercase">
                                     {nav.logoLine1}
                                 </span>
-                                <span className="font-['Tiro_Devanagari_Hindi'] text-xs sm:text-lg md:text-xl text-saffron leading-none">
+                                <span className="font-oswald text-xs sm:text-lg md:text-xl text-saffron leading-none uppercase">
                                     {nav.logoLine2}
                                 </span>
                             </div>
@@ -103,15 +103,15 @@ export default function Navbar() {
                                 className={`hidden lg:flex items-center gap-5 text-[13px] font-medium tracking-wide ${isDark ? "text-slate-800" : "text-white"
                                     }`}
                             >
-                                <button onClick={() => setShareModalOpen(true)} className="flex items-center gap-1.5 hover:text-saffron transition-colors cursor-pointer">
+                                <button onClick={() => setShareModalOpen(true)} className="flex items-center gap-1.5 hover:text-saffron transition-colors cursor-pointer font-oswald uppercase">
                                     <LinkIcon size={14} /> {nav.shareUrl}
                                 </button>
                                 <span className="w-px h-3 bg-white/30"></span>
-                                <Link href="/login" className="flex items-center gap-1.5 hover:text-saffron transition-colors">
+                                <Link href="/login" className="flex items-center gap-1.5 hover:text-saffron transition-colors font-oswald uppercase">
                                     <User size={14} /> {nav.login}
                                 </Link>
                                 <span className="w-px h-3 bg-white/30"></span>
-                                <Link href="/contact" className="hover:text-saffron transition-colors">
+                                <Link href="/contact" className="hover:text-saffron transition-colors font-oswald uppercase">
                                     {nav.contactUs}
                                 </Link>
                                 <span className="w-px h-3 bg-white/30"></span>
@@ -120,7 +120,7 @@ export default function Navbar() {
                                 <div ref={langRef} className="relative">
                                     <button
                                         onClick={() => setLangDropdownOpen((o) => !o)}
-                                        className="flex items-center gap-1 hover:text-saffron transition-colors"
+                                        className="flex items-center gap-1 hover:text-saffron transition-colors font-oswald uppercase"
                                     >
                                         <Globe size={14} />
                                         {currentLangLabel}
@@ -145,7 +145,7 @@ export default function Navbar() {
                                                             setLang(opt.code);
                                                             setLangDropdownOpen(false);
                                                         }}
-                                                        className={`text-left px-4 py-2 text-sm transition-all hover:bg-slate-100 border-l-2 ${lang === opt.code
+                                                        className={`text-left px-4 py-2 text-sm transition-all hover:bg-slate-100 border-l-2 font-oswald uppercase ${lang === opt.code
                                                             ? "border-saffron text-saffron font-semibold"
                                                             : "border-transparent text-slate-700"
                                                             }`}
@@ -171,14 +171,14 @@ export default function Navbar() {
                                         {link.href ? (
                                             <Link
                                                 href={link.href}
-                                                className={`hover:text-saffron transition-colors font-bold text-sm lg:text-[15px] tracking-wide px-1 py-2 ${isDark ? "text-slate-900" : "text-white"
+                                                className={`hover:text-saffron transition-colors font-oswald font-bold text-sm lg:text-[15px] tracking-wide px-1 py-2 uppercase ${isDark ? "text-slate-900" : "text-white"
                                                     }`}
                                             >
                                                 {link.name}
                                             </Link>
                                         ) : (
                                             <button
-                                                className={`flex items-center gap-1 hover:text-saffron transition-colors font-bold text-sm lg:text-[15px] tracking-wide px-1 py-2 cursor-pointer ${isDark ? "text-slate-900" : "text-white"
+                                                className={`flex items-center gap-1 hover:text-saffron transition-colors font-oswald font-bold text-sm lg:text-[15px] tracking-wide px-1 py-2 cursor-pointer uppercase ${isDark ? "text-slate-900" : "text-white"
                                                     }`}
                                             >
                                                 {link.name}
@@ -205,7 +205,7 @@ export default function Navbar() {
                                                             <Link
                                                                 key={idx}
                                                                 href={subLink.href}
-                                                                className="text-slate-700 hover:text-slate-900 px-4 py-2.5 text-sm transition-all hover:bg-slate-100 border-l-2 border-transparent hover:border-saffron"
+                                                                className="text-slate-700 hover:text-slate-900 px-4 py-2.5 text-sm transition-all hover:bg-slate-100 border-l-2 border-transparent hover:border-saffron font-oswald uppercase"
                                                             >
                                                                 {subLink.name}
                                                             </Link>
@@ -285,14 +285,14 @@ export default function Navbar() {
                                     {link.href ? (
                                         <Link
                                             href={link.href}
-                                            className="text-2xl font-['Bebas_Neue'] tracking-wider text-slate-900 hover:text-saffron transition-colors"
+                                            className="text-2xl font-oswald tracking-wider text-slate-900 hover:text-saffron transition-colors uppercase"
                                             onClick={() => setMobileMenuOpen(false)}
                                         >
                                             {link.name}
                                         </Link>
                                     ) : (
                                         <>
-                                            <div className="text-2xl font-['Bebas_Neue'] tracking-wider text-saffron mb-3">
+                                            <div className="text-2xl font-oswald tracking-wider text-saffron mb-3 uppercase">
                                                 {link.name}
                                             </div>
                                             <div className="flex flex-col gap-3 pl-4 border-l-2 border-slate-200">
@@ -300,7 +300,7 @@ export default function Navbar() {
                                                     <Link
                                                         key={idx}
                                                         href={subLink.href}
-                                                        className="text-slate-700 text-lg py-1 hover:text-saffron transition-colors"
+                                                        className="text-slate-700 text-lg py-1 hover:text-saffron transition-colors font-oswald uppercase"
                                                         onClick={() => setMobileMenuOpen(false)}
                                                     >
                                                         {subLink.name}
@@ -313,17 +313,17 @@ export default function Navbar() {
                             ))}
 
                             <div className="flex flex-col gap-4 pt-4 border-b border-slate-200 pb-6">
-                                <button onClick={() => { setShareModalOpen(true); setMobileMenuOpen(false); }} className="text-slate-700 hover:text-saffron flex items-center gap-3 text-left w-full cursor-pointer">
+                                <button onClick={() => { setShareModalOpen(true); setMobileMenuOpen(false); }} className="text-slate-700 hover:text-saffron flex items-center gap-3 text-left w-full cursor-pointer font-oswald uppercase">
                                     <LinkIcon size={18} /> {nav.shareUrl}
                                 </button>
                                 <Link
                                     href="/login"
                                     onClick={() => setMobileMenuOpen(false)}
-                                    className="text-slate-700 hover:text-saffron flex items-center gap-3"
+                                    className="text-slate-700 hover:text-saffron flex items-center gap-3 font-oswald uppercase"
                                 >
                                     <User size={18} /> {nav.login}
                                 </Link>
-                                <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-slate-700 hover:text-saffron">
+                                <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-slate-700 hover:text-saffron font-oswald uppercase">
                                     {nav.contactUs}
                                 </Link>
                             </div>
@@ -351,7 +351,7 @@ export default function Navbar() {
 
                             <div className="pt-2 pb-12 flex flex-col gap-4">
                                 <a href="https://membership.bjp.org/en/home/login" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)}>
-                                    <button className="w-full bg-[#FCA311] text-white py-4 rounded font-bold text-xl font-['Bebas_Neue'] tracking-widest shadow-lg active:scale-95 transition-transform">
+                                    <button className="w-full bg-[#FCA311] text-white py-4 rounded font-bold text-xl font-oswald tracking-widest shadow-lg active:scale-95 transition-transform">
                                         {nav.joinBjp}
                                     </button>
                                 </a>

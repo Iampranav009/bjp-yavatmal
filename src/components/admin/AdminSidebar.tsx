@@ -114,7 +114,7 @@ export default function AdminSidebar({
             <div className="p-6 border-b border-slate-200">
                 <div className="flex items-center justify-between">
                     <div>
-                        <h2 className="text-2xl font-bebas text-slate-900 tracking-[0.15em]">
+                        <h2 className="text-2xl font-oswald text-slate-900 tracking-[0.15em]">
                             BJP ADMIN
                         </h2>
                         <p className="text-saffron text-[10px] font-bold uppercase tracking-[0.2em]">
@@ -172,7 +172,7 @@ export default function AdminSidebar({
                 <div className={`p-6 border-b border-slate-200 h-[88px] flex items-center ${isCollapsed ? 'justify-center px-0' : 'justify-between'}`}>
                     {!isCollapsed ? (
                         <div className="whitespace-nowrap overflow-hidden">
-                            <h2 className="text-2xl font-bebas text-slate-900 tracking-[0.15em]">
+                            <h2 className="text-2xl font-oswald text-slate-900 tracking-[0.15em]">
                                 BJP ADMIN
                             </h2>
                             <p className="text-saffron text-[10px] font-bold uppercase tracking-[0.2em]">
@@ -180,7 +180,7 @@ export default function AdminSidebar({
                             </p>
                         </div>
                     ) : (
-                        <div className="w-8 h-8 rounded bg-saffron flex items-center justify-center text-white font-bebas text-xl shrink-0">
+                        <div className="w-8 h-8 rounded bg-saffron flex items-center justify-center text-white font-oswald text-xl shrink-0">
                             B
                         </div>
                     )}

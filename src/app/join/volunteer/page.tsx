@@ -22,7 +22,7 @@ export default function VolunteerPage() {
                         <div className="w-16 h-16 rounded-full bg-saffron/20 backdrop-blur-md flex items-center justify-center mb-6">
                             <span className="text-3xl">🤝</span>
                         </div>
-                        <h2 className="text-5xl font-['Bebas_Neue'] text-slate-900 tracking-wide mb-4 uppercase">
+                        <h2 className="text-5xl font-oswald text-slate-900 tracking-wide mb-4 uppercase">
                             Be the Change <br /> You wish to see
                         </h2>
                         <p className="text-slate-700 font-['DM_Sans'] text-lg">
@@ -43,7 +43,7 @@ export default function VolunteerPage() {
                         <span className="text-saffron uppercase font-bold tracking-[0.2em] text-sm mb-2 block">
                             REGISTRATION DESK
                         </span>
-                        <h1 className="text-5xl md:text-6xl font-['Bebas_Neue'] uppercase text-slate-900 tracking-widest mb-4">
+                        <h1 className="text-5xl md:text-6xl font-oswald uppercase text-slate-900 tracking-widest mb-4">
                             Join the <span className="text-saffron">BJP Seva</span>
                         </h1>
                         <p className="text-slate-900/50 font-['DM_Sans'] text-sm">
@@ -117,7 +117,7 @@ export default function VolunteerPage() {
                         <div className="pt-6 border-t border-slate-200">
                             <button
                                 type="submit"
-                                className="w-full bg-saffron hover:bg-saffron-light text-white font-['Bebas_Neue'] tracking-widest text-2xl py-4 rounded-xl flex items-center justify-center gap-3 group transition-all shadow-xl shadow-saffron/20 active:scale-95"
+                                className="w-full bg-saffron hover:bg-saffron-light text-white font-oswald tracking-widest text-2xl py-4 rounded-xl flex items-center justify-center gap-3 group transition-all shadow-xl shadow-saffron/20 active:scale-95"
                             >
                                 <span>Submit & Join the Army</span>
                                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />

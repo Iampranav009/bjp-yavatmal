@@ -198,7 +198,7 @@ export default function AdminSidebarPage() {
             <main className="p-5 lg:p-8 space-y-6">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                     <div>
-                        <h2 className="text-lg font-bebas text-slate-900 tracking-[0.1em]">ARTICLE RIGHT SIDEBAR</h2>
+                        <h2 className="text-lg font-oswald text-slate-900 tracking-[0.1em]">ARTICLE RIGHT SIDEBAR</h2>
                         <p className="text-xs text-slate-500 mt-0.5">Control the widgets in the Articles sidebar</p>
                     </div>
                     <button onClick={openNew}
@@ -255,7 +255,7 @@ export default function AdminSidebarPage() {
                 <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
                     <div className="w-full max-w-lg bg-white border border-slate-200 rounded-2xl shadow-xl overflow-hidden max-h-[90vh] flex flex-col">
                         <div className="flex items-center justify-between p-5 border-b border-slate-200">
-                            <h2 className="font-bebas text-slate-900 tracking-[0.1em] text-lg">
+                            <h2 className="font-oswald text-slate-900 tracking-[0.1em] text-lg">
                                 {editingItem ? "EDIT WIDGET" : "NEW WIDGET"}
                             </h2>
                             <button onClick={() => setShowModal(false)} className="text-slate-500 hover:text-slate-900"><X size={18} /></button>

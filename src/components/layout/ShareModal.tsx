@@ -1,6 +1,7 @@
 "use client";
 
-import { X, Copy, Check, Facebook, Twitter } from "lucide-react";
+import { X, Copy, Check } from "lucide-react";
+import { FaFacebook, FaTwitter } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -104,14 +105,14 @@ export default function ShareModal({ isOpen, onClose }: ShareModalProps) {
                                     className="w-12 h-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors"
                                     title="Share on Facebook"
                                 >
-                                    <Facebook size={24} />
+                                    <FaFacebook size={24} />
                                 </button>
                                 <button
                                     onClick={shareOnTwitter}
                                     className="w-12 h-12 rounded-full bg-slate-100 text-slate-800 flex items-center justify-center hover:bg-slate-800 hover:text-white transition-colors"
                                     title="Share on X / Twitter"
                                 >
-                                    <Twitter size={24} />
+                                    <FaTwitter size={24} />
                                 </button>
                             </div>
 

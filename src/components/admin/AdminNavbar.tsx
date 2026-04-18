@@ -44,7 +44,7 @@ export default function AdminNavbar({
                 >
                     <Menu size={22} />
                 </button>
-                <h1 className="text-xl font-bebas text-slate-900 tracking-[0.12em]">
+                <h1 className="text-xl font-oswald text-slate-900 tracking-[0.12em]">
                     {title}
                 </h1>
             </div>

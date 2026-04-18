@@ -61,7 +61,7 @@ const config: Config = {
 				sm: "calc(var(--radius) - 4px)",
 			},
 			fontFamily: {
-				bebas: ["var(--font-bebas)"],
+				oswald: ["var(--font-oswald)"],
 				dm: ["var(--font-dm-sans)"],
 				tiro: ["var(--font-tiro)"],
 			},

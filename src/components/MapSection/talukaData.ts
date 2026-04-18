@@ -81,17 +81,34 @@ export const talukaData: Record<string, TalukaInfo> = {
     description: "Darwha is a historically significant taluka with a strong cotton economy and a well-connected transport network.",
     link: "/talukas/darwha",
   },
+  kalamb: {
+    name: "Kalamb",
+    hq: "Kalamb",
+    population: "~1.1 Lakh",
+    area: "1,000 km²",
+    crops: "Cotton, Soybean",
+    description: "Kalamb is a taluka known for its agricultural activities and rural economy.",
+    link: "/talukas/kalamb",
+  },
+  kelapur: {
+    name: "Kelapur",
+    hq: "Pandharkawada",
+    population: "~1.4 Lakh",
+    area: "1,200 km²",
+    crops: "Cotton, Soybean",
+    description: "Kelapur, with its headquarters at Pandharkawada, is a prominent taluka known for its trade and agriculture.",
+    link: "/talukas/kelapur",
+  },
 };
 
 export const CLICKABLE_TALUKAS = new Set([
-  "ner",
-  "pusad",
-  "umerkhed",
+  "darwha",
+  "arni",
   "zari-jamni",
   "yavatmal",
-  "ghatanji",
-  "arni",
-  "darwha",
+  "pusad",
+  "kalamb",
+  "kelapur",
 ]);
 
 export const districtStats = {

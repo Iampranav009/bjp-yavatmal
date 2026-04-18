@@ -147,7 +147,7 @@ export default function BirthdaysPage() {
                                         </div>
                                         <div className="flex items-center gap-2 mb-5">
                                             <PartyPopper className="text-amber-400" size={22} />
-                                            <h2 className="text-xl font-bebas text-amber-400 tracking-[0.12em]">TODAY&apos;S BIRTHDAYS</h2>
+                                            <h2 className="text-xl font-oswald text-amber-400 tracking-[0.12em]">TODAY&apos;S BIRTHDAYS</h2>
                                         </div>
                                         <div className="grid gap-4 md:grid-cols-2">
                                             {todayBirthdays.map((m, i) => (
@@ -178,7 +178,7 @@ export default function BirthdaysPage() {
                                     return (
                                         <div key={month} className="bg-white border border-slate-200 rounded-xl overflow-hidden">
                                             <div className="px-5 py-3 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
-                                                <h3 className="font-bebas text-slate-900 tracking-[0.1em]">{month.toUpperCase()}</h3>
+                                                <h3 className="font-oswald text-slate-900 tracking-[0.1em]">{month.toUpperCase()}</h3>
                                                 <span className="text-slate-500 text-xs">{monthMembers.length}</span>
                                             </div>
                                             <div className="divide-y divide-slate-100">

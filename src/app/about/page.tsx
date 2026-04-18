@@ -22,7 +22,7 @@ export default function AboutPage() {
 
                 <div className="grid grid-cols-2 gap-8 mb-10 w-full max-w-sm">
                     <div className="flex flex-col border-l-2 border-saffron pl-4">
-                        <span className="text-3xl font-bold font-['Bebas_Neue'] text-slate-900 tracking-widest">
+                        <span className="text-3xl font-bold font-oswald text-slate-900 tracking-widest">
                             {ab.nationFirst}
                         </span>
                         <span className="text-slate-900/50 text-xs uppercase tracking-wider font-semibold mt-1">
@@ -30,7 +30,7 @@ export default function AboutPage() {
                         </span>
                     </div>
                     <div className="flex flex-col border-l-2 border-india-green pl-4">
-                        <span className="text-3xl font-bold font-['Bebas_Neue'] text-slate-900 tracking-widest">
+                        <span className="text-3xl font-bold font-oswald text-slate-900 tracking-widest">
                             {ab.sabkaVikas}
                         </span>
                         <span className="text-slate-900/50 text-xs uppercase tracking-wider font-semibold mt-1">

@@ -44,7 +44,7 @@ export default function AchievementsSlider() {
                     </span>
                     {a.label}
                 </p>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-['Bebas_Neue'] uppercase leading-tight text-slate-900">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-oswald uppercase leading-tight text-slate-900">
                     {a.title.replace(a.titleHighlight, "").trim()}{" "}
                     <span className="text-saffron">{a.titleHighlight}</span>
                 </h2>
@@ -76,7 +76,7 @@ export default function AchievementsSlider() {
                                             {item.date}
                                         </span>
                                     )}
-                                    <h3 className="text-2xl font-['Bebas_Neue'] text-slate-900 tracking-wide mb-3 leading-tight line-clamp-2">
+                                    <h3 className="text-2xl font-oswald text-slate-900 tracking-wide mb-3 leading-tight line-clamp-2">
                                         {item.title}
                                     </h3>
                                     <p className="text-slate-900/70 text-sm font-['DM_Sans'] leading-relaxed line-clamp-3">

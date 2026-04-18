@@ -43,7 +43,7 @@ export default function GalleryGrid() {
                             </span>
                             {g.label}
                         </p>
-                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-['Bebas_Neue'] uppercase leading-tight text-slate-900">
+                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-oswald uppercase leading-tight text-slate-900">
                             {g.title.replace(g.titleHighlight, "").trim()}{" "}
                             <span className="text-saffron">{g.titleHighlight}</span>
                         </h2>

@@ -29,7 +29,7 @@ export default function SectionHeader({ label, title, highlightWord, className =
             <AnimatedText
                 text={title}
                 highlightWord={highlightWord}
-                className="text-4xl md:text-5xl lg:text-6xl font-['Bebas_Neue'] uppercase leading-tight"
+                className="text-4xl md:text-5xl lg:text-6xl font-oswald uppercase leading-tight"
                 delayOffset={0.1}
             />
         </div>

@@ -28,7 +28,7 @@ export default function ContactPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="text-5xl md:text-7xl font-['Bebas_Neue'] uppercase text-slate-900 tracking-wide mb-8 leading-[0.9]"
+                        className="text-5xl md:text-7xl font-oswald uppercase text-slate-900 tracking-wide mb-8 leading-[0.9]"
                     >
                         {c.heading1} <br /> {c.heading2.split(c.headingHighlight)[0]}
                         <span className="text-saffron">{c.headingHighlight}</span>
@@ -46,7 +46,7 @@ export default function ContactPage() {
                                 <MapPin className="text-saffron" size={20} />
                             </div>
                             <div>
-                                <h3 className="text-slate-900 font-['Bebas_Neue'] text-2xl tracking-wide mb-1">{c.visitUs}</h3>
+                                <h3 className="text-slate-900 font-oswald text-2xl tracking-wide mb-1">{c.visitUs}</h3>
                                 <p className="text-slate-600 font-['DM_Sans'] leading-relaxed text-sm whitespace-pre-line">{c.address}</p>
                             </div>
                         </motion.div>
@@ -61,7 +61,7 @@ export default function ContactPage() {
                                 <Phone className="text-saffron" size={20} />
                             </div>
                             <div>
-                                <h3 className="text-slate-900 font-['Bebas_Neue'] text-2xl tracking-wide mb-1">{c.callUs}</h3>
+                                <h3 className="text-slate-900 font-oswald text-2xl tracking-wide mb-1">{c.callUs}</h3>
                                 <p className="text-slate-600 font-['DM_Sans'] leading-relaxed text-sm">
                                     +91 98765 43210<br />{c.hours}
                                 </p>
@@ -78,7 +78,7 @@ export default function ContactPage() {
                                 <Mail className="text-saffron" size={20} />
                             </div>
                             <div>
-                                <h3 className="text-slate-900 font-['Bebas_Neue'] text-2xl tracking-wide mb-1">{c.emailUs}</h3>
+                                <h3 className="text-slate-900 font-oswald text-2xl tracking-wide mb-1">{c.emailUs}</h3>
                                 <p className="text-slate-600 font-['DM_Sans'] leading-relaxed text-sm">
                                     contact@bjpyavatmal.org<br />grievance@bjpyavatmal.org
                                 </p>
@@ -96,7 +96,7 @@ export default function ContactPage() {
                     transition={{ delay: 0.4 }}
                     className="max-w-md w-full mx-auto lg:mx-0"
                 >
-                    <h2 className="text-3xl font-['Bebas_Neue'] text-slate-900 tracking-widest mb-6 border-b border-slate-200 pb-4">
+                    <h2 className="text-3xl font-oswald text-slate-900 tracking-widest mb-6 border-b border-slate-200 pb-4">
                         {c.formHeading}
                     </h2>
 

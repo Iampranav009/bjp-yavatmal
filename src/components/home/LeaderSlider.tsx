@@ -110,10 +110,10 @@ export default function LeaderSlider() {
                                 transition={{ duration: 0.6 }}
                                 className="flex flex-col items-center md:items-start"
                             >
-                                <h2 className="text-5xl md:text-7xl lg:text-8xl font-['Bebas_Neue'] text-[#542512] leading-[0.9] tracking-wide drop-shadow-sm mb-1">
+                                <h2 className="text-5xl md:text-7xl lg:text-8xl font-oswald text-[#542512] leading-[0.9] tracking-wide drop-shadow-sm mb-1">
                                     {slides[activeSlide].title}
                                 </h2>
-                                <h3 className="text-4xl md:text-5xl lg:text-6xl font-['Bebas_Neue'] text-[#542512] leading-[0.9] tracking-wide mb-6">
+                                <h3 className="text-4xl md:text-5xl lg:text-6xl font-oswald text-[#542512] leading-[0.9] tracking-wide mb-6">
                                     {slides[activeSlide].name}
                                 </h3>
                                 <a

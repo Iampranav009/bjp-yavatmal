@@ -112,7 +112,7 @@ export default function WishTemplateModal({ isOpen, onClose, onSaved }: WishTemp
                     {/* Header */}
                     <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-gradient-to-r from-saffron/5 to-transparent">
                         <div>
-                            <h2 className="text-lg font-bebas text-slate-900 tracking-[0.1em]">
+                            <h2 className="text-lg font-oswald text-slate-900 tracking-[0.1em]">
                                 BIRTHDAY WISH TEMPLATE
                             </h2>
                             <p className="text-xs text-slate-500 mt-0.5">

@@ -73,7 +73,7 @@ export default function LoginPage() {
                             className="object-contain drop-shadow-sm"
                         />
                     </div>
-                    <h1 className="text-[2.5rem] font-bebas text-saffron tracking-[0.15em] leading-none mb-2">
+                    <h1 className="text-[2.5rem] font-oswald text-saffron tracking-[0.15em] leading-none mb-2">
                         Admin Access
                     </h1>
                     <p className="text-slate-500 text-xs font-medium tracking-wider font-tiro">
@@ -138,7 +138,7 @@ export default function LoginPage() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full bg-saffron hover:bg-saffron-light disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-3.5 rounded-lg transition-all shadow-lg shadow-saffron/20 active:scale-[0.98] font-bebas text-lg tracking-[0.1em] flex items-center justify-center gap-2"
+                            className="w-full bg-saffron hover:bg-saffron-light disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-3.5 rounded-lg transition-all shadow-lg shadow-saffron/20 active:scale-[0.98] font-oswald text-lg tracking-[0.1em] flex items-center justify-center gap-2"
                         >
                             {loading ? (
                                 <>
@@ -157,7 +157,7 @@ export default function LoginPage() {
                                 setPassword("demo123");
                             }}
                             disabled={loading}
-                            className="w-full bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 font-bold py-3.5 rounded-lg transition-all active:scale-[0.98] font-bebas text-lg tracking-[0.1em] flex items-center justify-center shadow-sm"
+                            className="w-full bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 font-bold py-3.5 rounded-lg transition-all active:scale-[0.98] font-oswald text-lg tracking-[0.1em] flex items-center justify-center shadow-sm"
                         >
                             Use Demo Credentials
                         </button>

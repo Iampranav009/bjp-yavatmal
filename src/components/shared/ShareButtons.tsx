@@ -1,6 +1,7 @@
 "use client";
 
-import { Facebook, Twitter, MessageCircle, Link2, Share2 } from "lucide-react";
+import { MessageCircle, Link2, Share2 } from "lucide-react";
+import { FaFacebook, FaTwitter } from "react-icons/fa";
 import toast from "react-hot-toast";
 
 interface ShareButtonsProps {
@@ -32,8 +33,8 @@ export function getShareUrl(platform: string, url: string, title: string, descri
 }
 
 const SHARE_PLATFORMS = [
-    { key: "facebook", icon: Facebook, label: "Facebook", color: "hover:bg-blue-600 hover:text-white", bg: "bg-blue-50 text-blue-600 border-blue-200" },
-    { key: "twitter", icon: Twitter, label: "Twitter", color: "hover:bg-sky-500 hover:text-white", bg: "bg-sky-50 text-sky-500 border-sky-200" },
+    { key: "facebook", icon: FaFacebook, label: "Facebook", color: "hover:bg-blue-600 hover:text-white", bg: "bg-blue-50 text-blue-600 border-blue-200" },
+    { key: "twitter", icon: FaTwitter, label: "Twitter", color: "hover:bg-sky-500 hover:text-white", bg: "bg-sky-50 text-sky-500 border-sky-200" },
     { key: "whatsapp", icon: MessageCircle, label: "WhatsApp", color: "hover:bg-green-500 hover:text-white", bg: "bg-green-50 text-green-600 border-green-200" },
 ];
 

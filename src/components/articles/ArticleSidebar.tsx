@@ -78,7 +78,7 @@ export default function ArticleSidebar() {
         <aside className="sticky top-28 space-y-5">
             {/* Subscription Box */}
             <div className="bg-white border border-slate-200 rounded-xl p-5 overflow-hidden shadow-sm relative">
-                <h3 className="font-bebas text-xl text-slate-900 tracking-wider mb-1.5 relative z-10">{b.subscribeBox || "SUBSCRIBE TO ARTICLES"}</h3>
+                <h3 className="font-oswald text-xl text-slate-900 tracking-wider mb-1.5 relative z-10">{b.subscribeBox || "SUBSCRIBE TO ARTICLES"}</h3>
                 <p className="text-slate-500 text-xs mb-4 relative z-10">Get the latest updates directly in your inbox.</p>
                 <form onSubmit={handleSubscribe} className="flex flex-col gap-2.5 relative z-10">
                     <input 

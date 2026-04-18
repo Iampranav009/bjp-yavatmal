@@ -142,7 +142,7 @@ export default function MediaGallery() {
                                         </span>
                                     )}
 
-                                    <h2 className="text-3xl lg:text-4xl xl:text-5xl font-['Bebas_Neue'] text-slate-900 leading-tight tracking-wide">
+                                    <h2 className="text-3xl lg:text-4xl xl:text-5xl font-oswald text-slate-900 leading-tight tracking-wide">
                                         {firstImg.post_title || firstImg.title || g.label}
                                     </h2>
 

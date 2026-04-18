@@ -410,7 +410,7 @@ export default function MeetingsPage() {
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="flex items-center justify-between p-6 border-b border-slate-200">
-                                <h2 className="text-lg font-bebas text-slate-900 tracking-[0.1em]">
+                                <h2 className="text-lg font-oswald text-slate-900 tracking-[0.1em]">
                                     CREATE MEETING
                                 </h2>
                                 <button

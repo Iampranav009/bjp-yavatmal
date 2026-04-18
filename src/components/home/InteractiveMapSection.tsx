@@ -95,7 +95,7 @@ export default function InteractiveMapSection({
                                 >
                                     ← Back to Overview
                                 </button>
-                                <h2 className="text-6xl xl:text-7xl font-['Bebas_Neue'] text-navy-dark uppercase leading-[0.9] mb-8">{selectedData.name}</h2>
+                                <h2 className="text-6xl xl:text-7xl font-oswald text-navy-dark uppercase leading-[0.9] mb-8">{selectedData.name}</h2>
                                 
                                 <div className="space-y-6 w-full">
                                     <div className="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm border-l-4 border-l-saffron w-full">
@@ -130,7 +130,7 @@ export default function InteractiveMapSection({
                                     </span>
                                 )}
                                 {title && (
-                                    <h2 className="text-6xl xl:text-7xl font-['Bebas_Neue'] uppercase leading-[0.9] text-navy-dark mb-8">
+                                    <h2 className="text-6xl xl:text-7xl font-oswald uppercase leading-[0.9] text-navy-dark mb-8">
                                         {title}
                                     </h2>
                                 )}
@@ -396,7 +396,7 @@ export default function InteractiveMapSection({
                                 >
                                     ← Back to Overview
                                 </button>
-                                <h2 className="text-5xl font-['Bebas_Neue'] text-navy-dark uppercase leading-[0.9] mb-8">{selectedData.name}</h2>
+                                <h2 className="text-5xl font-oswald text-navy-dark uppercase leading-[0.9] mb-8">{selectedData.name}</h2>
                                 
                                 <div className="space-y-4 w-full">
                                     <div className="bg-white p-4 rounded-xl border border-slate-200/60 shadow-sm border-l-4 border-l-saffron w-full">
@@ -431,7 +431,7 @@ export default function InteractiveMapSection({
                                     </span>
                                 )}
                                 {title && (
-                                    <h2 className="text-5xl sm:text-6xl font-['Bebas_Neue'] uppercase leading-[0.9] text-navy-dark mb-6">
+                                    <h2 className="text-5xl sm:text-6xl font-oswald uppercase leading-[0.9] text-navy-dark mb-6">
                                         {title}
                                     </h2>
                                 )}

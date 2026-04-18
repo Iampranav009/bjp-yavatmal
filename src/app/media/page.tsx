@@ -19,7 +19,7 @@ export default function MediaPage() {
                         </span>
                         {g.label}
                     </p>
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-['Bebas_Neue'] uppercase leading-tight text-slate-900">
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-oswald uppercase leading-tight text-slate-900">
                         {m.title.replace(m.titleHighlight, "").trim()}{" "}
                         <span className="text-saffron">{m.titleHighlight}</span>
                     </h1>

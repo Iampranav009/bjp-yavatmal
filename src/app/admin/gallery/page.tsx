@@ -298,7 +298,7 @@ export default function GalleryPage() {
             <main className="p-5 lg:p-8 space-y-6">
                 {/* Top Bar */}
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                    <h2 className="text-lg font-bebas text-slate-900 tracking-[0.1em]">GALLERY IMAGES</h2>
+                    <h2 className="text-lg font-oswald text-slate-900 tracking-[0.1em]">GALLERY IMAGES</h2>
                     <div className="flex items-center gap-3">
                         <select value={filterCat} onChange={(e) => setFilterCat(e.target.value)}
                             className="bg-white border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-saffron [color-scheme:light]">
@@ -482,7 +482,7 @@ export default function GalleryPage() {
                             {/* Header */}
                             <div className="flex items-center justify-between p-5 border-b border-slate-200 flex-shrink-0">
                                 <div>
-                                    <h2 className="font-bebas text-slate-900 tracking-[0.1em] text-lg">UPLOAD MEDIA</h2>
+                                    <h2 className="font-oswald text-slate-900 tracking-[0.1em] text-lg">UPLOAD MEDIA</h2>
                                     {selectedFileItems.length > 0 && (
                                         <p className="text-[11px] text-slate-500 mt-0.5">
                                             {selectedFileItems.length} image(s) selected
@@ -807,7 +807,7 @@ export default function GalleryPage() {
                             className="w-full max-w-lg bg-white border border-slate-200 rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col"
                             onClick={(e) => e.stopPropagation()}>
                             <div className="flex items-center justify-between p-5 border-b border-slate-200 flex-shrink-0">
-                                <h2 className="font-bebas text-slate-900 tracking-[0.1em]">EDIT DETAILS</h2>
+                                <h2 className="font-oswald text-slate-900 tracking-[0.1em]">EDIT DETAILS</h2>
                                 <button onClick={() => setEditItem(null)} className="text-slate-500 hover:text-slate-900"><X size={18} /></button>
                             </div>
                             <div className="p-5 space-y-4 overflow-y-auto flex-1">

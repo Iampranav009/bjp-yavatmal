@@ -64,7 +64,7 @@ export default function DashboardStats({ stats }: { stats: StatsData }) {
                     <p className="text-slate-500 text-[10px] font-semibold uppercase tracking-[0.12em] mb-1 font-dm">
                         {card.label}
                     </p>
-                    <p className="text-3xl lg:text-4xl font-bebas text-slate-900 tracking-wider">
+                    <p className="text-3xl lg:text-4xl font-oswald text-slate-900 tracking-wider">
                         {card.value.toLocaleString()}
                     </p>
                 </motion.div>

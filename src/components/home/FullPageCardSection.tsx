@@ -75,7 +75,7 @@ export default function FullPageCardSection({
                                 <span className="text-saffron uppercase font-bold tracking-[0.2em] text-sm mb-4">
                                     {label}
                                 </span>
-                                <h2 className="text-6xl xl:text-7xl font-['Bebas_Neue'] uppercase leading-[0.9] mb-8">
+                                <h2 className="text-6xl xl:text-7xl font-oswald uppercase leading-[0.9] mb-8">
                                     {title}
                                 </h2>
                                 {children}
@@ -97,7 +97,7 @@ export default function FullPageCardSection({
                                 <span className="text-saffron uppercase font-bold tracking-[0.2em] text-sm mb-4">
                                     {label}
                                 </span>
-                                <h2 className="text-6xl xl:text-7xl font-['Bebas_Neue'] uppercase leading-[0.9] mb-8">
+                                <h2 className="text-6xl xl:text-7xl font-oswald uppercase leading-[0.9] mb-8">
                                     {title}
                                 </h2>
                                 {children}
@@ -149,7 +149,7 @@ export default function FullPageCardSection({
                         <span className="text-saffron uppercase font-bold tracking-[0.2em] text-sm mb-4 block">
                             {label}
                         </span>
-                        <h2 className="text-5xl sm:text-6xl font-['Bebas_Neue'] uppercase leading-[0.9] mb-6">
+                        <h2 className="text-5xl sm:text-6xl font-oswald uppercase leading-[0.9] mb-6">
                             {title}
                         </h2>
                         {children}

@@ -62,7 +62,7 @@ export default function OurJourneySection({
                 <span className="text-saffron uppercase font-bold tracking-[0.2em] text-sm mb-4">
                     {label}
                 </span>
-                <h2 className="text-6xl xl:text-7xl font-['Bebas_Neue'] uppercase leading-[0.9] mb-8 text-white">
+                <h2 className="text-6xl xl:text-7xl font-oswald uppercase leading-[0.9] mb-8 text-white">
                     {title}
                 </h2>
                 <p className="text-white/80 font-['DM_Sans'] text-base xl:text-lg mb-10 leading-relaxed">
