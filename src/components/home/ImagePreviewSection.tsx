@@ -122,12 +122,19 @@ export default function ImagePreviewSection() {
     const next = () => goTo((current + 1) % images.length);
 
     // Don't render anything if no images or still loading
-    if (loading || images.length === 0) return null;
+    // Show a full-height placeholder while loading so the stack card is never empty
+    if (loading) {
+        return (
+            <section className="relative w-full h-full min-h-screen overflow-hidden bg-slate-200 animate-pulse" />
+        );
+    }
+
+    if (images.length === 0) return null;
 
     const isSlideshow = images.length > 1;
 
     return (
-        <section className="relative w-full overflow-hidden" style={{ height: "min(70vh, 600px)" }}>
+        <section className="relative w-full h-full min-h-screen overflow-hidden">
             <AnimatePresence mode="wait">
                 <motion.div
                     key={current}

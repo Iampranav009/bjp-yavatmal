@@ -1,18 +1,26 @@
 "use client";
 
+import { useRef } from "react";
 import { motion } from "framer-motion";
+import { useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { useLanguage } from "../../lib/LanguageContext";
 
 export default function JoinSection() {
     const { t } = useLanguage();
     const j = t("join");
+    const sectionRef = useRef<HTMLElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start end", "end start"],
+    });
+    const bgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
 
     return (
-        <section className="relative min-h-[80vh] w-full flex items-center overflow-hidden py-24 z-30 bg-[#ebd7a5]">
-            <div
-                className="absolute inset-0 w-full h-full pointer-events-none bg-cover bg-center md:bg-[center_left]"
-                style={{ backgroundImage: 'url("/images/sections/join-journey.jpg")' }}
+        <section ref={sectionRef} className="relative min-h-[80vh] w-full flex items-center overflow-hidden py-24 z-30 bg-[#ebd7a5]">
+            <motion.div
+                style={{ y: bgY, backgroundImage: 'url("/images/sections/join-journey.jpg")' }}
+                className="absolute inset-0 w-full h-full pointer-events-none bg-cover bg-center md:bg-[center_left] scale-110 will-change-transform"
             />
             <div className="absolute inset-0 bg-gradient-to-r md:from-transparent from-[#ebd7a5]/60 via-[#ebd7a5]/80 md:via-[#ebd7a5]/90 to-[#ebd7a5]" />
 

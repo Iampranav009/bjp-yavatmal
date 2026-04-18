@@ -1,7 +1,8 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 interface OurJourneySectionProps {
     label: string;
@@ -16,21 +17,36 @@ export default function OurJourneySection({
     description,
     readMore,
 }: OurJourneySectionProps) {
+    const sectionRef = useRef<HTMLElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start end", "end start"],
+    });
+    // Background moves at 40% speed → classic parallax depth
+    const bgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+
     return (
         <section
+            ref={sectionRef}
             id="our-journey"
             className="relative w-full min-h-screen flex items-center overflow-hidden"
         >
-            {/* Full-bleed background image */}
-            <Image
-                src="/images/sections/our-journey.jpg"
-                alt="Our Journey"
-                fill
-                className="object-cover object-center"
-                quality={90}
-                priority={false}
-                unoptimized={true}
-            />
+            {/* Full-bleed background image with parallax */}
+            <motion.div
+                style={{ y: bgY }}
+                className="absolute inset-0 will-change-transform"
+                aria-hidden="true"
+            >
+                <Image
+                    src="/images/sections/our-journey.jpg"
+                    alt="Our Journey"
+                    fill
+                    className="object-cover object-center scale-110"
+                    quality={90}
+                    priority={false}
+                    unoptimized={true}
+                />
+            </motion.div>
 
             {/* Dark gradient overlay – stronger on left, fades to right */}
             <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/10" />

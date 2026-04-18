@@ -2,8 +2,7 @@
 
 import HeroSlider from "../components/home/HeroSlider";
 import MarqueeStrip from "../components/shared/MarqueeStrip";
-import FullPageCardSection from "../components/home/FullPageCardSection";
-import InteractiveMapSection from "../components/home/InteractiveMapSection";
+import MapSection from "../components/MapSection/MapSection";
 import AchievementsSlider from "../components/home/AchievementsSlider";
 import StatsSection from "../components/home/StatsSection";
 import LeaderSlider from "../components/home/LeaderSlider";
@@ -11,6 +10,7 @@ import GalleryGrid from "../components/home/GalleryGrid";
 import JoinSection from "../components/home/JoinSection";
 import OurJourneySection from "../components/home/OurJourneySection";
 import ImagePreviewSection from "../components/home/ImagePreviewSection";
+import ScrollStackCard from "../components/shared/ScrollStackCard";
 import { useLanguage } from "../lib/LanguageContext";
 
 export default function Home() {
@@ -19,76 +19,81 @@ export default function Home() {
 
   return (
     <>
-      <HeroSlider />
+      {/*
+       * ─── GSAP SCROLL-STACK LAYOUT ────────────────────────────────────────────
+       *
+       *  How it works:
+       *  • Each ScrollStackCard has an outer div of height 200vh (100vh visible
+       *    + 100vh scroll-space for the exit animation).
+       *  • The inner div is position:sticky top:0, height:100vh.
+       *  • GSAP ScrollTrigger scrubs scale 1→0.88 and opacity 1→0.45 on the
+       *    inner div as the outer wrapper scrolls off-screen.
+       *  • The next card (higher z-index) slides up naturally and covers it.
+       *  • The last card (isLast) keeps height:100vh with no outgoing animation.
+       *
+       *  MarqueeStrip sits between the Hero card and Map card in normal flow —
+       *  it scrolls away naturally before the sticky Map card takes over.
+       * ─────────────────────────────────────────────────────────────────────────
+       */}
 
+      {/* ① Hero */}
+      <ScrollStackCard zIndex={10}>
+        <HeroSlider />
+      </ScrollStackCard>
+
+      {/*
+       * MarqueeStrip lives in normal flow between cards.
+       * It scrolls off as the user reaches the Map card.
+       */}
       <MarqueeStrip />
 
-      <InteractiveMapSection
-        id="about"
-        bgImage="/images/sections/bjp-crowd.jpg"
-        label={hp.aboutLabel}
-        title={hp.aboutTitle}
-      >
-        <p className="text-slate-900/70 font-['DM_Sans'] text-base xl:text-lg mb-8 max-w-md leading-relaxed">
-          {hp.aboutDescription}
-        </p>
+      {/* ② Map / About */}
+      <ScrollStackCard zIndex={20}>
+        <MapSection
+          id="about"
+          bgImage="/images/sections/bjp-crowd.jpg"
+        />
+      </ScrollStackCard>
 
-        <div className="grid grid-cols-2 gap-x-10 gap-y-8 mb-10 w-full">
-          <div className="flex items-center gap-4">
-            <div className="w-1.5 h-12 bg-saffron rounded-full"></div>
-            <div className="flex flex-col">
-              <span className="text-2xl font-bold text-slate-900">16+</span>
-              <span className="text-slate-900/50 text-xs uppercase tracking-wider font-semibold">{hp.activeService || "सेवेची वर्षे"}</span>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="w-1.5 h-12 bg-india-green rounded-full"></div>
-            <div className="flex flex-col">
-              <span className="text-2xl font-bold text-slate-900">5L+</span>
-              <span className="text-slate-900/50 text-xs uppercase tracking-wider font-semibold">{hp.beneficiaries || "लाभार्थी"}</span>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="w-1.5 h-12 bg-saffron rounded-full"></div>
-            <div className="flex flex-col">
-              <span className="text-2xl font-bold text-slate-900">₹800CR</span>
-              <span className="text-slate-900/50 text-xs uppercase tracking-wider font-semibold">{hp.developmentFund || "विकास निधी"}</span>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="w-1.5 h-12 bg-india-green rounded-full"></div>
-            <div className="flex flex-col">
-              <span className="text-2xl font-bold text-slate-900">300+</span>
-              <span className="text-slate-900/50 text-xs uppercase tracking-wider font-semibold">{hp.completedProjects || "पूर्ण झालेले प्रकल्प"}</span>
-            </div>
-          </div>
-        </div>
-
-        <button className="bg-transparent border-2 border-saffron text-saffron hover:bg-saffron hover:text-white px-8 py-3 rounded-full font-bold transition-all w-fit mt-auto">
-          {hp.learnMore} <span className="ml-2">→</span>
-        </button>
-      </InteractiveMapSection>
-
-      <div className="mt-8">
+      {/* ③ Homepage image slideshow */}
+      <ScrollStackCard zIndex={30}>
         <ImagePreviewSection />
-      </div>
+      </ScrollStackCard>
 
-      <OurJourneySection
-        label={hp.journeyLabel}
-        title={hp.journeyTitle}
-        description={hp.journeyDescription}
-        readMore={hp.journeyReadMore}
-      />
+      {/* ④ Our Journey — bg parallax handled inside the component */}
+      <ScrollStackCard zIndex={40}>
+        <OurJourneySection
+          label={hp.journeyLabel}
+          title={hp.journeyTitle}
+          description={hp.journeyDescription}
+          readMore={hp.journeyReadMore}
+        />
+      </ScrollStackCard>
 
-      <AchievementsSlider />
+      {/* ⑤ Achievements */}
+      <ScrollStackCard zIndex={50}>
+        <AchievementsSlider />
+      </ScrollStackCard>
 
-      <StatsSection />
+      {/* ⑥ Stats */}
+      <ScrollStackCard zIndex={60}>
+        <StatsSection />
+      </ScrollStackCard>
 
-      <LeaderSlider />
+      {/* ⑦ Leaders */}
+      <ScrollStackCard zIndex={70}>
+        <LeaderSlider />
+      </ScrollStackCard>
 
-      <GalleryGrid />
+      {/* ⑧ Gallery */}
+      <ScrollStackCard zIndex={80}>
+        <GalleryGrid />
+      </ScrollStackCard>
 
-      <JoinSection />
+      {/* ⑨ Join — last card, stays full-scale */}
+      <ScrollStackCard zIndex={90} isLast>
+        <JoinSection />
+      </ScrollStackCard>
     </>
   );
 }
