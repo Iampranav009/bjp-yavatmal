@@ -31,6 +31,7 @@ import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import SocialBar from "../components/shared/SocialBar";
 import { LanguageProvider } from "../lib/LanguageContext";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function RootLayout({
   children,
@@ -63,6 +64,7 @@ export default function RootLayout({
             <div className="flex-1 bg-white h-full"></div>
             <div className="flex-1 bg-india-green h-full"></div>
           </div>
+          <Analytics />
         </LanguageProvider>
       </body>
     </html>
