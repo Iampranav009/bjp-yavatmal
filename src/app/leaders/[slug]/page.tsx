@@ -6,7 +6,7 @@ import { Phone, Mail, MapPin, ExternalLink, Award, Users, Calendar } from "lucid
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
-import { useLanguage } from "../../lib/LanguageContext";
+import { useLanguage } from "@/lib/LanguageContext";
 
 // ── Leader data (can be moved to DB later) ─────────────────────
 export const LEADERS: Record<string, LeaderProfile> = {
