@@ -38,8 +38,8 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${oswald.variable} ${dmSans.variable} ${tiroHindi.variable}`}>
-      <body className="font-sans antialiased text-slate-900 bg-[#F4F6F8]">
+    <html lang="en" className={`${oswald.variable} ${dmSans.variable} ${tiroHindi.variable}`} suppressHydrationWarning>
+      <body className="font-sans antialiased text-slate-900 bg-[#F4F6F8]" suppressHydrationWarning>
         <LanguageProvider>
           {/* Tricolor top strip */}
           <div className="fixed top-0 z-[60] h-1 w-full flex">

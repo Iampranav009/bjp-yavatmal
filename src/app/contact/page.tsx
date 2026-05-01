@@ -63,7 +63,7 @@ export default function ContactPage() {
                             <div>
                                 <h3 className="text-slate-900 font-oswald text-2xl tracking-wide mb-1">{c.callUs}</h3>
                                 <p className="text-slate-600 font-['DM_Sans'] leading-relaxed text-sm">
-                                    +91 98765 43210<br />{c.hours}
+                                    +91 72639 99191<br />{c.hours}
                                 </p>
                             </div>
                         </motion.div>

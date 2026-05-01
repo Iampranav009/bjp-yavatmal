@@ -14,9 +14,9 @@ export async function GET() {
             return NextResponse.json({
                 data: {
                     id: 999,
-                    name: "Demo Admin",
+                    name: "Demo Super Admin",
                     email: "demo@bjpyavatmal.in",
-                    role: "admin",
+                    role: "super_admin",
                 },
             });
         }

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, Calendar, FileText, MessageCircle, ChevronDown, Globe } from "lucide-react";
+import { Phone, Calendar, FileText, MessageCircle, ChevronDown, Globe, Download } from "lucide-react";
 import { getBirthdayColor, type MemberWithDaysLeft } from "@/lib/birthday";
 import {
     type WishLanguage,
@@ -12,6 +12,7 @@ import {
     renderTemplate,
     getWhatsAppUrl,
 } from "@/lib/birthdayTemplates";
+import { shareLetterViaWhatsApp, downloadBirthdayPDF } from "@/components/admin/BirthdayLetterPDF";
 import { format } from "date-fns";
 
 interface BirthdayNotificationCardProps {
@@ -174,8 +175,36 @@ export default function BirthdayNotificationCard({
                             className="flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded-lg bg-saffron/10 border border-saffron/20 text-saffron hover:bg-saffron/20 transition-all"
                         >
                             <FileText size={12} />
-                            Generate Letter
+                            Letter
                         </button>
+
+                        {/* Download PDF button */}
+                        <button
+                            onClick={() => downloadBirthdayPDF(member.name, member.position, member.birth_date)}
+                            className="flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-600 hover:bg-blue-500/20 transition-all"
+                            title="Download PDF"
+                        >
+                            <Download size={12} />
+                            PDF
+                        </button>
+
+                        {/* WhatsApp + PDF button */}
+                        {member.mobile && (
+                            <button
+                                onClick={() => shareLetterViaWhatsApp(
+                                    member.name,
+                                    member.position,
+                                    member.birth_date,
+                                    member.mobile!,
+                                    undefined,
+                                )}
+                                className="flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 hover:bg-emerald-500/20 transition-all"
+                                title="Send PDF + Message via WhatsApp"
+                            >
+                                <MessageCircle size={12} />
+                                WA + PDF
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>

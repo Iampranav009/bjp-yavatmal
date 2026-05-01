@@ -91,6 +91,12 @@ export async function POST(request: Request) {
             );
         }
 
+        if (admin.role !== 'super_admin') {
+            const { logAdminAction } = await import('@/lib/admin-actions');
+            await logAdminAction(admin.userId, 'CREATE', 'member', null, { name, wing: finalWing, position: finalPosition, mobile, birth_date, birth_year, address, photo_url, notes });
+            return NextResponse.json({ message: 'Action submitted for Super Admin approval' }, { status: 202 });
+        }
+
         const [result] = await pool.execute<ResultSetHeader>(
             `INSERT INTO members (name, wing, position, mobile, birth_date, birth_year, address, photo_url, notes)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,

@@ -36,6 +36,7 @@ export default function Navbar() {
                 { name: nav.blog, href: "/articles" },
             ],
         },
+        // { name: "Events", href: "/events" }, // HIDDEN FOR NOW
         { name: nav.bjpLive, href: "/bjp-live" },
     ];
 

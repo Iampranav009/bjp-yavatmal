@@ -62,9 +62,10 @@ const styles = StyleSheet.create({
         borderBottomColor: SAFFRON,
     },
     logo: {
-        width: 55,
-        height: 55,
-        marginRight: 14,
+        width: 65,
+        height: 65,
+        marginRight: 16,
+        objectFit: "contain",
     },
     headerTextBlock: {
         flex: 1,
@@ -171,17 +172,29 @@ const styles = StyleSheet.create({
     tableCell: {
         fontSize: 9,
         color: "#333",
+        flexWrap: "wrap",
+        flexShrink: 1,
     },
     tableCellMarathi: {
         fontSize: 9,
         fontFamily: "NotoSansDevanagari",
         color: "#333",
+        flexWrap: "wrap",
+        flexShrink: 1,
     },
-    colSr: { width: "8%" },
-    colName: { width: "28%" },
-    colPosition: { width: "24%" },
+    tableCellName: {
+        fontSize: 9,
+        fontFamily: "NotoSansDevanagari",
+        color: "#1a1a1a",
+        fontWeight: 700,
+        flexWrap: "wrap",
+        flexShrink: 1,
+    },
+    colSr: { width: "7%" },
+    colName: { width: "30%" },
+    colPosition: { width: "25%" },
     colPhone: { width: "20%" },
-    colEmail: { width: "20%" },
+    colEmail: { width: "18%" },
     // Footer
     footerSection: {
         marginTop: 35,
@@ -237,6 +250,7 @@ interface TaskPDFProps {
         phone: string;
         email: string;
     }>;
+    logoSrc?: string;
 }
 
 const getPriorityStyle = (priority: string) => {
@@ -262,12 +276,13 @@ const formatDateSafe = (dateStr: string) => {
     }
 };
 
-// BJP logo as base64 data URL — we'll use a placeholder for server-side
-const BJP_LOGO_URL = "/images/logos/bjp-logo.png";
+// Default logo URL for client-side rendering
+const DEFAULT_LOGO_URL = "/images/logos/bjp-logo.png";
 
-export function TaskPDFDocument({ task, targetPositions, members }: TaskPDFProps) {
+export function TaskPDFDocument({ task, targetPositions, members, logoSrc }: TaskPDFProps) {
     const priorityStyle = getPriorityStyle(task.priority);
     const today = format(new Date(), "dd MMMM yyyy");
+    const resolvedLogo = logoSrc || DEFAULT_LOGO_URL;
 
     return (
         <Document>
@@ -277,7 +292,7 @@ export function TaskPDFDocument({ task, targetPositions, members }: TaskPDFProps
 
                 {/* Header */}
                 <View style={styles.headerContainer}>
-                    <Image style={styles.logo} src={BJP_LOGO_URL} />
+                    <Image style={styles.logo} src={resolvedLogo} />
                     <View style={styles.headerTextBlock}>
                         <Text style={styles.headerTitle}>
                             BGP Smart Web-Based Task Assignment System
@@ -365,7 +380,7 @@ export function TaskPDFDocument({ task, targetPositions, members }: TaskPDFProps
                             {members.map((m, i) => (
                                 <View key={i} style={styles.tableRow}>
                                     <Text style={[styles.tableCell, styles.colSr]}>{i + 1}</Text>
-                                    <Text style={[styles.tableCell, styles.colName]}>{m.name}</Text>
+                                    <Text style={[styles.tableCellName, styles.colName]}>{m.name}</Text>
                                     <Text style={[styles.tableCellMarathi, styles.colPosition]}>{m.position}</Text>
                                     <Text style={[styles.tableCell, styles.colPhone]}>{m.phone || "—"}</Text>
                                     <Text style={[styles.tableCell, styles.colEmail]}>{m.email || "—"}</Text>
@@ -416,6 +431,7 @@ export interface TaskPDFInput {
         phone: string;
         email: string;
     }>;
+    logoSrc?: string;
 }
 
 /**

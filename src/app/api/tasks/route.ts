@@ -81,6 +81,12 @@ export async function POST(request: Request) {
 
         const validPriority = ['low', 'medium', 'high', 'urgent'].includes(priority) ? priority : 'medium';
 
+        if (admin.role !== 'super_admin') {
+            const { logAdminAction } = await import('@/lib/admin-actions');
+            await logAdminAction(admin.userId, 'CREATE', 'task', null, { ...body, referenceId, validPriority });
+            return NextResponse.json({ message: 'Action submitted for Super Admin approval' }, { status: 202 });
+        }
+
         // Insert task
         const [result] = await pool.execute<ResultSetHeader>(
             `INSERT INTO tasks (title, description, priority, start_date, due_date, reference_id, created_by)

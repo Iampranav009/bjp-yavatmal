@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import pool from '@/lib/db';
 import { getAdminFromRequest } from '@/lib/auth';
 import { RowDataPacket, ResultSetHeader } from 'mysql2';
+import path from 'path';
+import fs from 'fs';
 
 export async function POST(
     _request: Request,
@@ -34,9 +36,9 @@ export async function POST(
         );
         const targetPositions = positions.map((p: RowDataPacket) => p.position);
 
-        // Fetch assigned members
+        // Fetch assigned members with full name
         const [members] = await pool.execute<RowDataPacket[]>(
-            `SELECT m.name, m.position, m.mobile, m.address
+            `SELECT COALESCE(TRIM(m.name), '—') AS name, m.position, m.mobile, m.address
              FROM task_members tm
              JOIN members m ON tm.member_id = m.id
              WHERE tm.task_id = ?
@@ -46,6 +48,11 @@ export async function POST(
 
         // Generate PDF using server-side rendering
         const { renderTaskPDFToBuffer } = await import('@/components/admin/TaskPDF');
+
+        // Resolve BJP logo → read as base64 data URL (most reliable for server-side PDF)
+        const logoPath = path.join(process.cwd(), 'public', 'images', 'logos', 'bjp-logo.png');
+        const logoBase64 = fs.readFileSync(logoPath).toString('base64');
+        const logoSrc = `data:image/png;base64,${logoBase64}`;
 
         const pdfBuffer = await renderTaskPDFToBuffer({
             task: {
@@ -64,6 +71,7 @@ export async function POST(
                 phone: m.mobile || '',
                 email: '',
             })),
+            logoSrc,
         });
 
         // Update task record with PDF info

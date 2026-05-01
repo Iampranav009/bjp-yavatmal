@@ -7,6 +7,14 @@ const nextConfig = {
                 protocol: "https",
                 hostname: "images.unsplash.com",
             },
+            {
+                protocol: "https",
+                hostname: "bjpyavatmal-uploads-2026.s3.ap-south-1.amazonaws.com",
+            },
+            {
+                protocol: "https",
+                hostname: "*.amazonaws.com",
+            }
         ],
     },
 };

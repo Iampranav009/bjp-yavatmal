@@ -19,16 +19,16 @@ export async function POST(request: Request) {
             const token = signToken({
                 userId: 999,
                 email: 'demo@bjpyavatmal.in',
-                role: 'admin',
+                role: 'super_admin',
             });
 
             const cookie = setAuthCookie(token);
             const response = NextResponse.json({
                 data: {
                     id: 999,
-                    name: 'Demo Admin',
+                    name: 'Demo Super Admin',
                     email: 'demo@bjpyavatmal.in',
-                    role: 'admin',
+                    role: 'super_admin',
                 },
                 message: 'Demo login successful',
             });

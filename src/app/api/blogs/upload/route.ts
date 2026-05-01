@@ -1,9 +1,18 @@
 import { NextResponse } from 'next/server';
 import { getAdminFromRequest } from '@/lib/auth';
-import { writeFile, mkdir } from 'fs/promises';
+import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import path from 'path';
 
-const UPLOAD_DIR = path.join(process.cwd(), 'public', 'uploads', 'blogs');
+const s3Client = new S3Client({
+    region: process.env.AWS_REGION || 'ap-south-1',
+    credentials: {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
+    }
+});
+
+const BUCKET_NAME = process.env.AWS_S3_BUCKET_NAME || '';
+
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ALLOWED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/heic', 'image/heif'];
 
@@ -47,19 +56,26 @@ export async function POST(request: Request) {
             );
         }
 
-        // Ensure upload directory exists
-        await mkdir(UPLOAD_DIR, { recursive: true });
+        if (!BUCKET_NAME || !process.env.AWS_ACCESS_KEY_ID) {
+            return NextResponse.json({ error: 'AWS S3 is not configured. Please add AWS credentials to .env' }, { status: 500 });
+        }
 
         // Generate unique filename
         const baseName = sanitizeFilename(path.basename(file.name, ext));
-        const uniqueName = `blog_${baseName}_${Date.now()}${ext}`;
-        const filePath = path.join(UPLOAD_DIR, uniqueName);
+        const uniqueName = `uploads/blogs/blog_${baseName}_${Date.now()}${ext}`;
 
-        // Write file
         const buffer = Buffer.from(await file.arrayBuffer());
-        await writeFile(filePath, buffer);
 
-        const fileUrl = `/uploads/blogs/${uniqueName}`;
+        await s3Client.send(
+            new PutObjectCommand({
+                Bucket: BUCKET_NAME,
+                Key: uniqueName,
+                Body: buffer,
+                ContentType: file.type,
+            })
+        );
+
+        const fileUrl = `https://${BUCKET_NAME}.s3.${process.env.AWS_REGION || 'ap-south-1'}.amazonaws.com/${uniqueName}`;
 
         return NextResponse.json({
             data: { file_url: fileUrl, file_name: uniqueName },

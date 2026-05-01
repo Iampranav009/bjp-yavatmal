@@ -84,7 +84,7 @@ export default function JoinSection() {
                         </Link>
 
                         <Link href="https://membership.bjp.org/en/home/login" target="_blank" rel="noopener noreferrer" className="flex-1">
-                            <button className="w-full py-4 px-2 text-sm sm:text-xs md:text-sm font-bold tracking-widest text-slate-900 transition-all shadow-md active:scale-95 bg-[#4a433a] hover:bg-[#342f28] flex justify-center items-center text-center h-full uppercase whitespace-pre-line">
+                            <button className="w-full py-4 px-2 text-sm sm:text-xs md:text-sm font-bold tracking-widest text-white transition-all shadow-md active:scale-95 bg-[#4a433a] hover:bg-[#342f28] flex justify-center items-center text-center h-full uppercase whitespace-pre-line">
                                 {j.becomeMember}
                             </button>
                         </Link>

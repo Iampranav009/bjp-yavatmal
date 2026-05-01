@@ -37,7 +37,12 @@ export default function LoginPage() {
                 return;
             }
 
-            router.push("/admin/dashboard");
+            // Route based on role
+            if (data.data?.role === 'super_admin') {
+                router.push("/admin/dashboard");
+            } else {
+                router.push("/admin/a/dashboard");
+            }
         } catch {
             setError("Network error. Please try again.");
             setShake(true);
@@ -152,14 +157,11 @@ export default function LoginPage() {
 
                         <button
                             type="button"
-                            onClick={() => {
-                                setEmail("demo@bjpyavatmal.in");
-                                setPassword("demo123");
-                            }}
+                            onClick={() => router.push("/")}
                             disabled={loading}
                             className="w-full bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 font-bold py-3.5 rounded-lg transition-all active:scale-[0.98] font-oswald text-lg tracking-[0.1em] flex items-center justify-center shadow-sm"
                         >
-                            Use Demo Credentials
+                            Go to Home Screen
                         </button>
                     </div>
                 </form>

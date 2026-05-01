@@ -6,12 +6,15 @@ import { RowDataPacket } from 'mysql2';
 export async function GET(request: NextRequest) {
     try {
         const { searchParams } = new URL(request.url);
-        const target = searchParams.get('target'); // 'media' or 'video'
-        const featured = searchParams.get('featured'); // 'true'
-        const homepage = searchParams.get('homepage'); // 'true' → homepage section images
+        const target = searchParams.get('target');         // 'media' or 'video'
+        const featured = searchParams.get('featured');     // 'true'
+        const homepage = searchParams.get('homepage');     // 'true' → homepage section images
+        const team = searchParams.get('team');             // e.g. 'Yuva Morcha'
+        const mandal = searchParams.get('mandal');         // e.g. 'Pandharkawda'
+        const mediaType = searchParams.get('media_type'); // 'press_notes' | 'print_media' | 'electronic_media'
 
         let query = 'SELECT * FROM gallery_images WHERE 1=1';
-        const params: string[] = [];
+        const params: (string | number)[] = [];
 
         if (homepage === 'true') {
             query += ' AND show_on_homepage = 1';
@@ -22,6 +25,18 @@ export async function GET(request: NextRequest) {
             }
             if (featured === 'true') {
                 query += ' AND is_featured = TRUE';
+            }
+            if (team) {
+                query += ' AND team = ?';
+                params.push(team);
+            }
+            if (mandal) {
+                query += ' AND mandal = ?';
+                params.push(mandal);
+            }
+            if (mediaType) {
+                query += ' AND media_type = ?';
+                params.push(mediaType);
             }
         }
 

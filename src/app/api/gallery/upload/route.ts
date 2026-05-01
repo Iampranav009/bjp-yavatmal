@@ -41,6 +41,9 @@ export async function POST(request: Request) {
         const homepageTextPosition = (formData.get('homepage_text_position') as string) || 'left';
         const homepageTextColor = (formData.get('homepage_text_color') as string) || 'white';
         const homepageTextBold = formData.get('homepage_text_bold') === 'true';
+        const team = (formData.get('team') as string) || null;
+        const mandal = (formData.get('mandal') as string) || null;
+        const mediaType = (formData.get('media_type') as string) || null;
 
         if (!file) {
             console.error('Upload 400: No file provided');
@@ -68,25 +71,43 @@ export async function POST(request: Request) {
             );
         }
 
-        // Ensure upload directory exists
-        await mkdir(UPLOAD_DIR, { recursive: true });
+        // AWS S3 Setup
+        const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
+        const s3Client = new S3Client({
+            region: process.env.AWS_REGION || 'ap-south-1',
+            credentials: {
+                accessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
+                secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
+            }
+        });
+        const BUCKET_NAME = process.env.AWS_S3_BUCKET_NAME || '';
+
+        if (!BUCKET_NAME || !process.env.AWS_ACCESS_KEY_ID) {
+            return NextResponse.json({ error: 'AWS S3 is not configured' }, { status: 500 });
+        }
 
         // Generate unique filename
         const baseName = sanitizeFilename(path.basename(file.name, ext));
-        const uniqueName = `${baseName}_${Date.now()}${ext}`;
-        const filePath = path.join(UPLOAD_DIR, uniqueName);
+        const uniqueName = `uploads/gallery/${category}/${baseName}_${Date.now()}${ext}`;
 
-        // Write file
+        // Upload to S3
         const buffer = Buffer.from(await file.arrayBuffer());
-        await writeFile(filePath, buffer);
+        await s3Client.send(
+            new PutObjectCommand({
+                Bucket: BUCKET_NAME,
+                Key: uniqueName,
+                Body: buffer,
+                ContentType: file.type,
+            })
+        );
 
-        const fileUrl = `/uploads/${uniqueName}`;
+        const fileUrl = `https://${BUCKET_NAME}.s3.${process.env.AWS_REGION || 'ap-south-1'}.amazonaws.com/${uniqueName}`;
 
         // Save to database with new fields
         const [result] = await pool.execute<ResultSetHeader>(
-            `INSERT INTO gallery_images (title, file_name, file_url, category, post_title, post_description, post_link, display_target, is_featured, batch_id, show_on_homepage, homepage_text_title, homepage_text_description, homepage_text_position, homepage_text_color, homepage_text_bold)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-            [title || uniqueName, uniqueName, fileUrl, category, postTitle, postDescription, postLink, displayTarget, isFeatured ? 1 : 0, batchId, showOnHomepage ? 1 : 0, homepageTextTitle, homepageTextDescription, homepageTextPosition, homepageTextColor, homepageTextBold ? 1 : 0]
+            `INSERT INTO gallery_images (title, file_name, file_url, category, post_title, post_description, post_link, display_target, is_featured, batch_id, show_on_homepage, homepage_text_title, homepage_text_description, homepage_text_position, homepage_text_color, homepage_text_bold, team, mandal, media_type)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            [title || path.basename(uniqueName), path.basename(uniqueName), fileUrl, category, postTitle, postDescription, postLink, displayTarget, isFeatured ? 1 : 0, batchId, showOnHomepage ? 1 : 0, homepageTextTitle, homepageTextDescription, homepageTextPosition, homepageTextColor, homepageTextBold ? 1 : 0, team, mandal, mediaType]
         );
 
         return NextResponse.json({

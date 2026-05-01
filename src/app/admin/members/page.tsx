@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 import {
     Search,
     Plus,
@@ -36,6 +37,8 @@ interface Member {
 }
 
 export default function MembersPage() {
+    const pathname = usePathname() || "";
+    const isPanel = pathname.startsWith("/admin/a");
     const [members, setMembers] = useState<Member[]>([]);
     const [search, setSearch] = useState("");
     const [positionFilter, setPositionFilter] = useState("");
@@ -155,6 +158,23 @@ export default function MembersPage() {
             toast.success("Export downloaded!");
         } catch {
             toast.error("Export failed");
+        }
+    };
+
+    const handleDownloadTemplate = async () => {
+        try {
+            const res = await fetch("/api/members/template");
+            if (!res.ok) throw new Error("Failed");
+            const blob = await res.blob();
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "Members_Import_Template.xlsx";
+            link.click();
+            URL.revokeObjectURL(url);
+            toast.success("Template downloaded!");
+        } catch {
+            toast.error("Template download failed");
         }
     };
 
@@ -288,24 +308,36 @@ export default function MembersPage() {
                             Add Member
                         </button>
 
-                        <label className="flex items-center gap-1.5 px-4 py-2.5 bg-white/5 hover:bg-white/10 border border-slate-200 text-slate-900 text-sm font-medium rounded-lg transition-colors cursor-pointer">
-                            <Upload size={14} />
-                            Import
-                            <input
-                                type="file"
-                                accept=".xlsx,.xls,.csv"
-                                className="hidden"
-                                onChange={handleImport}
-                            />
-                        </label>
+                        {!isPanel && (
+                            <>
+                                <label className="flex items-center gap-1.5 px-4 py-2.5 bg-white/5 hover:bg-white/10 border border-slate-200 text-slate-900 text-sm font-medium rounded-lg transition-colors cursor-pointer">
+                                    <Upload size={14} />
+                                    Import
+                                    <input
+                                        type="file"
+                                        accept=".xlsx,.xls,.csv"
+                                        className="hidden"
+                                        onChange={handleImport}
+                                    />
+                                </label>
 
-                        <button
-                            onClick={handleExport}
-                            className="flex items-center gap-1.5 px-4 py-2.5 bg-white/5 hover:bg-white/10 border border-slate-200 text-slate-900 text-sm font-medium rounded-lg transition-colors"
-                        >
-                            <Download size={14} />
-                            Export
-                        </button>
+                                <button
+                                    onClick={handleExport}
+                                    className="flex items-center gap-1.5 px-4 py-2.5 bg-white/5 hover:bg-white/10 border border-slate-200 text-slate-900 text-sm font-medium rounded-lg transition-colors"
+                                >
+                                    <Download size={14} />
+                                    Export
+                                </button>
+
+                                <button
+                                    onClick={handleDownloadTemplate}
+                                    className="flex items-center gap-1.5 px-4 py-2.5 bg-white/5 hover:bg-white/10 border border-slate-200 text-slate-900 text-sm font-medium rounded-lg transition-colors"
+                                >
+                                    <Download size={14} />
+                                    Template
+                                </button>
+                            </>
+                        )}
                     </div>
                 </div>
 
@@ -441,16 +473,20 @@ export default function MembersPage() {
                                                                         <Phone size={14} /> Copy Mobile
                                                                     </button>
                                                                 )}
-                                                                <div className="my-1 border-t border-slate-200" />
-                                                                <button
-                                                                    onClick={() => {
-                                                                        setMenuOpen(null);
-                                                                        setDeleteConfirm(member.id);
-                                                                    }}
-                                                                    className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-red-400 hover:bg-red-500/10 transition-colors"
-                                                                >
-                                                                    <Trash2 size={14} /> Delete
-                                                                </button>
+                                                                {!isPanel && (
+                                                                    <>
+                                                                        <div className="my-1 border-t border-slate-200" />
+                                                                        <button
+                                                                            onClick={() => {
+                                                                                setMenuOpen(null);
+                                                                                setDeleteConfirm(member.id);
+                                                                            }}
+                                                                            className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-red-400 hover:bg-red-500/10 transition-colors"
+                                                                        >
+                                                                            <Trash2 size={14} /> Delete
+                                                                        </button>
+                                                                    </>
+                                                                )}
                                                             </div>
                                                         </>
                                                     )}

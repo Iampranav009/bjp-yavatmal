@@ -28,6 +28,9 @@ interface GalleryImage {
     homepage_text_position: "left" | "center" | "right";
     homepage_text_color: string;
     homepage_text_bold: boolean;
+    team?: string;
+    mandal?: string;
+    media_type?: string;
 }
 
 // Represents a file selected for upload with its preview and featured status
@@ -66,6 +69,9 @@ export default function GalleryPage() {
     const [uploadHpPosition, setUploadHpPosition] = useState<"left"|"center"|"right">("left");
     const [uploadHpColor, setUploadHpColor] = useState("white");
     const [uploadHpBold, setUploadHpBold] = useState(false);
+    const [uploadTeam, setUploadTeam] = useState("");
+    const [uploadMandal, setUploadMandal] = useState("");
+    const [uploadMediaType, setUploadMediaType] = useState("");
 
     // Edit modal state
     const [editItem, setEditItem] = useState<GalleryImage | null>(null);
@@ -106,6 +112,9 @@ export default function GalleryPage() {
         setUploadHpPosition("left");
         setUploadHpColor("white");
         setUploadHpBold(false);
+        setUploadTeam("");
+        setUploadMandal("");
+        setUploadMediaType("");
     };
 
     const handleFilesSelected = (files: FileList | null) => {
@@ -175,6 +184,9 @@ export default function GalleryPage() {
             fd.append("homepage_text_position", uploadHpPosition);
             fd.append("homepage_text_color", uploadHpColor);
             fd.append("homepage_text_bold", String(uploadHpBold));
+            fd.append("team", uploadTeam);
+            fd.append("mandal", uploadMandal);
+            fd.append("media_type", uploadMediaType);
             try {
                 const res = await fetch("/api/gallery/upload", { method: "POST", body: fd });
                 if (res.ok) {
@@ -246,6 +258,9 @@ export default function GalleryPage() {
                     homepage_text_position: editItem.homepage_text_position,
                     homepage_text_color: editItem.homepage_text_color,
                     homepage_text_bold: editItem.homepage_text_bold,
+                    team: editItem.team || null,
+                    mandal: editItem.mandal || null,
+                    media_type: editItem.media_type || null,
                 }),
             });
             toast.success("Item updated!");
@@ -861,6 +876,39 @@ export default function GalleryPage() {
                                             <option value="homepage">Image Preview Section</option>
                                         </select>
                                     </div>
+                                </div>
+
+                                {/* Team, Mandal, Media Type (edit) */}
+                                <div className="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label className="block text-xs font-semibold text-slate-700 mb-1">Team / Wing</label>
+                                        <select value={editItem.team || ""}
+                                            onChange={(e) => setEditItem({ ...editItem, team: e.target.value })}
+                                            className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-saffron [color-scheme:light]">
+                                            <option value="">None</option>
+                                            {["Core Team","Yuva Morcha","Mahila Morcha","Chemist Front","Student Front","City South","City North","District Committee"].map(t => <option key={t} value={t}>{t}</option>)}
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-semibold text-slate-700 mb-1">Mandal</label>
+                                        <select value={editItem.mandal || ""}
+                                            onChange={(e) => setEditItem({ ...editItem, mandal: e.target.value })}
+                                            className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-saffron [color-scheme:light]">
+                                            <option value="">None</option>
+                                            {["Pandharkawda","Kharwada","Yavatmal","Vani","Wani","Darwha","Pusad","Umarkhed","Mahagaon","Kalamb","Arni","Digras","Ralegaon","Maregaon","Zari Jamni","Ghatanji","Ner"].map(m => <option key={m} value={m}>{m}</option>)}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label className="block text-xs font-semibold text-slate-700 mb-1">Media Type</label>
+                                    <select value={editItem.media_type || ""}
+                                        onChange={(e) => setEditItem({ ...editItem, media_type: e.target.value })}
+                                        className="w-full bg-white border border-slate-200 rounded-lg px-3 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-saffron [color-scheme:light]">
+                                        <option value="">General (no sub-section)</option>
+                                        <option value="press_notes">📰 Press Notes / Blog</option>
+                                        <option value="print_media">📄 Print Media</option>
+                                        <option value="electronic_media">📺 Electronic Media</option>
+                                    </select>
                                 </div>
 
                                 {/* Homepage overlay controls in edit modal */}

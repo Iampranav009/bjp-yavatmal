@@ -6,6 +6,7 @@ import {
     LayoutDashboard,
     Users,
     CalendarCheck,
+    CalendarDays,
     ClipboardList,
     Cake,
     ImageIcon,
@@ -17,25 +18,31 @@ import {
     ChevronRight,
     Layout,
     Mail,
+    ShieldAlert,
+    Bell,
 } from "lucide-react";
 import { useState } from "react";
 
-const navItems = [
-    { label: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
-    { label: "Members", href: "/admin/members", icon: Users },
-    { label: "Meetings", href: "/admin/meetings", icon: CalendarCheck },
-    { label: "Tasks", href: "/admin/tasks", icon: ClipboardList },
-    { label: "Birthdays", href: "/admin/birthdays", icon: Cake },
-    { label: "Gallery", href: "/admin/gallery", icon: ImageIcon },
-    { label: "Articles", href: "/admin/blogs", icon: Newspaper },
-    { label: "Sidebar Config", href: "/admin/sidebar", icon: Layout },
-    { label: "Subscribers", href: "/admin/subscribers", icon: Mail },
-    { label: "Settings", href: "/admin/settings", icon: Settings },
+const allNavItems = [
+    { label: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard, superAdminOnly: false },
+    { label: "Members", href: "/admin/members", icon: Users, superAdminOnly: false },
+    { label: "Event Posts", href: "/admin/events", icon: CalendarDays, superAdminOnly: false },
+    { label: "Meetings", href: "/admin/meetings", icon: CalendarCheck, superAdminOnly: false },
+    { label: "Event Tasks", href: "/admin/tasks", icon: ClipboardList, superAdminOnly: false },
+    { label: "Birthdays", href: "/admin/birthdays", icon: Cake, superAdminOnly: false },
+    { label: "Gallery", href: "/admin/gallery", icon: ImageIcon, superAdminOnly: false },
+    { label: "Articles", href: "/admin/blogs", icon: Newspaper, superAdminOnly: false },
+    { label: "Sidebar Config", href: "/admin/sidebar", icon: Layout, superAdminOnly: false },
+    { label: "Subscribers", href: "/admin/subscribers", icon: Mail, superAdminOnly: false },
+    { label: "Admin Control", href: "/admin/control", icon: ShieldAlert, superAdminOnly: true },
+    { label: "Notifications", href: "/admin/notifications", icon: Bell, superAdminOnly: true },
+    { label: "Settings", href: "/admin/settings", icon: Settings, superAdminOnly: true },
 ];
 
 interface AdminSidebarProps {
     adminName?: string;
     adminEmail?: string;
+    adminRole?: string;
     mobileOpen?: boolean;
     onMobileClose?: () => void;
     isCollapsed?: boolean;
@@ -45,6 +52,7 @@ interface AdminSidebarProps {
 export default function AdminSidebar({
     adminName = "Admin",
     adminEmail = "admin@bjpyavatmal.in",
+    adminRole = "super_admin",
     mobileOpen = false,
     onMobileClose,
     isCollapsed = false,
@@ -53,6 +61,10 @@ export default function AdminSidebar({
     const pathname = usePathname();
     const router = useRouter();
     const [loggingOut, setLoggingOut] = useState(false);
+
+    const isSuperAdmin = adminRole === 'super_admin';
+    const navItems = allNavItems.filter(item => !item.superAdminOnly || isSuperAdmin);
+    const panelTitle = isSuperAdmin ? 'BJP SUPER ADMIN' : 'BJP ADMIN';
 
     const handleLogout = async () => {
         setLoggingOut(true);
@@ -115,7 +127,7 @@ export default function AdminSidebar({
                 <div className="flex items-center justify-between">
                     <div>
                         <h2 className="text-2xl font-oswald text-slate-900 tracking-[0.15em]">
-                            BJP ADMIN
+                            {panelTitle}
                         </h2>
                         <p className="text-saffron text-[10px] font-bold uppercase tracking-[0.2em]">
                             Yavatmal District
@@ -141,6 +153,9 @@ export default function AdminSidebar({
                 <div className="px-4 py-3 mb-2">
                     <p className="text-slate-900 text-sm font-medium truncate">{adminName}</p>
                     <p className="text-slate-500 text-xs truncate">{adminEmail}</p>
+                    <span className={`inline-block mt-1 text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full ${isSuperAdmin ? 'bg-saffron/10 text-saffron' : 'bg-slate-100 text-slate-500'}`}>
+                        {isSuperAdmin ? 'Super Admin' : 'Admin'}
+                    </span>
                 </div>
                 <button
                     onClick={handleLogout}
@@ -173,7 +188,7 @@ export default function AdminSidebar({
                     {!isCollapsed ? (
                         <div className="whitespace-nowrap overflow-hidden">
                             <h2 className="text-2xl font-oswald text-slate-900 tracking-[0.15em]">
-                                BJP ADMIN
+                                {panelTitle}
                             </h2>
                             <p className="text-saffron text-[10px] font-bold uppercase tracking-[0.2em]">
                                 Yavatmal District
@@ -195,6 +210,9 @@ export default function AdminSidebar({
                         <div className="px-4 py-3 mb-2 overflow-hidden">
                             <p className="text-slate-900 text-sm font-medium truncate">{adminName}</p>
                             <p className="text-slate-500 text-xs truncate">{adminEmail}</p>
+                            <span className={`inline-block mt-1 text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full ${isSuperAdmin ? 'bg-saffron/10 text-saffron' : 'bg-slate-100 text-slate-500'}`}>
+                                {isSuperAdmin ? 'Super Admin' : 'Admin'}
+                            </span>
                         </div>
                     )}
                     <button

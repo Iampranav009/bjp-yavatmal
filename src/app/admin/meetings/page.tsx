@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 import {
     Plus,
     X,
@@ -43,6 +44,8 @@ interface Participant {
 }
 
 export default function MeetingsPage() {
+    const pathname = usePathname() || "";
+    const isPanel = pathname.startsWith("/admin/a");
     const [meetings, setMeetings] = useState<Meeting[]>([]);
     const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
@@ -314,13 +317,15 @@ export default function MeetingsPage() {
                                             >
                                                 <Download size={16} />
                                             </button>
-                                            <button
-                                                onClick={() => setDeleteConfirm(meeting.id)}
-                                                className="w-8 h-8 rounded-lg flex items-center justify-center text-red-400 hover:text-red-500 hover:bg-red-50 transition-colors"
-                                                title="Delete meeting"
-                                            >
-                                                <Trash2 size={16} />
-                                            </button>
+                                            {!isPanel && (
+                                                <button
+                                                    onClick={() => setDeleteConfirm(meeting.id)}
+                                                    className="w-8 h-8 rounded-lg flex items-center justify-center text-red-400 hover:text-red-500 hover:bg-red-50 transition-colors"
+                                                    title="Delete meeting"
+                                                >
+                                                    <Trash2 size={16} />
+                                                </button>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

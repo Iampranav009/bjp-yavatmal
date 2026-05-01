@@ -146,3 +146,35 @@ export function generateExcelBuffer(
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Members');
     return Buffer.from(XLSX.write(workbook, { type: 'buffer', bookType: 'xlsx' }));
 }
+
+/**
+ * Generate an empty template Excel buffer for members import.
+ */
+export function generateTemplateExcelBuffer(): Buffer {
+    const data = [{
+        'Name': 'Rahul Sharma',
+        'Wing': 'भाजयुमो (युवा मोर्चा)',
+        'Position': 'अध्यक्ष',
+        'Mobile': '9876543210',
+        'Birth Date': '1990-05-15',
+        'Birth Year': '1990',
+        'Address': 'Yavatmal City'
+    }];
+
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.json_to_sheet(data);
+
+    // Set column widths
+    worksheet['!cols'] = [
+        { wch: 25 }, // Name
+        { wch: 25 }, // Wing
+        { wch: 25 }, // Position
+        { wch: 15 }, // Mobile
+        { wch: 12 }, // Birth Date
+        { wch: 10 }, // Birth Year
+        { wch: 35 }, // Address
+    ];
+
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Template');
+    return Buffer.from(XLSX.write(workbook, { type: 'buffer', bookType: 'xlsx' }));
+}

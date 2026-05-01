@@ -76,6 +76,9 @@ export async function PUT(request: NextRequest) {
         if (homepage_text_position !== undefined) { fields.push('homepage_text_position = ?'); values.push(homepage_text_position); }
         if (homepage_text_color !== undefined) { fields.push('homepage_text_color = ?'); values.push(homepage_text_color); }
         if (homepage_text_bold !== undefined) { fields.push('homepage_text_bold = ?'); values.push(homepage_text_bold ? 1 : 0); }
+        if (body.team !== undefined) { fields.push('team = ?'); values.push(body.team); }
+        if (body.mandal !== undefined) { fields.push('mandal = ?'); values.push(body.mandal); }
+        if (body.media_type !== undefined) { fields.push('media_type = ?'); values.push(body.media_type); }
 
         if (fields.length === 0) {
             return NextResponse.json({ error: 'No fields to update' }, { status: 400 });

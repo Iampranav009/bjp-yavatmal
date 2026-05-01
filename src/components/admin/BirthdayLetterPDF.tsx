@@ -67,10 +67,44 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         textAlign: "right",
     },
-    addressBlock: {
-        marginBottom: 20,
-        lineHeight: 1.6,
+    // ── Envelope-ready address block ──────────────────────────────
+    envelopeAddressBox: {
+        marginBottom: 24,
+        padding: 12,
+        borderWidth: 1,
+        borderColor: "#d1d5db",
+        borderRadius: 4,
+        backgroundColor: "#f9fafb",
     },
+    envelopeLabel: {
+        fontSize: 8,
+        color: "#9ca3af",
+        fontWeight: 700,
+        textTransform: "uppercase",
+        letterSpacing: 1,
+        marginBottom: 6,
+    },
+    envelopeTo: {
+        fontSize: 11,
+        color: "#6b7280",
+        marginBottom: 4,
+    },
+    envelopeName: {
+        fontSize: 13,
+        fontWeight: 700,
+        color: "#111827",
+        marginBottom: 3,
+    },
+    envelopePosition: {
+        fontSize: 11,
+        color: "#374151",
+        marginBottom: 2,
+    },
+    envelopeOrg: {
+        fontSize: 11,
+        color: "#374151",
+    },
+    // ──────────────────────────────────────────────────────────────
     bodyText: {
         fontSize: 12,
         lineHeight: 1.8,
@@ -103,6 +137,17 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         marginTop: 30,
     },
+    signerName: {
+        fontSize: 13,
+        fontWeight: 700,
+        color: "#111827",
+        marginBottom: 2,
+    },
+    signerTitle: {
+        fontSize: 11,
+        color: "#374151",
+        marginBottom: 1,
+    },
     footer: {
         position: "absolute",
         bottom: 0,
@@ -126,9 +171,10 @@ interface LetterProps {
     memberName: string;
     position: string;
     birthDate: string;
+    memberAddress?: string;
 }
 
-function BirthdayLetterDocument({ memberName, position }: LetterProps) {
+function BirthdayLetterDocument({ memberName, position, memberAddress }: LetterProps) {
     const today = format(new Date(), "dd MMMM yyyy");
     const honorific = "Shri/Smt.";
 
@@ -140,7 +186,7 @@ function BirthdayLetterDocument({ memberName, position }: LetterProps) {
                     <Text style={styles.devanagariTitle}>
                         भारतीय जनता पार्टी — यवतमाळ जिल्हा
                     </Text>
-                    <Text style={styles.headerTitle}>BJP YAVATMAL DISTRICT COMMITTEE</Text>
+                    <Text style={styles.headerTitle}>BJP YAVATMAL DISTRICT</Text>
                     <Text style={styles.headerSubtitle}>
                         Bharatiya Janata Party — Yavatmal District
                     </Text>
@@ -151,14 +197,19 @@ function BirthdayLetterDocument({ memberName, position }: LetterProps) {
                 {/* Date */}
                 <Text style={styles.dateText}>Date: {today}</Text>
 
-                {/* Address */}
-                <View style={styles.addressBlock}>
-                    <Text>To,</Text>
-                    <Text style={styles.boldText}>
+                {/* Envelope-Ready Address Block */}
+                <View style={styles.envelopeAddressBox}>
+                    <Text style={styles.envelopeLabel}>Recipient Address (for Envelope)</Text>
+                    <Text style={styles.envelopeTo}>To,</Text>
+                    <Text style={styles.envelopeName}>
                         {honorific} {memberName}
                     </Text>
-                    {position && <Text>{position}</Text>}
-                    <Text>BJP Yavatmal</Text>
+                    {position && <Text style={styles.envelopePosition}>{position}</Text>}
+                    {memberAddress ? (
+                        <Text style={styles.envelopeOrg}>{memberAddress}</Text>
+                    ) : (
+                        <Text style={styles.envelopeOrg}>BJP Yavatmal</Text>
+                    )}
                 </View>
 
                 {/* Subject */}
@@ -170,7 +221,7 @@ function BirthdayLetterDocument({ memberName, position }: LetterProps) {
                 </Text>
 
                 <Text style={styles.bodyText}>
-                    On behalf of the BJP Yavatmal District Committee, we extend our
+                    On behalf of the BJP Yavatmal District, we extend our
                     warmest and most heartfelt birthday greetings to you on this special
                     occasion. Your dedication, tireless service, and unwavering commitment
                     to the people of Yavatmal is truly commendable and inspires us all.
@@ -187,19 +238,19 @@ function BirthdayLetterDocument({ memberName, position }: LetterProps) {
                     contributions to our party and the community.
                 </Text>
 
-                <Text style={styles.greeting}>जय हिंद! जय भारत! जय महाराष्ट्र!</Text>
+                <Text style={styles.greeting}>जय भारत! जय महाराष्ट्र!</Text>
 
                 {/* Signature */}
                 <View style={styles.signatureBlock}>
                     <Text>Yours sincerely,</Text>
                     <View style={styles.signatureLine} />
-                    <Text style={styles.boldText}>District President</Text>
-                    <Text>BJP Yavatmal District Committee</Text>
+                    <Text style={styles.signerName}>Advocate Praful Singh Chauhan</Text>
+                    <Text style={styles.signerTitle}>Jilladhyaksha, BJP Yavatmal</Text>
                 </View>
 
                 {/* Footer */}
                 <Text style={styles.footerText}>
-                    BJP Yavatmal District Committee | Yavatmal, Maharashtra, India
+                    BJP Yavatmal District | Yavatmal, Maharashtra, India
                 </Text>
                 <View style={styles.footer} />
             </Page>
@@ -210,13 +261,15 @@ function BirthdayLetterDocument({ memberName, position }: LetterProps) {
 export async function generateBirthdayPDF(
     memberName: string,
     position: string,
-    birthDate: string
+    birthDate: string,
+    memberAddress?: string
 ): Promise<Blob> {
     const doc = (
         <BirthdayLetterDocument
             memberName={memberName}
             position={position}
             birthDate={birthDate}
+            memberAddress={memberAddress}
         />
     );
     const blob = await pdf(doc).toBlob();
@@ -226,9 +279,10 @@ export async function generateBirthdayPDF(
 export async function downloadBirthdayPDF(
     memberName: string,
     position: string,
-    birthDate: string
+    birthDate: string,
+    memberAddress?: string
 ) {
-    const blob = await generateBirthdayPDF(memberName, position, birthDate);
+    const blob = await generateBirthdayPDF(memberName, position, birthDate, memberAddress);
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
@@ -237,6 +291,39 @@ export async function downloadBirthdayPDF(
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
+}
+
+/**
+ * Share generated PDF via WhatsApp Web
+ * Note: WhatsApp Web does not support direct file attachment via URL scheme.
+ * This opens a WhatsApp chat with a message. For actual file sharing,
+ * users should download and send manually, or use WhatsApp Business API.
+ */
+export async function shareLetterViaWhatsApp(
+    memberName: string,
+    position: string,
+    birthDate: string,
+    phone: string,
+    customMessage?: string,
+    memberAddress?: string
+) {
+    // Download the PDF first
+    await downloadBirthdayPDF(memberName, position, birthDate, memberAddress);
+
+    // Then open WhatsApp with a message
+    const message = customMessage ||
+        `🎂 *Happy Birthday, ${memberName}!*\n\nPlease find the attached birthday greeting letter from BJP Yavatmal District.\n\n— Advocate Praful Singh Chauhan\nJilladhyaksha, BJP Yavatmal\n\n🪷 जय भारत! जय महाराष्ट्र!`;
+
+    let cleanPhone = phone.replace(/[\s\-\(\)]/g, "");
+    if (!cleanPhone.startsWith("+") && !cleanPhone.startsWith("91")) {
+        cleanPhone = "91" + cleanPhone;
+    }
+    if (cleanPhone.startsWith("+")) {
+        cleanPhone = cleanPhone.substring(1);
+    }
+
+    const encodedMsg = encodeURIComponent(message);
+    window.open(`https://wa.me/${cleanPhone}?text=${encodedMsg}`, "_blank");
 }
 
 export default BirthdayLetterDocument;

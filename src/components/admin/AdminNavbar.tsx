@@ -1,7 +1,7 @@
 "use client";
 
 import { Bell, LogOut, Menu, Heart } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 interface AdminNavbarProps {
     title: string;
@@ -21,6 +21,8 @@ export default function AdminNavbar({
     showWishTemplateButton = false,
 }: AdminNavbarProps) {
     const router = useRouter();
+    const pathname = usePathname() || "";
+    const isPanel = pathname.startsWith("/admin/a");
 
     const handleLogout = async () => {
         await fetch("/api/auth/logout", { method: "POST" });
@@ -64,7 +66,7 @@ export default function AdminNavbar({
 
                 {/* Notifications bell */}
                 <button
-                    onClick={() => router.push("/admin/birthdays")}
+                    onClick={() => router.push(isPanel ? "/admin/a/dashboard" : "/admin/birthdays")}
                     className="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 relative hover:text-slate-900 hover:bg-slate-200 transition-all"
                 >
                     <Bell size={16} />

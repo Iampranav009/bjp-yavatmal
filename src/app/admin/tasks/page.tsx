@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 import {
     Plus,
     X,
@@ -60,6 +61,8 @@ interface ImportError {
 }
 
 export default function TasksPage() {
+    const pathname = usePathname() || "";
+    const isPanel = pathname.startsWith("/admin/a");
     const [tasks, setTasks] = useState<Task[]>([]);
     const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
@@ -314,24 +317,28 @@ export default function TasksPage() {
                             Assign Task
                         </button>
 
-                        <label className="flex items-center gap-1.5 px-4 py-2.5 bg-white hover:bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium rounded-lg transition-colors cursor-pointer">
-                            <Upload size={14} />
-                            Import Tasks
-                            <input
-                                type="file"
-                                accept=".xlsx,.xls,.csv"
-                                className="hidden"
-                                onChange={handleImport}
-                            />
-                        </label>
+                        {!isPanel && (
+                            <>
+                                <label className="flex items-center gap-1.5 px-4 py-2.5 bg-white hover:bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium rounded-lg transition-colors cursor-pointer">
+                                    <Upload size={14} />
+                                    Import Tasks
+                                    <input
+                                        type="file"
+                                        accept=".xlsx,.xls,.csv"
+                                        className="hidden"
+                                        onChange={handleImport}
+                                    />
+                                </label>
 
-                        <button
-                            onClick={handleDownloadTemplate}
-                            className="flex items-center gap-1.5 px-4 py-2.5 bg-white hover:bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium rounded-lg transition-colors"
-                        >
-                            <Download size={14} />
-                            Template
-                        </button>
+                                <button
+                                    onClick={handleDownloadTemplate}
+                                    className="flex items-center gap-1.5 px-4 py-2.5 bg-white hover:bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium rounded-lg transition-colors"
+                                >
+                                    <Download size={14} />
+                                    Template
+                                </button>
+                            </>
+                        )}
                     </div>
                 </div>
 
@@ -434,13 +441,15 @@ export default function TasksPage() {
                                                     <FileDown size={16} />
                                                 )}
                                             </button>
-                                            <button
-                                                onClick={() => setDeleteConfirm(task.id)}
-                                                className="w-8 h-8 rounded-lg flex items-center justify-center text-red-400 hover:text-red-500 hover:bg-red-50 transition-colors"
-                                                title="Delete task"
-                                            >
-                                                <Trash2 size={16} />
-                                            </button>
+                                            {!isPanel && (
+                                                <button
+                                                    onClick={() => setDeleteConfirm(task.id)}
+                                                    className="w-8 h-8 rounded-lg flex items-center justify-center text-red-400 hover:text-red-500 hover:bg-red-50 transition-colors"
+                                                    title="Delete task"
+                                                >
+                                                    <Trash2 size={16} />
+                                                </button>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

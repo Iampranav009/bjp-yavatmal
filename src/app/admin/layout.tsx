@@ -2,6 +2,8 @@
 
 import { ReactNode, useEffect, useState } from "react";
 import AdminSidebar from "@/components/admin/AdminSidebar";
+import PanelSidebar from "@/components/admin/PanelSidebar";
+import { usePathname } from "next/navigation";
 import { Toaster } from "react-hot-toast";
 
 interface AdminData {
@@ -14,6 +16,9 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
     const [admin, setAdmin] = useState<AdminData | null>(null);
     const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
     const [isCollapsed, setIsCollapsed] = useState(false);
+
+    const pathname = usePathname() || "";
+    const isPanel = pathname.startsWith("/admin/a");
 
     useEffect(() => {
         fetch("/api/auth/me")
@@ -37,14 +42,26 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                 }}
             />
 
-            <AdminSidebar
-                adminName={admin?.name}
-                adminEmail={admin?.email}
-                mobileOpen={mobileSidebarOpen}
-                onMobileClose={() => setMobileSidebarOpen(false)}
-                isCollapsed={isCollapsed}
-                onToggleCollapse={() => setIsCollapsed(!isCollapsed)}
-            />
+            {isPanel ? (
+                <PanelSidebar
+                    adminName={admin?.name}
+                    adminEmail={admin?.email}
+                    mobileOpen={mobileSidebarOpen}
+                    onMobileClose={() => setMobileSidebarOpen(false)}
+                    isCollapsed={isCollapsed}
+                    onToggleCollapse={() => setIsCollapsed(!isCollapsed)}
+                />
+            ) : (
+                <AdminSidebar
+                    adminName={admin?.name}
+                    adminEmail={admin?.email}
+                    adminRole={admin?.role}
+                    mobileOpen={mobileSidebarOpen}
+                    onMobileClose={() => setMobileSidebarOpen(false)}
+                    isCollapsed={isCollapsed}
+                    onToggleCollapse={() => setIsCollapsed(!isCollapsed)}
+                />
+            )}
 
             {/* Main content area - scrollable */}
             <div className="flex-1 h-screen overflow-y-auto pb-16 lg:pb-0 relative">
