@@ -12,7 +12,7 @@ import {
     renderTemplate,
     getWhatsAppUrl,
 } from "@/lib/birthdayTemplates";
-import { shareLetterViaWhatsApp, downloadBirthdayPDF } from "@/components/admin/BirthdayLetterPDF";
+import { shareLetterViaWhatsApp, openBirthdayLetter } from "@/components/admin/BirthdayLetterPDF";
 import { format } from "date-fns";
 
 interface BirthdayNotificationCardProps {
@@ -178,14 +178,14 @@ export default function BirthdayNotificationCard({
                             Letter
                         </button>
 
-                        {/* Download PDF button */}
+                        {/* Download / Open Marathi Letter button */}
                         <button
-                            onClick={() => downloadBirthdayPDF(member.name, member.position, member.birth_date)}
-                            className="flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-600 hover:bg-blue-500/20 transition-all"
-                            title="Download PDF"
+                            onClick={() => openBirthdayLetter(member.name, member.position, member.birth_date)}
+                            className="flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded-lg bg-orange-500/10 border border-orange-500/20 text-orange-600 hover:bg-orange-500/20 transition-all"
+                            title="मराठी वाढदिवस पत्र उघडा व PDF डाउनलोड करा"
                         >
                             <Download size={12} />
-                            PDF
+                            पत्र (PDF)
                         </button>
 
                         {/* WhatsApp + PDF button */}

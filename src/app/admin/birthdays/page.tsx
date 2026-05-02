@@ -61,10 +61,10 @@ export default function BirthdaysPage() {
 
     const handleGenerateLetter = async (member: MemberWithDaysLeft, _language?: WishLanguage) => {
         try {
-            const { downloadBirthdayPDF } = await import("@/components/admin/BirthdayLetterPDF");
-            await downloadBirthdayPDF(member.name, member.position, member.birth_date);
-            toast.success(`Letter generated for ${member.name}`);
-        } catch { toast.error("Failed to generate letter"); }
+            const { openBirthdayLetter } = await import("@/components/admin/BirthdayLetterPDF");
+            openBirthdayLetter(member.name, member.position, member.birth_date);
+            toast.success(`${member.name} यांचे वाढदिवस पत्र उघडले`);
+        } catch { toast.error("पत्र तयार करण्यात अडचण आली"); }
     };
 
     const todayBirthdays = upcoming.filter((m) => m.daysLeft === 0);

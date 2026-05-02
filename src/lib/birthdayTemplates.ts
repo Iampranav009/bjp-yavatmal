@@ -14,56 +14,57 @@ export const LANGUAGE_LABELS: Record<WishLanguage, string> = {
 };
 
 export const LANGUAGE_FLAGS: Record<WishLanguage, string> = {
-    en: '🇬🇧',
-    hi: '🇮🇳',
-    mr: '🇮🇳',
+    en: 'EN',
+    hi: 'HI',
+    mr: 'MR',
 };
 
 /**
  * Default birthday wish templates for each language.
  * Uses {{name}} and {{position}} as placeholders.
+ * No emojis — plain formal text only.
  */
 export const DEFAULT_TEMPLATES: Record<WishLanguage, string> = {
-    en: `🎂 *Happy Birthday, {{name}}!* 🎉
+    en: `*Happy Birthday, {{name}}!*
 
 On behalf of *BJP Yavatmal District*, we extend our warmest birthday wishes to you!
 
-🪷 As *{{position}}*, your dedication and service to the people of Yavatmal is truly commendable.
+As *{{position}}*, your dedication and service to the people of Yavatmal is truly commendable.
 
 May this special day bring you abundant joy, good health, and continued success in serving the nation.
 
-🪷 *Jai Bharat! Jai Maharashtra!*
+Jai Bharat! Jai Maharashtra!
 
 With warm regards,
 *Advocate Praful Singh Chauhan*
 Jilladhyaksha, BJP Yavatmal`,
 
-    hi: `🎂 *जन्मदिन की हार्दिक शुभकामनाएँ, {{name}} जी!* 🎉
+    hi: `*जन्मदिन की हार्दिक शुभकामनाएँ, {{name}} जी!*
 
 *भारतीय जनता पार्टी, यवतमाळ जिला* की ओर से आपको जन्मदिन की बहुत-बहुत बधाई!
 
-🪷 *{{position}}* के रूप में आपकी सेवा और समर्पण सराहनीय है।
+*{{position}}* के रूप में आपकी सेवा और समर्पण सराहनीय है।
 
 ईश्वर से प्रार्थना है कि यह विशेष दिन आपके जीवन में ढेर सारी खुशियाँ, अच्छा स्वास्थ्य और सफलता लाए।
 
-🪷 *जय भारत! जय महाराष्ट्र!*
+जय भारत! जय महाराष्ट्र!
 
 सादर,
 *अधि. प्रफुल सिंह चौहान*
 जिल्हाध्यक्ष, भाजपा यवतमाळ`,
 
-    mr: `🎂 *वाढदिवसाच्या हार्दिक शुभेच्छा, {{name}}!* 🎉
+    mr: `*वाढदिवसाच्या हार्दिक शुभेच्छा, {{name}}!*
 
 *भारतीय जनता पार्टी, यवतमाळ जिल्हा* तर्फे आपल्याला वाढदिवसाच्या मनःपूर्वक शुभेच्छा!
 
-🪷 *{{position}}* म्हणून आपली सेवा आणि समर्पण खरोखरच कौतुकास्पद आहे।
+*{{position}}* म्हणून आपली सेवा आणि समर्पण खरोखरच कौतुकास्पद आहे।
 
 या विशेष दिवशी तुम्हाला भरपूर आनंद, उत्तम आरोग्य आणि राष्ट्रसेवेत सतत यश मिळो अशी प्रार्थना!
 
-🪷 *जय भारत! जय महाराष्ट्र!*
+जय भारत! जय महाराष्ट्र!
 
 सप्रेम,
-*अधि. प्रफुल सिंह चौहान*
+*अधि. प्रफुल्ल चौहान*
 जिल्हाध्यक्ष, भाजपा यवतमाळ`,
 };
 
