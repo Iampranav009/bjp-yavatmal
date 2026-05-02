@@ -8,7 +8,8 @@
 function generateMarathiLetterHTML(
     memberName: string,
     position: string,
-    signatureUrl?: string
+    signatureUrl?: string,
+    bannerUrl?: string
 ): string {
     const today = new Date();
     const marathiDate = today.toLocaleDateString("mr-IN", {
@@ -81,6 +82,14 @@ function generateMarathiLetterHTML(
       margin-bottom: 2px;
     }
 
+    /* ── Banner ── */
+    .banner-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: 30px;
+    }
+
     /* ── Print / download button (hidden on print) ── */
     .action-bar {
       text-align: right;
@@ -107,6 +116,8 @@ function generateMarathiLetterHTML(
   <div class="action-bar">
     <button class="btn-print" onclick="window.print()">डाउनलोड / प्रिंट करा</button>
   </div>
+
+  ${bannerUrl ? `<img src="${bannerUrl}" alt="Banner" class="banner-image" />` : ""}
 
   <div class="verse">' जीवेत् शरदः शतम ' !</div>
   <div class="verse">सुदिनं सुदिनं जन्मदिनं तव ,</div>
@@ -152,7 +163,8 @@ export function openBirthdayLetter(
     _birthDate?: string
 ): void {
     const signatureUrl = `${window.location.origin}/images/letter/sign.png`;
-    const html = generateMarathiLetterHTML(memberName, position, signatureUrl);
+    const bannerUrl = `${window.location.origin}/images/letter/banner-nav.png`;
+    const html = generateMarathiLetterHTML(memberName, position, signatureUrl, bannerUrl);
     const newWin = window.open("", "_blank");
     if (!newWin) {
         alert(
@@ -171,7 +183,8 @@ export function downloadBirthdayHTML(
     _birthDate?: string
 ): void {
     const signatureUrl = `${window.location.origin}/images/letter/sign.png`;
-    const html = generateMarathiLetterHTML(memberName, position, signatureUrl);
+    const bannerUrl = `${window.location.origin}/images/letter/banner-nav.png`;
+    const html = generateMarathiLetterHTML(memberName, position, signatureUrl, bannerUrl);
     const blob = new Blob([html], { type: "text/html;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -199,7 +212,8 @@ export async function generateBirthdayPDF(
     _memberAddress?: string
 ): Promise<Blob> {
     const signatureUrl = `${window.location.origin}/images/letter/sign.png`;
-    const html = generateMarathiLetterHTML(memberName, position, signatureUrl);
+    const bannerUrl = `${window.location.origin}/images/letter/banner-nav.png`;
+    const html = generateMarathiLetterHTML(memberName, position, signatureUrl, bannerUrl);
     return new Blob([html], { type: "text/html;charset=utf-8" });
 }
 
@@ -211,7 +225,7 @@ export async function shareLetterViaWhatsApp(
     customMessage?: string,
     _memberAddress?: string
 ): Promise<void> {
-    openBirthdayLetter(memberName, position, birthDate);
+    downloadBirthdayHTML(memberName, position, birthDate);
 
     const message =
         customMessage ||
